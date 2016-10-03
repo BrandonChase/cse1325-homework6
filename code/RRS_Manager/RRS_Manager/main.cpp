@@ -1,7 +1,11 @@
 #include <cstdio>
 #include <iostream>
 
-int main(){
-std::cout<<"yea\n";
+using namespace std;
+
+int main()
+{
+//std::cout<<"yea\n";
+	cout << "testing making some changes" << endl;
 }
 
