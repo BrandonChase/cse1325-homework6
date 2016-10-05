@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8844A35F-CE1F-401F-A069-1483DF8D22B7}</ProjectGuid>
+    <ProjectGuid>{A59641CB-6B71-4F92-BCBB-BB956D9A9854}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>RSS_Manager</RootNamespace>
+    <RootNamespace>RRS_Manager</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
