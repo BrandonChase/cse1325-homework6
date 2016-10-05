@@ -25,6 +25,11 @@ public:
 				type(p_type),
 				description(p_description) {}
 				
+	friend ostream& operator<<(ostream& os, const RobotPart& part)
+	{
+		os << part.name;
+		return os;
+	}
 
 protected:
 	string name;
