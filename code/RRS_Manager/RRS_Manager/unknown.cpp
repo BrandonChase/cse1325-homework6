@@ -1,7 +1,12 @@
+/* 
+know something like this will be needed // can be modified/deleted as needed 
+
+wondering best method for inputing menu? number or text?
+also need to figure out menu process- text is really just placeholder
+*/ 
+
 #include <cstdio>
 #include <iostream>
-
-/* know something like this will be needed // can be modified/deleted as needed */ 
 
 using namespace std;
 
