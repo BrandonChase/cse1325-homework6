@@ -99,7 +99,7 @@ cout
 	"--------------------------------------------------\n";
 }
 
-int main()
+int notmain()
 {
 /* function used for testing print format */
 	welcome();
@@ -107,6 +107,7 @@ int main()
 	create();
 	report();
 	save();
-
+	char c;
+	cin >> c;
 	return 0;
 }

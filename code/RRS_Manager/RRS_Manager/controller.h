@@ -7,7 +7,7 @@
 class Controller
 {
 public:
-	Controller(Shop& param_shop) : shop(param_shop), view(View(param_shop)) {};
+	Controller(Shop& p_shop) : shop(p_shop), view(View(p_shop)) {};
 	void cli();
 	void executeCommand(int command);
 	

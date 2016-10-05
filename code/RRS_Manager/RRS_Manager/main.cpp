@@ -10,7 +10,8 @@ int main()
 	//Controller controller(shop);
 	//controller.cli();
 
-	cout << "test" << endl;
+	cout << "test\n";
 	char c;
 	cin >> c;
+	return 0;
 }

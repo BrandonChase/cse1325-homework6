@@ -6,7 +6,12 @@
 class View 
 {
 public:
-	View(Shop& param_shop) : shop(param_shop) {};
+	View(Shop& p_shop) : shop(p_shop) {};
+	void showWelcome();
+	void showMainMenu();
+	void showCreateMenu();
+	void showReportMenu();
+	void showSaveMenu();
 
 private:
 	Shop& shop;
