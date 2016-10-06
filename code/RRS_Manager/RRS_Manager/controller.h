@@ -12,7 +12,7 @@ public:
 	void executeCommand(int command);
 	void createmenu(int command);
 	void reportmenu(int command);
-
+	int inputselect();
 
 		
 private:

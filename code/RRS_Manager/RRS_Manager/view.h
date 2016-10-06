@@ -13,6 +13,7 @@ public:
 	void showReportMenu();
 	void showSaveMenu();
 
+
 private:
 	Shop& shop;
 };
