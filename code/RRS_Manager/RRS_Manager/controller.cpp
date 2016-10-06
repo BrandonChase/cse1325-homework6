@@ -13,6 +13,35 @@ void Controller::cli()
 	while (command != 0)
 	{
 		view.showMainMenu();
+		Controller::executecommand(command);
 
 	}
+}
+
+void Controller::executecommand(int command)
+{
+	switch (command){
+		case 1:
+		Controller::createmenu();
+		break;
+		case 2:
+		Controller::reportmenu();
+		break;
+		case 3:
+		view.showSaveMenu();
+		break;
+		default:
+		cout << "Not a valid option.\n"
+		view.showMainMenu();
+	}
+}
+
+void createmenu(int command)
+{
+
+}
+
+void reportmenu(int command)
+{
+	
 }

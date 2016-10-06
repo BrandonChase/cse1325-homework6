@@ -32,7 +32,7 @@ void View::showMainMenu()
 		<<
 		"|  1. create            |  3. save               |\n"
 		<<
-		"|  2. report            |  4. quit               |\n"
+		"|  2. report            |  0. quit               |\n"
 		<<
 		"--------------------------------------------------\n";
 }

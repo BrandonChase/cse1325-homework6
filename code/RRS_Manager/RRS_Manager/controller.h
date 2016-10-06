@@ -10,7 +10,11 @@ public:
 	Controller(Shop& p_shop) : shop(p_shop), view(View(p_shop)) {};
 	void cli();
 	void executeCommand(int command);
-	
+	void createmenu(int command);
+	void reportmenu(int command);
+
+
+		
 private:
 	Shop& shop;
 	View view;
