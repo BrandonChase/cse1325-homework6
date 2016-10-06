@@ -148,11 +148,13 @@
   <ItemGroup>
     <ClCompile Include="controller.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="robot_models.cpp" />
     <ClCompile Include="robot_parts.cpp" />
     <ClCompile Include="view.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller.h" />
+    <ClInclude Include="robot_models.h" />
     <ClInclude Include="robot_parts.h" />
     <ClInclude Include="shop.h" />
     <ClInclude Include="view.h" />
