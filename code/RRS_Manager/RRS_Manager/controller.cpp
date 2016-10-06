@@ -58,7 +58,7 @@ void Controller::createmenu(int command)
 		// robot component
 		break;
 		case 6:
-		// sales associate
+		
 		break;
 		default:
 		cout << "Not a valid option.\n";
