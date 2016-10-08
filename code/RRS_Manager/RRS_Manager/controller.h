@@ -8,12 +8,13 @@ class Controller
 {
 public:
 	Controller(Shop& p_shop) : shop(p_shop), view(View(p_shop)) {};
-	void cli();
-	void executeCommand(int command);
-	void createmenu(int command);
-	void reportmenu(int command);
-	int inputselect();
-
+	void CLI();
+	void mainMenuCLI();
+	void createCLI();
+	void reportCLI();
+	void executeMainMenuCommand(int command);
+	void executeCreateMenuCommand(int command);
+	void executeReportMenuCommand(int command);
 		
 private:
 	Shop& shop;

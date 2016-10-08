@@ -7,72 +7,113 @@
 
 using namespace std;
 
-void Controller::cli()
+void Controller::CLI()
 {
 	view.showWelcome();
+	mainMenuCLI();
+}
+
+void Controller::mainMenuCLI()
+{
 	int command = -1;
-	while (command != 0)
+	while (command != 9) // 9) Quit program
 	{
 		view.showMainMenu();
-		command=inputselect();
-		Controller::executecommand(command);
-
+		command = inputInt("Command: ");
+		executeMainMenuCommand(command);
 	}
 }
 
-void Controller::executecommand(int command)
+void Controller::createCLI()
 {
-	switch (command){
-		case 1:
-		Controller::createmenu();
-		break;
-		case 2:
-		Controller::reportmenu();
-		break;
-		case 3:
-		view.showSaveMenu();
-		break;
-		default:
-		cout << "Not a valid option.\n";
-		view.showMainMenu();
-	}
-}
-
-void Controller::createmenu(int command)
-{
-	view.showCreateMenu();
-	switch(inputselect()){
-		case 1:
-		// order
-		break;
-		case 2:
-		// customer
-		break;
-		case 3:
-		// sales associate
-		break;
-		case 4:
-		// robot model
-		break;
-		case 5:
-		// robot component
-		break;
-		case 6:
-		
-		break;
-		default:
-		cout << "Not a valid option.\n";
+	int command = -1;
+	while (command != 9) // 9) Quit to main menu
+	{
 		view.showCreateMenu();
+		command = inputInt("Command: ");
+		executeCreateMenuCommand(command);
 	}
 }
 
-void Controller::reportmenu(int command)
+void Controller::reportCLI()
 {
-
+	int command = -1;
+	while (command != 9) // 9) Quit to main menu
+	{
+		view.showReportMenu();
+		command = inputInt("Command: ");
+		executeReportMenuCommand(command);
+	}
 }
 
-int Controller::inputselect(){
-	int input_n;
-	cin >> input_n;
-	return input_n;
+void Controller::executeMainMenuCommand(int command)
+{
+	switch (command)
+	{
+		case 1: // Create
+			createCLI();
+			break;
+
+		case 2: // Report
+			reportCLI();
+			break;
+
+		case 3: // Save
+			view.showSaveMenu();
+			break;
+
+		default: // Unknown
+			cerr << "\t***Error: " << command << " is an invalid Main Menu option.\n";
+			break;
+	}
+}
+
+void Controller::executeCreateMenuCommand(int command)
+{
+	switch(command)
+	{
+		case 1: // Order
+			break;
+
+		case 2: // Customer
+			break;
+
+		case 3: // Sales Associate
+			break;
+
+		case 4: // Robot Model
+			break;
+
+		case 5: // Robot Part
+			break;
+
+		default: //Unkown
+			cerr << "\t***Error: " << command << " is an invalid Create option.\n";
+			break;
+	}
+}
+
+void Controller::executeReportMenuCommand(int command)
+{
+	switch (command)
+	{
+		case 1: // Orders
+			break;
+
+		case 2: // Customers
+			break;
+
+		case 3: // Sales Associates
+			break;
+
+		case 4: // Robot Models
+			break;
+
+		case 5: // Robot Parts
+			break;
+
+		default: //Unkown
+			cerr << "\t***Error: " << command << " is an invalid Report option.\n";
+			break;
+	}
 }

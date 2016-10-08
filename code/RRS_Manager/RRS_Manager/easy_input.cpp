@@ -1,24 +1,45 @@
 #include "easy_input.h"
 
+#include <string>
+#include <iostream>
+#include <exception>
 
-double inputDouble(string output)
-{
-	string temp;
-	temp = inputString(output);
-	double result = atof(temp.c_str());
-	return result;
-}
-//params: a should be > 0//
-int inputInt(string output)
-{
-	int result = (int)inputDouble(output);
-	return result;
-}
+using namespace std;
 
-string inputString(string output)
+string inputString(string prompt)
 {
 	string result;
-	cout << output;
+	cout << prompt;
 	getline(cin >> ws, result);
+	return result;
+}
+
+double inputDouble(string prompt)
+{
+	string temp;
+	temp = inputString(prompt);
+	try
+	{
+		double result = stod(temp.c_str());
+		return result;
+	}
+
+	catch (const exception& e)
+	{
+		cerr << "\t***Error: Entered invalid numeric value.  Try again.\n";
+		return inputDouble(prompt);
+	}
+}
+
+
+int inputInt(string prompt)
+{
+	double input = inputDouble(prompt);
+	int result = (int)input;
+	if (result != input)
+	{
+		cerr << "\t***Error: Entered floating-point number when prompted for integer.  Try again.\n";
+		return inputInt(prompt);
+	}
 	return result;
 }

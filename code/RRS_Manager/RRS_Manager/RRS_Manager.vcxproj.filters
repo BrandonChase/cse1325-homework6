@@ -30,6 +30,9 @@
     <ClCompile Include="robot_models.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="easy_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="robot_parts.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="robot_models.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="easy_input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

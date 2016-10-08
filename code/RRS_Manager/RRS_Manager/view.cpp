@@ -6,82 +6,71 @@ using namespace std;
 void View::showWelcome()
 {
 	cout
-		<<
-		"--------------------------------------------------\n"
-		<<
-		"|        welcome to robbie robot shop 1.0        |\n"
-		<<
-		"--------------------------------------------------\n"
-		<<
-		"|     written by: brandon chase and joe cloud     |\n"
-		<<
-		"--------------------------------------------------\n"
-		<<
-		"--------------------------------------------------\n";
+		<< "===================================" << endl
+		<< "      Robbie Robot Shop v0.10      " << endl
+		<< "                                   " << endl
+		<< "Creators: Brandon Chase & Joe Cloud" << endl
+		<< "===================================" << endl
+		<< endl
+		<< endl
+		<< endl;
 }
 
 void View::showMainMenu()
 {
 	cout
-		<< "\n" <<
-		"--------------------------------------------------\n"
-		<<
-		"|                   main menu                    |\n"
-		<<
-		"--------------------------------------------------\n"
-		<<
-		"|  1. create            |  3. save               |\n"
-		<<
-		"|  2. report            |  0. quit               |\n"
-		<<
-		"--------------------------------------------------\n";
+		<< endl
+		<< "--------------" << endl
+		<< "| Main Menu  |" << endl
+		<< "--------------" << endl
+		<< "| (1) Create |" << endl
+		<< "| (2) Report |" << endl
+		<< "| (3) Save   |" << endl
+		<< "| (9) Quit   |" << endl 
+		<< "--------------" << endl 
+		<< endl;
 }
 
 void View::showCreateMenu()
 {
 	cout
-		<< "\n" <<
-		"--------------------------------------------------\n"
-		<<
-		"|                    create                      |\n"
-		<<
-		"--------------------------------------------------\n"
-		<<
-		"|  1. order            |  4. robot model         |\n"
-		<<
-		"|  2. customer         |  5. robot component     |\n"
-		<<
-		"|  3. sales associate  |  6. back to main        |\n"
-		<<
-		"--------------------------------------------------\n";
+		<< endl
+		<< "-------------------------" << endl
+		<< "|        Create         |" << endl
+		<< "-------------------------" << endl
+		<< "| (1) Order             |" << endl
+		<< "| (2) Customer          |" << endl
+		<< "| (3) Sales Associate   |" << endl
+		<< "| (4) Robot Model       |" << endl
+		<< "| (5) Robot Part        |" << endl
+		<< "| (9) Quit to Main Menu |" << endl
+		<< "-------------------------" << endl
+		<< endl;
 }
 
 void View::showReportMenu()
 {
 	cout
-		<< "\n" <<
-		"--------------------------------------------------\n"
-		<<
-		"|                    report                      |\n"
-		<<
-		"--------------------------------------------------\n"
-		<<
-		"|  1. orders           |  4. robot models        |\n"
-		<<
-		"|  2. customers        |  5. robot components    |\n"
-		<<
-		"|  3. sales associates |  6. back to main        |\n"
-		<<
-		"--------------------------------------------------\n";
+		<< endl
+		<< "-------------------------" << endl
+		<< "|        Report         |" << endl
+		<< "-------------------------" << endl
+		<< "| (1) Orders            |" << endl
+		<< "| (2) Customers         |" << endl
+		<< "| (3) Sales Associates  |" << endl
+		<< "| (4) Robot Models      |" << endl
+		<< "| (5) Robot Parts       |" << endl
+		<< "| (9) Quit to Main Menu |" << endl
+		<< "-------------------------" << endl
+		<< endl;
 }
 
 void View::showSaveMenu() //I don't know if this will be necessary (or at least not a menu)
 {
 	cout
-	<< "\n" <<
-	"--------------------------------------------------\n"
-	<<
-	"|                 saving progress                |\n"
-	<<
-	"--------------------------------------------------\n";
+	<< endl 
+	<<"-----------------------------" << endl
+	<<"|          Saving           |" << endl
+	<<"-----------------------------" << endl
+	<< endl;
 }

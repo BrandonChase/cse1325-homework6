@@ -1,10 +1,10 @@
 #ifndef EASY_INPUT_H
 #define EASY_INPUT_H 2016
 
-#include "std_lib_facilities.h"
+#include <string>
 
-double inputDouble(string output);
-int inputInt(string output);
-string inputString(string output);
+std::string inputString(std::string prompt);
+double inputDouble(std::string prompt);
+int inputInt(std::string prompt);
 
 #endif
