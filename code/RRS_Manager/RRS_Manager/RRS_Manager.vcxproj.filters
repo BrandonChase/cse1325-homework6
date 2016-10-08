@@ -33,6 +33,12 @@
     <ClCompile Include="easy_input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="product_manager.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="customer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="robot_parts.h">
@@ -51,6 +57,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="easy_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="product_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="customer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

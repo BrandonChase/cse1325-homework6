@@ -147,15 +147,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="controller.cpp" />
+    <ClCompile Include="customer.cpp" />
     <ClCompile Include="easy_input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="product_manager.cpp" />
     <ClCompile Include="robot_models.cpp" />
     <ClCompile Include="robot_parts.cpp" />
     <ClCompile Include="view.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller.h" />
+    <ClInclude Include="customer.h" />
     <ClInclude Include="easy_input.h" />
+    <ClInclude Include="product_manager.h" />
     <ClInclude Include="robot_models.h" />
     <ClInclude Include="robot_parts.h" />
     <ClInclude Include="shop.h" />
