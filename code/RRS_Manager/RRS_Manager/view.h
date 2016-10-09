@@ -7,12 +7,15 @@ class View
 {
 public:
 	View(Shop& p_shop) : shop(p_shop) {};
+
 	void showWelcome();
 	void showMainMenu();
 	void showCreateMenu();
 	void showReportMenu();
 	void showSaveMenu();
 
+	void listPartTypes();
+	void listRobotParts();
 
 private:
 	Shop& shop;

@@ -1,7 +1,11 @@
 #include "view.h"
+#include "part_type.h"
+#include "robot_parts.h"
 #include <iostream>
 
 using namespace std;
+
+//SHOWS
 
 void View::showWelcome()
 {
@@ -68,9 +72,120 @@ void View::showReportMenu()
 void View::showSaveMenu() //I don't know if this will be necessary (or at least not a menu)
 {
 	cout
-	<< endl 
-	<<"-----------------------------" << endl
-	<<"|          Saving           |" << endl
-	<<"-----------------------------" << endl
-	<< endl;
+		<< endl 
+		<<"-----------------------------" << endl
+		<<"|          Saving           |" << endl
+		<<"-----------------------------" << endl
+		<< endl;
+}
+
+//LISTS
+
+void View::listPartTypes()
+{
+	cout
+		<< endl
+		<< "Robot Part Types" << endl
+		<< "----------------" << endl;
+
+	for (int i = 0; i < PartType::NUM_OF_PART_TYPES; i++)
+	{
+		cout << "(" << i << ") " << PartType(i) << endl;
+	}
+
+	cout << endl;
+}
+
+void View::listRobotParts()
+{
+	const vector<Head>& heads_ref = shop.getHeads();
+	const vector<Locomotor>& locomotors_ref = shop.getLocomotors();
+	const vector<Torso>& torsos_ref = shop.getTorsos();
+	const vector<Battery>& batteries_ref = shop.getBatteries();
+	const vector<Arm>& arms_ref = shop.getArms();
+
+	cout
+		<< endl
+		<< "Robot Parts" << endl
+		<< "-----------" << endl;
+
+	//list heads
+	cout
+		<< endl
+		<< "Heads" << endl
+		<< "-----" << endl
+		<< endl;
+
+	for (int i = 0; i < heads_ref.size(); i++)
+	{
+		cout
+			<< "(" << i << ") " << heads_ref[i] << endl;
+	}
+
+	//list locomotors
+	cout
+		<< endl
+		<< "Locomotors" << endl
+		<< "----------" << endl
+		<< endl;
+
+	for (int i = 0; i < locomotors_ref.size(); i++)
+	{
+		cout
+			<< "(" << i << ") " << locomotors_ref[i] << endl;
+	}
+
+	//list torsos
+	cout
+		<< endl
+		<< "Torsos" << endl
+		<< "------" << endl
+		<< endl;
+
+	for (int i = 0; i < torsos_ref.size(); i++)
+	{
+		cout
+			<< "(" << i << ") " << torsos_ref[i] << endl;
+	}
+
+	//list torsos
+	cout
+		<< endl
+		<< "Torsos" << endl
+		<< "------" << endl
+		<< endl;
+
+	for (int i = 0; i < torsos_ref.size(); i++)
+	{
+		cout
+			<< "(" << i << ") " << torsos_ref[i] << endl;
+	}
+
+	//list batteries
+	cout
+		<< endl
+		<< "Batteries" << endl
+		<< "---------" << endl
+		<< endl;
+
+	for (int i = 0; i < batteries_ref.size(); i++)
+	{
+		cout
+			<< "(" << i << ") " << batteries_ref[i] << endl;
+	}
+
+	//list arms
+	cout
+		<< endl
+		<< "Arms" << endl
+		<< "----" << endl
+		<< endl;
+
+	for (int i = 0; i < arms_ref.size(); i++)
+	{
+		cout
+			<< "(" << i << ") " << arms_ref[i] << endl;
+	}
+
+	cout << endl;
 }

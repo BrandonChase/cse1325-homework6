@@ -2,8 +2,7 @@
 #define ROBOT_PARTS_H 2016
 
 #include <string>
-
-enum class PartType { Torso, Head, Arm, Locomotor, Battery};
+#include "part_type.h"
 
 class RobotPart
 {
@@ -23,11 +22,7 @@ public:
 				type(p_type),
 				description(p_description) {}
 				
-	friend std::ostream& operator<<(std::ostream& os, const RobotPart& part)
-	{
-		os << part.name;
-		return os;
-	}
+	friend std::ostream& operator<<(std::ostream& os, const RobotPart& part);
 
 protected:
 	std::string name;
@@ -54,10 +49,10 @@ public:
 private:
 };
 
-class Locomoter : public RobotPart
+class Locomotor : public RobotPart
 {
 public:
-	Locomoter(
+	Locomotor(
 				std::string p_name,
 				int p_part_number,
 				double p_weight,
@@ -105,13 +100,13 @@ public:
 				double p_price,
 				PartType p_type,
 				std::string p_description,
-				int p_contained_energy) :
+				double p_contained_energy) :
 
 				RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
 				contained_energy(p_contained_energy) {}
 
 private:
-	int contained_energy; //kWh
+	double contained_energy; //kWh
 };
 
 class Arm : public RobotPart
@@ -124,12 +119,12 @@ public:
 		double p_price,
 		PartType p_type,
 		std::string p_description,
-		int p_power_consumed) :
+		double p_power_consumed) :
 
 		RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
 		power_consumed(p_power_consumed) {}
 	
 private:
-	int power_consumed; //W
+	double power_consumed; //W
 };
 #endif
