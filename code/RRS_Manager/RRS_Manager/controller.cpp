@@ -81,16 +81,37 @@ void Controller::executeCreateMenuCommand(int command)
 	break;
 
 	case 4: // Robot Model
+	const vector<Head>& heads_x = shop.getHeads();
+	const vector<Locomotor>& locomotors_x = shop.getLocomotors();
+	const vector<Torso>& torsos_x = shop.getTorsos();
+	const vector<Battery>& batteries_x = shop.getBatteries();
+	const vector<Arm>& arms_x = shop.getArms();
+
 	cout << "Creating a Robot Model: \n";
 	string model_name = inputString(" Model Name: ");
-	double model_cost = 0;
-	view.listRobotParts(0);
-	for (int i = 0; i < 5; i++)
-	{
-		view.ListRobotParts(i);
-	}
+	int model_number = inputIntGreaterThan("Model Number: ",0,"Model numbers must be positive!");
+	double model_cost;
+	
+	view.listRobotParts(0); // Choose head
+	int head_choice = inputIntInRange("Head choice: ", 1, heads_x.size(), "Invalid head choice!");
+	
+	view.listRobotParts(1); // Choose locomoter
+	int locometer_choice = inputIntInRange("Locomoter choice: ", 1, locomoters_x.size(), "Invalid locomoter choice!");
+	
+	view.listRobotParts(2); // Choose torsos
+	int torso_choice = inputIntInRange("Torso choice: ", 1, torsos_x.size(), "Invalid locomoter choice!");
+	
+	view.listRobotParts(3); // Choose batteries
+	int battery_choice = inputIntInRange("Battery choice: ", 1, batteries_x.size(), "Invalid locomoter choice!");
+	num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x.numbatteries(), "Invalid number of batteries!"); // New getter for number of batteries
+	
+	view.listRobotParts(4); // Choose arms
+	int arm_choice = inputIntInRange("Arm choice: ", 1, arms_x.size(), "Invalid locomoter choice!");
+	int num_arms = inputIntInRange("Number of arms: ", 1, 2, "Invalid number of arms!");
 
-	double model_price = inputDoubleGreaterThan("Model Price [$]: ",model_cost,"Price must be greater than cost!");
+	model_cost=;
+	double model_price = inputDoubleGreaterThan("Model Price [$]: ",model_cost,"Price must be greater than cost!"); // May run into an issue with double casting?
+	shop.addRobotModel(RobotModel(model_name,model_number,model_price,));
 	break;
 
 	case 5: // Robot Part

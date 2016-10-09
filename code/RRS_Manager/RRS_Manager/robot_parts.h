@@ -21,9 +21,9 @@ public:
 	price(p_price),
 	type(p_type),
 	description(p_description) {}
-	
-	friend std::ostream& operator<<(std::ostream& os, const RobotPart& part);
 
+	friend std::ostream& operator<<(std::ostream& os, const RobotPart& part);
+	double costofpart();
 protected:
 	std::string name;
 	int part_number;
@@ -82,10 +82,10 @@ public:
 		PartType p_type, 
 		std::string p_description,
 		int p_battery_compartments) :
-	
+
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description), 
 	battery_compartments(p_battery_compartments) {}
-
+	int numbatteries();
 private:
 	int battery_compartments;
 };

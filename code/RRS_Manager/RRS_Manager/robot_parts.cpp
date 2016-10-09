@@ -9,6 +9,15 @@ ostream& operator<<(ostream& os, const RobotPart& part)
 	return os;
 }
 
+RobotPart::costofpart(){
+	return price;
+}
+
+Torso::numbatteries() // returns number of battery compartments
+{
+	return battery_compartments;
+}
+
 //Head [Derived] [empty]
 
 //Locomotor [Derived]

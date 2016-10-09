@@ -16,11 +16,17 @@ public:
 				model_number(m_number),
 				price(m_price) {}
 
-protected:
+private:
 	std::string name;
 	int model_number;
 	double price;
 	double cost;
+	Head model_head;
+	Torso model_torso;
+	Locomoter model_locomoter;
+	Battery model_battery; // 1-3
+	Arm model_arm; // 1-2
+
 };
 
 
