@@ -51,20 +51,20 @@ void Controller::executeMainMenuCommand(int command)
 	switch (command)
 	{
 	case 1: // Create
-		createCLI();
-		break;
+	createCLI();
+	break;
 
 	case 2: // Report
-		reportCLI();
-		break;
+	reportCLI();
+	break;
 
 	case 3: // Save
-		view.showSaveMenu();
-		break;
+	view.showSaveMenu();
+	break;
 
 	default: // Unknown
-		cerr << "\t***Error: " << command << " is an invalid Main Menu option.\n";
-	}
+	cerr << "\t***Error: " << command << " is an invalid Main Menu option.\n";
+}
 }
 
 void Controller::executeCreateMenuCommand(int command)
@@ -72,29 +72,37 @@ void Controller::executeCreateMenuCommand(int command)
 	switch(command)
 	{
 	case 1: // Order
-		break;
+	break;
 
 	case 2: // Customer
-		break;
+	break;
 
 	case 3: // Sales Associate
-		break;
+	break;
 
 	case 4: // Robot Model
+	cout << "Creating a Robot Model: \n";
+	string model_name = inputString(" Model Name: ");
+	double model_cost = 0;
+	view.listRobotParts(0);
+	for (int i = 0; i < 5; i++)
+	{
+		view.ListRobotParts(i);
+	}
 
-
-		break;
+	double model_price = inputDoubleGreaterThan("Model Price [$]: ",model_cost,"Price must be greater than cost!");
+	break;
 
 	case 5: // Robot Part
-		view.listPartTypes();
-		int type_int = inputIntInRange("Part Type: ", 0, 4, "Invalid part type number!");
-		PartType type(type_int);
+	view.listPartTypes();
+	int type_int = inputIntInRange("Part Type: ", 0, 4, "Invalid part type number!");
+	PartType type(type_int);
 
-		string name = inputString("Part Name: ");
-		int part_number = inputIntGreaterThan("Part Number: ", 0, "Part numbers must be positive!");
-		double weight = inputDoubleGreaterThan("Part Weight [lb]: ", 0, "Part weight must be positive!");
-		double price = inputDoubleGreaterThan("Part Price [$]: ", 0, "Price must be positive!");
-		string description = inputString("Part Description: ");
+	string name = inputString("Part Name: ");
+	int part_number = inputIntGreaterThan("Part Number: ", 0, "Part numbers must be positive!");
+	double weight = inputDoubleGreaterThan("Part Weight [lb]: ", 0, "Part weight must be positive!");
+	double price = inputDoubleGreaterThan("Part Price [$]: ", 0, "Price must be positive!");
+	string description = inputString("Part Description: ");
 
 		if (type_int == 0) //Torso
 		{
@@ -131,22 +139,22 @@ void Controller::executeReportMenuCommand(int command)
 	switch (command)
 	{
 	case 1: // Orders
-		break;
+	break;
 
 	case 2: // Customers
-		break;
+	break;
 
 	case 3: // Sales Associates
-		break;
+	break;
 
 	case 4: // Robot Models
-		break;
+	break;
 
 	case 5: // Robot Parts
 		view.listRobotParts(-1); // outputs all 
 		break;
 
 	default: //Unkown
-		cerr << "\t***Error: " << command << " is an invalid Report option.\n";
-	}
+	cerr << "\t***Error: " << command << " is an invalid Report option.\n";
+}
 }

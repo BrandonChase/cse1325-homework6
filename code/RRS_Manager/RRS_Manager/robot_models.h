@@ -2,6 +2,7 @@
 #define ROBOT_MODELS_H 2016
 
 #include <string>
+#include <robotparts.h>
 
 class RobotModel
 {
