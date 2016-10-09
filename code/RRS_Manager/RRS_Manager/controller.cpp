@@ -86,38 +86,18 @@ void Controller::executeCreateMenuCommand(int command)
 
 	case 5: // Robot Part
 		view.listPartTypes();
-		int type_int = inputInt("Part Type: ");
+		int type_int = inputIntInRange("Part Type: ", 0, 4, "Invalid part type number!");
 		PartType type(type_int);
 
 		string name = inputString("Part Name: ");
-		int part_number = inputInt("Part Number: ");
-		while (part_number <= 0)
-		{
-			cout << "\t***Error: Part numbers can't be nonpositive!\n";
-			part_number = inputInt("Part Number: ");
-		}
-		double weight = inputDouble("Part Weight [lb]: ");
-		while (weight <= 0)
-		{
-			cout << "\t***Error: Part weight can't be nonpositive!\n";
-			weight = inputDouble("Part Weight [lb]: ");
-		}
-		double price = inputDouble("Part Price [$]: ");
-		while (price <= 0)
-		{
-			cout << "\t***Error: Price can't be nonpositive!\n";
-			price = inputDouble("Part Price [$]: ");
-		}
+		int part_number = inputIntGreaterThan("Part Number: ", 0, "Part numbers must be positive!");
+		double weight = inputDoubleGreaterThan("Part Weight [lb]: ", 0, "Part weight must be positive!");
+		double price = inputDoubleGreaterThan("Part Price [$]: ", 0, "Price must be positive!");
 		string description = inputString("Part Description: ");
 
 		if (type_int == 0) //Torso
 		{
-			int battery_compartments = inputInt("# of Battery Compartments: ");;
-			while (battery_compartments < 1 && battery_compartments > 3)
-			{
-				cout << "\t***Error: Torsos can only have 1, 2, or 3 battery compartments!\n";
-				battery_compartments = inputInt("# of Battery Compartments: ");
-			}
+			int battery_compartments = inputIntInRange("# of Battery Compartments: ", 1, 3, "Torsos can only have 1, 2, or 3 battery compartments!");
 			shop.addTorso(Torso(name, part_number, weight, price, type, description, battery_compartments));
 		} 
 		else if (type_int == 1) //Head
@@ -127,31 +107,14 @@ void Controller::executeCreateMenuCommand(int command)
 
 		else if (type_int == 2) //Arm
 		{
-			double power_consumed = inputDouble("Power consumed by arm [W]: ");
-			while (power_consumed <= 0)
-			{
-				cout << "\t***Error: Power consumed can't be nonpositive!\n";
-				power_consumed = inputDouble("Power consumed by arm [W]: ");
-			}
+			double power_consumed = inputDoubleGreaterThan("Power consumed by arm [W]: ", 0, "Power consumed must be positive!");
 			shop.addArm(Arm(name, part_number, weight, price, type, description, power_consumed));
 		}
 
 		else if(type_int == 3) //Locomotor
 		{
-			double max_speed = inputDouble("Max speed of locomotor [MPH]: ");
-			while (max_speed <= 0)
-			{
-				cout << "\t***Error: Max speed can't be nonpositive!\n";
-				max_speed = inputDouble("Max speed of locomotor [MPH]: ");
-			}
-
-			double power_consumed = inputDouble("Power consumed by locomotor [W]: ");
-			while (power_consumed <= 0)
-			{
-				cout << "\t***Error: Power consumed can't be nonpositive!\n";
-				power_consumed = inputDouble("Power consumed by locomotor [W]: ");
-			}
-
+			double max_speed = inputDoubleGreaterThan("Max speed of locomotor [MPH]: ", 0, "Max speed must be positive!");
+			double power_consumed = inputDoubleGreaterThan("Power consumed by arm [W]: ", 0, "Power consumed must be positive!");
 			shop.addLocomotor(Locomotor(name, part_number, weight, price, type, description, max_speed, power_consumed));
 		}
 

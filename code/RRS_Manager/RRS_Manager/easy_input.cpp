@@ -43,3 +43,75 @@ int inputInt(string prompt)
 	}
 	return result;
 }
+
+int inputIntLessThan(string prompt, int upper_bound, string reminder)
+{
+	int result = inputInt(prompt);
+	while (result >= upper_bound)
+	{
+		cout << "\t***Error: " << reminder << endl;
+		result = inputInt(prompt);
+	}
+
+	return result;
+}
+
+int inputIntGreaterThan(string prompt, int lower_bound, string reminder)
+{
+	int result = inputInt(prompt);
+	while (result <= lower_bound)
+	{
+		cout << "\t***Error: " << reminder << endl;
+		result = inputInt(prompt);
+	}
+
+	return result;
+}
+
+int inputIntInRange(string prompt, int lower_bound, int upper_bound, string reminder)
+{
+	int result = inputInt(prompt);
+	while (result < lower_bound || result > upper_bound)
+	{
+		cout << "\t***Error: " << reminder << endl;
+		result = inputInt(prompt);
+	}
+
+	return result;
+}
+
+int inputDoubleLessThan(string prompt, double upper_bound, string reminder)
+{
+	double result = inputDouble(prompt);
+	while (result >= upper_bound)
+	{
+		cout << "\t***Error: " << reminder << endl;
+		result = inputDouble(prompt);
+	}
+
+	return result;
+}
+
+int inputDoubleGreaterThan(string prompt, double lower_bound, string reminder)
+{
+	double result = inputDouble(prompt);
+	while (result <= lower_bound)
+	{
+		cout << "\t***Error: " << reminder << endl;
+		result = inputDouble(prompt);
+	}
+
+	return result;
+}
+
+int inputDoubleInRange(string prompt, double lower_bound, double upper_bound, string reminder)
+{
+	double result = inputDouble(prompt);
+	while (result < lower_bound || result > upper_bound)
+	{
+		cout << "\t***Error: " << reminder << endl;
+		result = inputDouble(prompt);
+	}
+
+	return result;
+}

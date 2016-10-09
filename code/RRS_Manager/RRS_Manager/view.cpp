@@ -148,19 +148,6 @@ void View::listRobotParts()
 			<< "(" << i << ") " << torsos_ref[i] << endl;
 	}
 
-	//list torsos
-	cout
-		<< endl
-		<< "Torsos" << endl
-		<< "------" << endl
-		<< endl;
-
-	for (int i = 0; i < torsos_ref.size(); i++)
-	{
-		cout
-			<< "(" << i << ") " << torsos_ref[i] << endl;
-	}
-
 	//list batteries
 	cout
 		<< endl
