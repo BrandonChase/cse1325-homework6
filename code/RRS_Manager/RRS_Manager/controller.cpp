@@ -64,7 +64,6 @@ void Controller::executeMainMenuCommand(int command)
 
 	default: // Unknown
 		cerr << "\t***Error: " << command << " is an invalid Main Menu option.\n";
-		break;
 	}
 }
 
@@ -82,6 +81,8 @@ void Controller::executeCreateMenuCommand(int command)
 		break;
 
 	case 4: // Robot Model
+
+
 		break;
 
 	case 5: // Robot Part
@@ -117,7 +118,7 @@ void Controller::executeCreateMenuCommand(int command)
 			double power_consumed = inputDoubleGreaterThan("Power consumed by arm [W]: ", 0, "Power consumed must be positive!");
 			shop.addLocomotor(Locomotor(name, part_number, weight, price, type, description, max_speed, power_consumed));
 		}
-
+		break;
 		else //Unkown
 		{
 			cerr << "\t***Error: " << command << " is an invalid Create option.\n";
@@ -142,11 +143,10 @@ void Controller::executeReportMenuCommand(int command)
 		break;
 
 	case 5: // Robot Parts
-		view.listRobotParts();
+		view.listRobotParts(-1); // outputs all 
 		break;
 
 	default: //Unkown
 		cerr << "\t***Error: " << command << " is an invalid Report option.\n";
-		break;
 	}
 }

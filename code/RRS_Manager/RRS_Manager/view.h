@@ -15,7 +15,7 @@ public:
 	void showSaveMenu();
 
 	void listPartTypes();
-	void listRobotParts();
+	void listRobotParts(int selection);
 
 private:
 	Shop& shop;
