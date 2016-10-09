@@ -99,19 +99,19 @@ void Controller::executeCreateMenuCommand(int command)
 	int locometer_choice = inputIntInRange("Locomoter choice: ", 1, locomoters_x.size(), "Invalid locomoter choice!");
 	
 	view.listRobotParts(2); // Choose torsos
-	int torso_choice = inputIntInRange("Torso choice: ", 1, torsos_x.size(), "Invalid locomoter choice!");
+	int torso_choice = inputIntInRange("Torso choice: ", 1, torsos_x.size(), "Invalid torso choice!");
 	
 	view.listRobotParts(3); // Choose batteries
-	int battery_choice = inputIntInRange("Battery choice: ", 1, batteries_x.size(), "Invalid locomoter choice!");
+	int battery_choice = inputIntInRange("Battery choice: ", 1, batteries_x.size(), "Invalid battery choice!");
 	num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x.numbatteries(), "Invalid number of batteries!"); // New getter for number of batteries
 	
 	view.listRobotParts(4); // Choose arms
-	int arm_choice = inputIntInRange("Arm choice: ", 1, arms_x.size(), "Invalid locomoter choice!");
+	int arm_choice = inputIntInRange("Arm choice: ", 1, arms_x.size(), "Invalid arm choice!");
 	int num_arms = inputIntInRange("Number of arms: ", 1, 2, "Invalid number of arms!");
 
-	model_cost=;
+	model_cost=heads_x[head_choice].costofpart() + locomoters_x[locomoter_choice].costofpart() + torsos_x[torso_choice].costofpart() + batteries_x[battery_choice].costofpart()*num_batteries + arms_x[arm_choice].costofpart()*num_arms;
 	double model_price = inputDoubleGreaterThan("Model Price [$]: ",model_cost,"Price must be greater than cost!"); // May run into an issue with double casting?
-	shop.addRobotModel(RobotModel(model_name,model_number,model_price,));
+	shop.addRobotModel(RobotModel(model_name, model_number, model_price, heads_x[head_choice], torsos_x[torso_choice], locomoters_x[locomoter_choice], batteries_x[battery_choice], arms_x[arm_choice]));
 	break;
 
 	case 5: // Robot Part
