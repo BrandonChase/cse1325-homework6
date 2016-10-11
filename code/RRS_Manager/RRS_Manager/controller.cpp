@@ -131,28 +131,35 @@ void Controller::executeCreateMenuCommand(int command)
 	double price = inputDoubleGreaterThan("Part Price [$]: ", 0, "Price must be positive!");
 	string description = inputString("Part Description: ");
 
-		if (type_int == 0) //Torso
+		if (type_int ==	PartType::TORSO) //Torso
 		{
 			int battery_compartments = inputIntInRange("# of Battery Compartments: ", 1, 3, "Torsos can only have 1, 2, or 3 battery compartments!");
 			shop.addTorso(Torso(name, part_number, weight, price, type, description, battery_compartments));
 		}
-		else if (type_int == 1) //Head
+		else if (type_int == PartType::HEAD) //Head
 		{
 			shop.addHead(Head(name, part_number, weight, price, type, description));
 		}
 
-		else if (type_int == 2) //Arm
+		else if (type_int == PartType::ARM) //Arm
 		{
 			double power_consumed = inputDoubleGreaterThan("Power consumed by arm [W]: ", 0, "Power consumed must be positive!");
 			shop.addArm(Arm(name, part_number, weight, price, type, description, power_consumed));
 		}
 
-		else if(type_int == 3) //Locomotor
+		else if(type_int == PartType::LOCOMOTOR) //Locomotor
 		{
 			double max_speed = inputDoubleGreaterThan("Max speed of locomotor [MPH]: ", 0, "Max speed must be positive!");
 			double power_consumed = inputDoubleGreaterThan("Power consumed by arm [W]: ", 0, "Power consumed must be positive!");
 			shop.addLocomotor(Locomotor(name, part_number, weight, price, type, description, max_speed, power_consumed));
 		}
+
+		else if (type_int == PartType::BATTERY) //Battery
+		{
+			double contained_energy = inputDoubleGreaterThan("Energy contained by battery [kWh]", 0, "Energy contained must be positive!");
+			shop.addBattery(Battery(name, part_number, weight, price, type, description, contained_energy));
+		}
+
 		else //Unkown
 		{
 			cerr << "\t***Error: " << command << " is an invalid Create option.\n";
