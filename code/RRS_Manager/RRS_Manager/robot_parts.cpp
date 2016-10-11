@@ -9,11 +9,11 @@ ostream& operator<<(ostream& os, const RobotPart& part)
 	return os;
 }
 
-double RobotPart::costofpart(){
+double RobotPart::costofpart() const{
 	return price;
 }
 
-int Torso::numbatteries() // returns number of battery compartments
+int Torso::numbatteries() const // returns number of battery compartments
 {
 	return battery_compartments;
 }

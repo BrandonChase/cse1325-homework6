@@ -90,7 +90,7 @@ void Controller::createRobotModelOption(){
 
 	view.listRobotParts(3); // Choose batteries
 	int battery_choice = inputIntInRange("Battery choice: ", 1, batteries_x.size(), "Invalid battery choice!");
-	int num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x.numbatteries(), "Invalid number of batteries!"); // New getter for number of batteries
+	int num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x[torso_choice].numbatteries(), "Invalid number of batteries!"); // New getter for number of batteries
 
 	view.listRobotParts(4); // Choose arms
 	int arm_choice = inputIntInRange("Arm choice: ", 1, arms_x.size(), "Invalid arm choice!");
