@@ -2,6 +2,7 @@
 #define PART_TYPE_H 2016
 
 #include <string>
+#include <ostream>
 
 class PartType
 {

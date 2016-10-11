@@ -2,7 +2,7 @@
 
 using namespace std;
 
-ostream& operator<<(std::ostream& os, const PartType& part)
+ostream& operator<<(ostream& os, const PartType& part)
 {
 	switch (part.value)
 	{
