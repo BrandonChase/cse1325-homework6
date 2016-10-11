@@ -11,7 +11,7 @@ void View::showWelcome()
 {
 	cout
 	<< "===================================" << endl
-	<< "      Robbie Robot Shop v0.10      " << endl
+	<< "      Robbie Robot Shop v0.13      " << endl
 	<< "                                   " << endl
 	<< "Creators: Brandon Chase & Joe Cloud" << endl
 	<< "===================================" << endl
@@ -103,44 +103,15 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 	const vector<Torso>& torsos_ref = shop.getTorsos();
 	const vector<Battery>& batteries_ref = shop.getBatteries();
 	const vector<Arm>& arms_ref = shop.getArms();
-	if (selection < 1)
+	if (selection < PartType::HEAD)
 	{
-	cout
-	<< endl
-	<< "Robot Parts" << endl
-	<< "-----------" << endl;
-	}
-	if (selection == 0 || selection == -1)
-	{
-	//list heads
 		cout
 		<< endl
-		<< "Heads" << endl
-		<< "-----" << endl
-		<< endl;
-
-		for (int i = 0; i < heads_ref.size(); i++)
-		{
-			cout
-			<< "(" << i << ") " << heads_ref[i] << endl;
-		}
+		<< "Robot Parts" << endl
+		<< "-----------" << endl;
 	}
-	if (selection == 1 || selection == -1)
-	{
-	//list locomotors
-		cout
-		<< endl
-		<< "Locomotors" << endl
-		<< "----------" << endl
-		<< endl;
 
-		for (int i = 0; i < locomotors_ref.size(); i++)
-		{
-			cout
-			<< "(" << i << ") " << locomotors_ref[i] << endl;
-		}
-	}
-	if (selection == 2 || selection == -1)
+	if (selection == PartType::TORSO || selection == PartType::ALL)
 	{
 	//list torsos
 		cout
@@ -155,22 +126,24 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 			<< "(" << i << ") " << torsos_ref[i] << endl;
 		}
 	}
-	if (selection == 3 || selection == -1)
+
+	if (selection == PartType::HEAD || selection == PartType::ALL)
 	{
-	//list batteries
+	//list heads
 		cout
 		<< endl
-		<< "Batteries" << endl
-		<< "---------" << endl
+		<< "Heads" << endl
+		<< "-----" << endl
 		<< endl;
 
-		for (int i = 0; i < batteries_ref.size(); i++)
+		for (int i = 0; i < heads_ref.size(); i++)
 		{
 			cout
-			<< "(" << i << ") " << batteries_ref[i] << endl;
+			<< "(" << i << ") " << heads_ref[i] << endl;
 		}
 	}
-	if (selection == 4 || selection == -1)
+
+	if (selection == PartType::ARM || selection == PartType::ALL)
 	{
 	//list arms
 		cout
@@ -184,8 +157,40 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 			cout
 			<< "(" << i << ") " << arms_ref[i] << endl;
 		}
+		//cout << endl;  ~~~ JUST WHY?
+	}
 
-		cout << endl;
+	if (selection == PartType::LOCOMOTOR || selection == PartType::ALL)
+	{
+
+	//list locomotors
+		cout
+		<< endl
+		<< "Locomotors" << endl
+		<< "----------" << endl
+		<< endl;
+
+		for (int i = 0; i < locomotors_ref.size(); i++)
+		{
+			cout
+			<< "(" << i << ") " << locomotors_ref[i] << endl;
+		}
+	}
+
+	if (selection == PartType::BATTERY || selection == PartType::ALL)
+	{
+	//list batteries
+		cout
+		<< endl
+		<< "Batteries" << endl
+		<< "---------" << endl
+		<< endl;
+
+		for (int i = 0; i < batteries_ref.size(); i++)
+		{
+			cout
+			<< "(" << i << ") " << batteries_ref[i] << endl;
+		}
 	}
 }
 

@@ -61,6 +61,9 @@ void Controller::executeMainMenuCommand(int command)
 	case 3: // Save
 	view.showSaveMenu();
 	break;
+	
+	case 9:
+	break;
 
 	default: // Unknown
 	cerr << "\t***Error: " << command << " is an invalid Main Menu option.\n";
@@ -79,20 +82,20 @@ void Controller::createRobotModelOption(){
 	int model_number = inputIntGreaterThan("Model Number: ",0,"Model numbers must be positive!");
 	double model_cost;
 
-	view.listRobotParts(0); // Choose head
+	view.listRobotParts(PartType::HEAD); // Choose head
 	int head_choice = inputIntInRange("Head choice: ", 0, heads_x.size(), "Invalid head choice!");
 
-	view.listRobotParts(1); // Choose locomotor
+	view.listRobotParts(PartType::LOCOMOTOR); // Choose locomotor
 	int locomotor_choice = inputIntInRange("locomotor choice: ", 0, locomotors_x.size(), "Invalid locomotor choice!");
 
-	view.listRobotParts(2); // Choose torsos
+	view.listRobotParts(PartType::TORSO); // Choose torsos
 	int torso_choice = inputIntInRange("Torso choice: ", 0, torsos_x.size(), "Invalid torso choice!");
 
-	view.listRobotParts(3); // Choose batteries
+	view.listRobotParts(PartType::BATTERY); // Choose batteries
 	int battery_choice = inputIntInRange("Battery choice: ", 0, batteries_x.size(), "Invalid battery choice!");
 	int num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x[torso_choice].numbatteries(), "Invalid number of batteries!"); // New getter for number of batteries
 
-	view.listRobotParts(4); // Choose arms
+	view.listRobotParts(PartType::ARM); // Choose arms
 	int arm_choice = inputIntInRange("Arm choice: ", 0, arms_x.size(), "Invalid arm choice!");
 	int num_arms = inputIntInRange("Number of arms: ", 1, 2, "Invalid number of arms!");
 
@@ -184,8 +187,11 @@ void Controller::executeReportMenuCommand(int command)
 	break;
 
 	case 5: // Robot Parts
-		view.listRobotParts(-1); // outputs all
-		break;
+	view.listRobotParts(PartType::ALL); // outputs all
+	break;
+
+	case 9:
+	break;
 
 	default: //Unkown
 	cerr << "\t***Error: " << command << " is an invalid Report option.\n";

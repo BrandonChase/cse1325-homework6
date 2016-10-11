@@ -6,6 +6,9 @@ ostream& operator<<(ostream& os, const PartType& part)
 {
 	switch (part.value)
 	{
+	case -1:
+		os << "All";
+		break;
 	case 0:
 		os << "Torso";
 		break;

@@ -14,7 +14,7 @@ public:
 	static const int ARM = 2;
 	static const int LOCOMOTOR = 3;
 	static const int BATTERY = 4;
-
+	static const int ALL = -1;
 	static const int NUM_OF_PART_TYPES = 5;
 
 	friend std::ostream& operator<<(std::ostream& os, const PartType& type);
