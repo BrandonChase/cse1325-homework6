@@ -187,7 +187,13 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 	}
 }
 
+/*
+
 void View::ListRobotModels()
 {
 	const vector<RobotModel>& models_ref = shop.getModels();
 }
+
+
+
+*/

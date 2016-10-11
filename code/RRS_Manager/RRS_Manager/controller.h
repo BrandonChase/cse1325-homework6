@@ -15,6 +15,8 @@ public:
 	void executeMainMenuCommand(int command);
 	void executeCreateMenuCommand(int command);
 	void executeReportMenuCommand(int command);
+	void createRobotModelOption();
+
 		
 private:
 	Shop& shop;

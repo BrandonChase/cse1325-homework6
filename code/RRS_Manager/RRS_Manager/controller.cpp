@@ -67,6 +67,42 @@ void Controller::executeMainMenuCommand(int command)
 }
 }
 
+void Controller::createRobotModelOption(){
+	const vector<Head>& heads_x = shop.getHeads();
+	const vector<Locomotor>& locomotors_x = shop.getLocomotors();
+	const vector<Torso>& torsos_x = shop.getTorsos();
+	const vector<Battery>& batteries_x = shop.getBatteries();
+	const vector<Arm>& arms_x = shop.getArms();
+
+	cout << "Creating a Robot Model: \n";
+	string model_name = inputString(" Model Name: ");
+	int model_number = inputIntGreaterThan("Model Number: ",0,"Model numbers must be positive!");
+	double model_cost;
+
+	view.listRobotParts(0); // Choose head
+	int head_choice = inputIntInRange("Head choice: ", 1, heads_x.size(), "Invalid head choice!");
+
+	view.listRobotParts(1); // Choose locomotor
+	int locomotor_choice = inputIntInRange("locomotor choice: ", 1, locomotors_x.size(), "Invalid locomotor choice!");
+
+	view.listRobotParts(2); // Choose torsos
+	int torso_choice = inputIntInRange("Torso choice: ", 1, torsos_x.size(), "Invalid torso choice!");
+
+	view.listRobotParts(3); // Choose batteries
+	int battery_choice = inputIntInRange("Battery choice: ", 1, batteries_x.size(), "Invalid battery choice!");
+	int num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x.numbatteries(), "Invalid number of batteries!"); // New getter for number of batteries
+
+	view.listRobotParts(4); // Choose arms
+	int arm_choice = inputIntInRange("Arm choice: ", 1, arms_x.size(), "Invalid arm choice!");
+	int num_arms = inputIntInRange("Number of arms: ", 1, 2, "Invalid number of arms!");
+
+	model_cost=heads_x[head_choice].costofpart() + locomotors_x[locomotor_choice].costofpart() + torsos_x[torso_choice].costofpart() + batteries_x[battery_choice].costofpart()*num_batteries + arms_x[arm_choice].costofpart()*num_arms;
+	double model_price = inputDoubleGreaterThan("Model Price [$]: ",model_cost,"Price must be greater than cost!"); // May run into an issue with double casting?
+	shop.addRobotModel(RobotModel(model_name, model_number, model_price, heads_x[head_choice], torsos_x[torso_choice], locomotors_x[locomotor_choice], batteries_x[battery_choice], arms_x[arm_choice]));
+}
+
+
+
 void Controller::executeCreateMenuCommand(int command)
 {
 	switch(command)
@@ -81,37 +117,7 @@ void Controller::executeCreateMenuCommand(int command)
 	break;
 
 	case 4: // Robot Model
-	const vector<Head>& heads_x = shop.getHeads();
-	const vector<Locomotor>& locomotors_x = shop.getLocomotors();
-	const vector<Torso>& torsos_x = shop.getTorsos();
-	const vector<Battery>& batteries_x = shop.getBatteries();
-	const vector<Arm>& arms_x = shop.getArms();
-
-	cout << "Creating a Robot Model: \n";
-	string model_name = inputString(" Model Name: ");
-	int model_number = inputIntGreaterThan("Model Number: ",0,"Model numbers must be positive!");
-	double model_cost;
-	
-	view.listRobotParts(0); // Choose head
-	int head_choice = inputIntInRange("Head choice: ", 1, heads_x.size(), "Invalid head choice!");
-	
-	view.listRobotParts(1); // Choose locomoter
-	int locometer_choice = inputIntInRange("Locomoter choice: ", 1, locomoters_x.size(), "Invalid locomoter choice!");
-	
-	view.listRobotParts(2); // Choose torsos
-	int torso_choice = inputIntInRange("Torso choice: ", 1, torsos_x.size(), "Invalid torso choice!");
-	
-	view.listRobotParts(3); // Choose batteries
-	int battery_choice = inputIntInRange("Battery choice: ", 1, batteries_x.size(), "Invalid battery choice!");
-	num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x.numbatteries(), "Invalid number of batteries!"); // New getter for number of batteries
-	
-	view.listRobotParts(4); // Choose arms
-	int arm_choice = inputIntInRange("Arm choice: ", 1, arms_x.size(), "Invalid arm choice!");
-	int num_arms = inputIntInRange("Number of arms: ", 1, 2, "Invalid number of arms!");
-
-	model_cost=heads_x[head_choice].costofpart() + locomoters_x[locomoter_choice].costofpart() + torsos_x[torso_choice].costofpart() + batteries_x[battery_choice].costofpart()*num_batteries + arms_x[arm_choice].costofpart()*num_arms;
-	double model_price = inputDoubleGreaterThan("Model Price [$]: ",model_cost,"Price must be greater than cost!"); // May run into an issue with double casting?
-	shop.addRobotModel(RobotModel(model_name, model_number, model_price, heads_x[head_choice], torsos_x[torso_choice], locomoters_x[locomoter_choice], batteries_x[battery_choice], arms_x[arm_choice]));
+	createRobotModelOption(); // Seperate method due to declarations within switch/case is no go.
 	break;
 
 	case 5: // Robot Part
@@ -129,7 +135,7 @@ void Controller::executeCreateMenuCommand(int command)
 		{
 			int battery_compartments = inputIntInRange("# of Battery Compartments: ", 1, 3, "Torsos can only have 1, 2, or 3 battery compartments!");
 			shop.addTorso(Torso(name, part_number, weight, price, type, description, battery_compartments));
-		} 
+		}
 		else if (type_int == 1) //Head
 		{
 			shop.addHead(Head(name, part_number, weight, price, type, description));
@@ -147,7 +153,6 @@ void Controller::executeCreateMenuCommand(int command)
 			double power_consumed = inputDoubleGreaterThan("Power consumed by arm [W]: ", 0, "Power consumed must be positive!");
 			shop.addLocomotor(Locomotor(name, part_number, weight, price, type, description, max_speed, power_consumed));
 		}
-		break;
 		else //Unkown
 		{
 			cerr << "\t***Error: " << command << " is an invalid Create option.\n";
@@ -172,7 +177,7 @@ void Controller::executeReportMenuCommand(int command)
 	break;
 
 	case 5: // Robot Parts
-		view.listRobotParts(-1); // outputs all 
+		view.listRobotParts(-1); // outputs all
 		break;
 
 	default: //Unkown
