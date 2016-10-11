@@ -24,14 +24,14 @@ void View::showMainMenu()
 {
 	cout
 	<< endl
-	<< "--------------" << endl
-	<< "| Main Menu  |" << endl
-	<< "--------------" << endl
-	<< "| (1) Create |" << endl
-	<< "| (2) Report |" << endl
-	<< "| (3) Save   |" << endl
-	<< "| (9) Quit   |" << endl 
-	<< "--------------" << endl 
+	<< "-------------------------" << endl
+	<< "|        Main Menu      |" << endl
+	<< "-------------------------" << endl
+	<< "| (1) Create            |" << endl
+	<< "| (2) Report            |" << endl
+	<< "| (3) Save              |" << endl
+	<< "| (9) Quit              |" << endl 
+	<< "-------------------------" << endl 
 	<< endl;
 }
 
@@ -73,9 +73,9 @@ void View::showSaveMenu() //I don't know if this will be necessary (or at least 
 {
 	cout
 	<< endl 
-	<<"-----------------------------" << endl
-	<<"|          Saving           |" << endl
-	<<"-----------------------------" << endl
+	<<"--------------------------" << endl
+	<<"|        Saving          |" << endl
+	<<"--------------------------" << endl
 	<< endl;
 }
 
@@ -103,12 +103,13 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 	const vector<Torso>& torsos_ref = shop.getTorsos();
 	const vector<Battery>& batteries_ref = shop.getBatteries();
 	const vector<Arm>& arms_ref = shop.getArms();
-
+	if (selection < 1)
+	{
 	cout
 	<< endl
 	<< "Robot Parts" << endl
 	<< "-----------" << endl;
-
+	}
 	if (selection == 0 || selection == -1)
 	{
 	//list heads
@@ -124,14 +125,15 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 			<< "(" << i << ") " << heads_ref[i] << endl;
 		}
 	}
-	//list locomotors
-	cout
-	<< endl
-	<< "Locomotors" << endl
-	<< "----------" << endl
-	<< endl;
 	if (selection == 1 || selection == -1)
 	{
+	//list locomotors
+		cout
+		<< endl
+		<< "Locomotors" << endl
+		<< "----------" << endl
+		<< endl;
+
 		for (int i = 0; i < locomotors_ref.size(); i++)
 		{
 			cout

@@ -9,7 +9,8 @@ ostream& operator<<(ostream& os, const RobotPart& part)
 	return os;
 }
 
-double RobotPart::costofpart() const{
+double RobotPart::costofpart() const
+{
 	return price;
 }
 

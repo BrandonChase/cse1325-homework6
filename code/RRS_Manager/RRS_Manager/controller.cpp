@@ -80,20 +80,20 @@ void Controller::createRobotModelOption(){
 	double model_cost;
 
 	view.listRobotParts(0); // Choose head
-	int head_choice = inputIntInRange("Head choice: ", 1, heads_x.size(), "Invalid head choice!");
+	int head_choice = inputIntInRange("Head choice: ", 0, heads_x.size(), "Invalid head choice!");
 
 	view.listRobotParts(1); // Choose locomotor
-	int locomotor_choice = inputIntInRange("locomotor choice: ", 1, locomotors_x.size(), "Invalid locomotor choice!");
+	int locomotor_choice = inputIntInRange("locomotor choice: ", 0, locomotors_x.size(), "Invalid locomotor choice!");
 
 	view.listRobotParts(2); // Choose torsos
-	int torso_choice = inputIntInRange("Torso choice: ", 1, torsos_x.size(), "Invalid torso choice!");
+	int torso_choice = inputIntInRange("Torso choice: ", 0, torsos_x.size(), "Invalid torso choice!");
 
 	view.listRobotParts(3); // Choose batteries
-	int battery_choice = inputIntInRange("Battery choice: ", 1, batteries_x.size(), "Invalid battery choice!");
+	int battery_choice = inputIntInRange("Battery choice: ", 0, batteries_x.size(), "Invalid battery choice!");
 	int num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x[torso_choice].numbatteries(), "Invalid number of batteries!"); // New getter for number of batteries
 
 	view.listRobotParts(4); // Choose arms
-	int arm_choice = inputIntInRange("Arm choice: ", 1, arms_x.size(), "Invalid arm choice!");
+	int arm_choice = inputIntInRange("Arm choice: ", 0, arms_x.size(), "Invalid arm choice!");
 	int num_arms = inputIntInRange("Number of arms: ", 1, 2, "Invalid number of arms!");
 
 	model_cost=heads_x[head_choice].costofpart() + locomotors_x[locomotor_choice].costofpart() + torsos_x[torso_choice].costofpart() + batteries_x[battery_choice].costofpart()*num_batteries + arms_x[arm_choice].costofpart()*num_arms;

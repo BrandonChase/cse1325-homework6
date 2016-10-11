@@ -71,7 +71,7 @@ int inputIntGreaterThan(string prompt, int lower_bound, string reminder)
 int inputIntInRange(string prompt, int lower_bound, int upper_bound, string reminder)
 {
 	int result = inputInt(prompt);
-	while (result < lower_bound || result > upper_bound)
+	while (result < lower_bound || result > upper_bound || upper_bound == lower_bound)
 	{
 		cout << "\t***Error: " << reminder << endl;
 		result = inputInt(prompt);
