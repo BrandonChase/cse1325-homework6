@@ -98,109 +98,118 @@ void View::listPartTypes()
 
 void View::listRobotParts(int selection) // selection allows a specific part type to be outputted, {0...4} = {Head...Arms}, -1 = All
 {
+	if (shop.areAllPartListsEmpty())
+	{
+		cout << "\t***The are no robot parts in the shop.\n";
+		return;
+	}
+
 	const vector<Head>& heads_ref = shop.getHeads();
 	const vector<Locomotor>& locomotors_ref = shop.getLocomotors();
 	const vector<Torso>& torsos_ref = shop.getTorsos();
 	const vector<Battery>& batteries_ref = shop.getBatteries();
 	const vector<Arm>& arms_ref = shop.getArms();
-	if (selection < PartType::HEAD)
-	{
-		cout
+
+	cout
 		<< endl
 		<< "Robot Parts" << endl
 		<< "-----------" << endl;
+
+	if ((selection == PartType::HEAD || selection == PartType::ALL) & heads_ref.size() != 0)
+	{
+		//list heads
+		cout
+			<< endl
+			<< "\tHeads" << endl
+			<< "\t-----" << endl
+			<< endl;
+
+		for (int i = 0; i < heads_ref.size(); i++)
+		{
+			cout
+				<< "\t\t(" << i << ") " << heads_ref[i] << endl;
+		}
 	}
 
-	if (selection == PartType::TORSO || selection == PartType::ALL)
+	if ((selection == PartType::TORSO || selection == PartType::ALL) & torsos_ref.size() != 0)
 	{
 	//list torsos
 		cout
 		<< endl
-		<< "Torsos" << endl
-		<< "------" << endl
+		<< "\tTorsos" << endl
+		<< "\t------" << endl
 		<< endl;
 
 		for (int i = 0; i < torsos_ref.size(); i++)
 		{
 			cout
-			<< "(" << i << ") " << torsos_ref[i] << endl;
+			<< "\t\t(" << i << ") " << torsos_ref[i] << endl;
 		}
 	}
 
-	if (selection == PartType::HEAD || selection == PartType::ALL)
+	if ((selection == PartType::BATTERY || selection == PartType::ALL) & batteries_ref.size() != 0)
 	{
-	//list heads
+		//list batteries
 		cout
-		<< endl
-		<< "Heads" << endl
-		<< "-----" << endl
-		<< endl;
+			<< endl
+			<< "\tBatteries" << endl
+			<< "\t---------" << endl
+			<< endl;
 
-		for (int i = 0; i < heads_ref.size(); i++)
+		for (int i = 0; i < batteries_ref.size(); i++)
 		{
 			cout
-			<< "(" << i << ") " << heads_ref[i] << endl;
+				<< "\t\t(" << i << ") " << batteries_ref[i] << endl;
 		}
 	}
 
-	if (selection == PartType::ARM || selection == PartType::ALL)
+	if ((selection == PartType::ARM || selection == PartType::ALL) & arms_ref.size() != 0)
 	{
 	//list arms
 		cout
 		<< endl
-		<< "Arms" << endl
-		<< "----" << endl
+		<< "\tArms" << endl
+		<< "\t----" << endl
 		<< endl;
 
 		for (int i = 0; i < arms_ref.size(); i++)
 		{
 			cout
-			<< "(" << i << ") " << arms_ref[i] << endl;
+			<< "\t\t(" << i << ") " << arms_ref[i] << endl;
 		}
 		//cout << endl;  ~~~ JUST WHY?
 	}
 
-	if (selection == PartType::LOCOMOTOR || selection == PartType::ALL)
+	if ((selection == PartType::LOCOMOTOR || selection == PartType::ALL) & locomotors_ref.size() != 0)
 	{
 
 	//list locomotors
 		cout
 		<< endl
-		<< "Locomotors" << endl
-		<< "----------" << endl
+		<< "\tLocomotors" << endl
+		<< "\t----------" << endl
 		<< endl;
 
 		for (int i = 0; i < locomotors_ref.size(); i++)
 		{
 			cout
-			<< "(" << i << ") " << locomotors_ref[i] << endl;
-		}
-	}
-
-	if (selection == PartType::BATTERY || selection == PartType::ALL)
-	{
-	//list batteries
-		cout
-		<< endl
-		<< "Batteries" << endl
-		<< "---------" << endl
-		<< endl;
-
-		for (int i = 0; i < batteries_ref.size(); i++)
-		{
-			cout
-			<< "(" << i << ") " << batteries_ref[i] << endl;
+			<< "\t\t(" << i << ") " << locomotors_ref[i] << endl;
 		}
 	}
 }
 
-/*
-
-void View::ListRobotModels()
+void View::listRobotModels()
 {
-	const vector<RobotModel>& models_ref = shop.getModels();
+	const vector<RobotModel>& models = shop.getModels();
+
+	if (models.size() == 0)
+	{
+		cout << "\t***There are no robot models in the shop.\n";
+		return;
+	}
+
+	for (int i = 0; i < models.size(); i++)
+	{
+		cout << "(" << i << ") " << models[i] << endl;
+	}
 }
-
-
-
-*/

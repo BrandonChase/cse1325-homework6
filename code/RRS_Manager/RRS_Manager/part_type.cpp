@@ -10,23 +10,23 @@ ostream& operator<<(ostream& os, const PartType& part)
 		os << "All";
 		break;
 	case 0:
-		os << "Torso";
-		break;
-
-	case 1:
 		os << "Head";
 		break;
 
+	case 1:
+		os << "Torso";
+		break;
+
 	case 2:
-		os << "Arm";
+		os << "Battery";
 		break;
 
 	case 3:
-		os << "Locomotor";
+		os << "Arm";
 		break;
 
 	case 4:
-		os << "Battery";
+		os << "Locomotor";
 		break;
 
 	default:

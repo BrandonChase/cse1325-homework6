@@ -29,6 +29,9 @@ public:
 	const std::vector<Battery>& getBatteries();
 	const std::vector<Arm>& getArms();
 
+	bool isAnyPartListEmpty();
+	bool areAllPartListsEmpty();
+
 private:
 	//PointedHairedBoss boss;
 	//std::vector<SalesAssociate> sales_associates;

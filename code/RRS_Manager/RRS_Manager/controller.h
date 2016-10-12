@@ -8,14 +8,18 @@ class Controller
 {
 public:
 	Controller(Shop& p_shop) : shop(p_shop), view(View(p_shop)) {};
+
 	void CLI();
 	void mainMenuCLI();
 	void createCLI();
 	void reportCLI();
+
 	void executeMainMenuCommand(int command);
 	void executeCreateMenuCommand(int command);
 	void executeReportMenuCommand(int command);
-	void createRobotModelOption();
+
+	void createRobotModel();
+	void createRobotPart();
 
 		
 private:

@@ -2,6 +2,7 @@
 #define ROBOT_MODELS_H 2016
 
 #include <string>
+#include <ostream>
 #include "robot_parts.h"
 
 class RobotModel
@@ -26,11 +27,12 @@ public:
 				s_battery(p_battery),
 				s_arm(p_arm) {}
 
+	friend std::ostream& operator<<(std::ostream& os, const RobotModel& model);
+
 private:
 	std::string name;
 	int model_number;
 	double price;
-	double cost;
 	Head s_head;
 	Torso s_torso;
 	Locomotor s_locomotor;

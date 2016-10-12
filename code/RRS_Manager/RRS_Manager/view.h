@@ -16,6 +16,7 @@ public:
 
 	void listPartTypes();
 	void listRobotParts(int selection);
+	void listRobotModels();
 
 private:
 	Shop& shop;
