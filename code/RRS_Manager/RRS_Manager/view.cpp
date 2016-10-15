@@ -78,6 +78,7 @@ void View::showLoadSaveMenu() //I don't know if this will be necessary (or at le
 	<<"--------------------------" << endl
 	<<"| (1) Load a session     |" << endl
 	<<"| (2) Save a session     |" << endl
+	<<"| (9) Quit to Main Menu  |" << endl
 	<< "-------------------------" << endl
 	<< endl;
 }

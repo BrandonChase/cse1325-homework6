@@ -3,6 +3,7 @@
 
 #include "shop.h"
 #include "view.h"
+#include "fileio.h"
 
 class Controller
 {

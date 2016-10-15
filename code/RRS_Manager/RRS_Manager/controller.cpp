@@ -153,6 +153,9 @@ void Controller::executeLoadSaveMenuCommand(int command)
 		fileio.savefile();
 		break;
 
+		case 9:
+		break;
+		
 		default:
 		cerr << "\t***Error: " << command << " is an invalid Load/Save Menu option.\n";
 	}

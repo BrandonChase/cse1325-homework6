@@ -42,12 +42,32 @@ once end, go to next  **there are some potential issues here**
 
 void Fileio::loadfile()
 {
+	cout << "Name of file to read from: ";
+	string infile;
+	cin >> infile;
+	ifstream ist {infile};
+	if(!ist) throw runtime_error("Unable to load specified file"+infile);
+
+	//Logic for reading in a file.
 
 
 }
 
 void Fileio::savefile()
 {
+	cout << "Name of file to write to: ";
+	string outfile;
+	cin >> outfile;
+	ofstream ofs;
+	ofs.open (outfile.c_str());
+	if(!ofs) throw runtime_error("Unable to open output file"+outfile);
+
+	// Logic for outputting to file
+
+
+
+	ofs << "Writing this to a file\n";
+	ofs.close();
 
 
 }

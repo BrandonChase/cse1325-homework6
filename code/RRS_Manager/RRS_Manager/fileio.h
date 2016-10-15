@@ -7,12 +7,13 @@
 #include "robot_models.h"
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 
 class Fileio
 {
 public:
 	void loadfile();
 	void savefile();
-}
+};
 
 #endif
