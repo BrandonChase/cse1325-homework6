@@ -3,7 +3,7 @@
 
 #include "order.h"
 #include <string>
-#include <ostream>
+#include <iostream>
 #include <vector>
 
 class SalesAssociate
