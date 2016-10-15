@@ -23,6 +23,9 @@ public:
 
 	void createRobotModel();
 	void createRobotPart();
+	void createOrder();
+	void createCustomer();
+	void createSalesAssociate();
 
 		
 private:

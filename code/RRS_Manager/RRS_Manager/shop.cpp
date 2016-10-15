@@ -79,6 +79,13 @@ const vector<Arm>& Shop::getArms()
 	return arms;
 }
 
+const vector<SalesAssociate>& Shop::getSalesAssociates()
+{
+	return sales_associates;
+}
+
+//BOOL CHECKERS
+
 bool Shop::isAnyPartListEmpty()
 {
 	return(heads.size() == 0 || torsos.size() == 0 || batteries.size() == 0 || arms.size() == 0 || locomotors.size() == 0);

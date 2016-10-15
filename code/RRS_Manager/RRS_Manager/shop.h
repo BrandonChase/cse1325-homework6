@@ -1,8 +1,7 @@
 #ifndef SHOP_H
 #define SHOP_H 2016
 
-//include boss
-//include sales associate
+#include "sales_associate.h"
 #include "customer.h"
 #include "order.h"
 #include "robot_models.h"
@@ -28,13 +27,13 @@ public:
 	const std::vector<Torso>& getTorsos();
 	const std::vector<Battery>& getBatteries();
 	const std::vector<Arm>& getArms();
+	const std::vector<SalesAssociate>& getSalesAssociates();
 
 	bool isAnyPartListEmpty();
 	bool areAllPartListsEmpty();
 
 private:
-	//PointedHairedBoss boss;
-	//std::vector<SalesAssociate> sales_associates;
+	std::vector<SalesAssociate> sales_associates;
 	std::vector<Customer> customers;
 	std::vector<Order> orders;
 	std::vector<RobotModel> models;

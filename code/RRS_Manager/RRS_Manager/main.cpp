@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-	Tester::testOutputingRobotParts();
+	//Tester::testOutputingRobotParts();
 
 	Shop shop;
 	Controller controller(shop);
