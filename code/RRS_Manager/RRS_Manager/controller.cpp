@@ -75,13 +75,16 @@ void Controller::executeCreateMenuCommand(int command)
 	switch(command)
 	{
 	case 1: // Order
-	break;
+		createOrder();
+		break;
 
 	case 2: // Customer
-	break;
+		createCustomer();
+		break;
 
 	case 3: // Sales Associate
-	break;
+		createSalesAssociate();
+		break;
 
 	case 4: // Robot Model
 		createRobotModel(); // Seperate method due to declarations within switch/case is no go.
@@ -128,6 +131,8 @@ void Controller::executeReportMenuCommand(int command)
 		cerr << "\t***Error: " << command << " is an invalid Report Menu option.\n";
 	}
 }
+
+//Create Functions
 
 void Controller::createRobotModel()
 {
@@ -216,4 +221,19 @@ void Controller::createRobotPart()
 	{
 		cerr << "\t***Error: Invalid Create option.\n";
 	}
+}
+
+void Controller::createOrder()
+{
+
+}
+
+void Controller::createCustomer()
+{
+
+}
+
+void Controller::createSalesAssociate()
+{
+
 }

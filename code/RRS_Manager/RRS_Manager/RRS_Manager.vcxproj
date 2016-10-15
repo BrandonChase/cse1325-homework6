@@ -148,12 +148,14 @@
   <ItemGroup>
     <ClCompile Include="controller.cpp" />
     <ClCompile Include="customer.cpp" />
+    <ClCompile Include="date.cpp" />
     <ClCompile Include="easy_input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="order.cpp" />
     <ClCompile Include="part_type.cpp" />
     <ClCompile Include="robot_models.cpp" />
     <ClCompile Include="robot_parts.cpp" />
+    <ClCompile Include="sales_associate.cpp" />
     <ClCompile Include="shop.cpp" />
     <ClCompile Include="tester.cpp" />
     <ClCompile Include="view.cpp" />
@@ -161,11 +163,13 @@
   <ItemGroup>
     <ClInclude Include="controller.h" />
     <ClInclude Include="customer.h" />
+    <ClInclude Include="date.h" />
     <ClInclude Include="easy_input.h" />
     <ClInclude Include="order.h" />
     <ClInclude Include="part_type.h" />
     <ClInclude Include="robot_models.h" />
     <ClInclude Include="robot_parts.h" />
+    <ClInclude Include="sales_associate.h" />
     <ClInclude Include="shop.h" />
     <ClInclude Include="tester.h" />
     <ClInclude Include="view.h" />

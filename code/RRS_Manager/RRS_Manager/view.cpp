@@ -1,6 +1,8 @@
 #include "view.h"
 #include "part_type.h"
 #include "robot_parts.h"
+#include "sales_associate.h"
+
 #include <iostream>
 
 using namespace std;
@@ -211,5 +213,45 @@ void View::listRobotModels()
 	for (int i = 0; i < models.size(); i++)
 	{
 		cout << "(" << i << ") " << models[i] << endl;
+	}
+}
+
+void View::listSalesAssociates()
+{
+	const vector<SalesAssociate>& sales_associates = shop.getSalesAssociates();
+
+	if (sales_associates.size() == 0)
+	{
+		cout << "\t***There are no sales associates in the shop.\n";
+		return;
+	}
+
+	for (int i = 0; i < sales_associates.size(); i++)
+	{
+		cout << "(" << i << ") " << sales_associates[i] << endl;
+	}
+}
+
+void View::listCustomers()
+{
+	const vector<Customer>& customers = shop.getCustomers();
+
+	if (customers.size() == 0)
+	{
+		cout << "\t***There are no customer in the shop.\n";
+		return;
+	}
+
+	for (int i = 0; i < customers.size(); i++)
+	{
+		cout << "(" << i << ") " << customers[i] << endl;
+	}
+}
+
+void View::listOrders(vector<Order>& orders)
+{
+	for (int i = 0; i < orders.size(); i++)
+	{
+		cout << "(" << i << ") " << orders[i] << endl;
 	}
 }

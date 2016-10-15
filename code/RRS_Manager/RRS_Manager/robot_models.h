@@ -28,6 +28,7 @@ public:
 				s_arm(p_arm) {}
 
 	friend std::ostream& operator<<(std::ostream& os, const RobotModel& model);
+	double getPrice();
 
 private:
 	std::string name;

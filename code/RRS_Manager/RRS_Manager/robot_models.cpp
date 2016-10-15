@@ -18,3 +18,8 @@ ostream& operator<<(ostream& os, const RobotModel& model)
 		<< "\t\t" << model.s_locomotor << endl;
 	return os;
 }
+
+double RobotModel::getPrice()
+{
+	return price;
+}
