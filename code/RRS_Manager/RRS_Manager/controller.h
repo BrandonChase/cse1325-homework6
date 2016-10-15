@@ -13,10 +13,12 @@ public:
 	void mainMenuCLI();
 	void createCLI();
 	void reportCLI();
+	void loadsaveCLI();
 
 	void executeMainMenuCommand(int command);
 	void executeCreateMenuCommand(int command);
 	void executeReportMenuCommand(int command);
+	void executeLoadSaveMenuCommand(int command);
 
 	void createRobotModel();
 	void createRobotPart();
@@ -25,6 +27,7 @@ public:
 private:
 	Shop& shop;
 	View view;
+	Fileio fileio;
 };
 
 #endif

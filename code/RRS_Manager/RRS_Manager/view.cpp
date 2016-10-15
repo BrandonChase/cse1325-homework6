@@ -29,7 +29,7 @@ void View::showMainMenu()
 	<< "-------------------------" << endl
 	<< "| (1) Create            |" << endl
 	<< "| (2) Report            |" << endl
-	<< "| (3) Save              |" << endl
+	<< "| (3) Load/Save         |" << endl
 	<< "| (9) Quit              |" << endl 
 	<< "-------------------------" << endl 
 	<< endl;
@@ -69,13 +69,16 @@ void View::showReportMenu()
 	<< endl;
 }
 
-void View::showSaveMenu() //I don't know if this will be necessary (or at least not a menu)
+void View::showLoadSaveMenu() //I don't know if this will be necessary (or at least not a menu) -- now it is.
 {
 	cout
 	<< endl 
 	<<"--------------------------" << endl
-	<<"|        Saving          |" << endl
+	<<"|       Load/Save        |" << endl
 	<<"--------------------------" << endl
+	<<"| (1) Load a session     |" << endl
+	<<"| (2) Save a session     |" << endl
+	<< "-------------------------" << endl
 	<< endl;
 }
 

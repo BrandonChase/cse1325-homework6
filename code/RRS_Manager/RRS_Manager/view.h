@@ -12,7 +12,7 @@ public:
 	void showMainMenu();
 	void showCreateMenu();
 	void showReportMenu();
-	void showSaveMenu();
+	void showLoadSaveMenu();
 
 	void listPartTypes();
 	void listRobotParts(int selection);

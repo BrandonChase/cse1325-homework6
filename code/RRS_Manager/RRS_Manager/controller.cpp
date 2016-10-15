@@ -46,6 +46,18 @@ void Controller::reportCLI()
 	}
 }
 
+void Controller::loadsaveCLI()
+{
+	int command = -1;
+	while(command != 9)
+	{
+		view.showLoadSaveMenu();
+		command = inputInt("Command: ");
+		executeLoadSaveMenuCommand(command);
+	}
+	
+}
+
 void Controller::executeMainMenuCommand(int command)
 {
 	switch (command)
@@ -59,7 +71,7 @@ void Controller::executeMainMenuCommand(int command)
 		break;
 
 	case 3: // Save
-		view.showSaveMenu();
+		loadsaveCLI();
 		break;
 	
 	case 9:
@@ -126,6 +138,23 @@ void Controller::executeReportMenuCommand(int command)
 
 	default: //Unkown
 		cerr << "\t***Error: " << command << " is an invalid Report Menu option.\n";
+	}
+}
+
+void Controller::executeLoadSaveMenuCommand(int command)
+{
+	switch(command)
+	{
+		case 1:
+		fileio.loadfile();
+		break;
+
+		case 2:
+		fileio.savefile();
+		break;
+
+		default:
+		cerr << "\t***Error: " << command << " is an invalid Load/Save Menu option.\n";
 	}
 }
 
