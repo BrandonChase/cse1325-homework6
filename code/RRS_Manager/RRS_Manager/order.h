@@ -26,9 +26,9 @@ public:
 		price(p_price),
 		date(p_date) {};
 
-	double calculatePrice()
+	static double calculatePrice(std::vector<RobotModel> models)
 	{
-		double result;
+		double result = 0;
 		for (int i = 0; i < models.size(); i++)
 		{
 			result += models[i].getPrice();

@@ -20,7 +20,7 @@ public:
 	void listRobotModels();
 	void listSalesAssociates();
 	void listCustomers();
-	void listOrders(std::vector<Order>& orders);
+	void listOrders(const std::vector<Order>& orders);
 
 private:
 	Shop& shop;

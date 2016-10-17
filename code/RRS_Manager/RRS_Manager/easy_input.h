@@ -2,6 +2,7 @@
 #define EASY_INPUT_H 2016
 
 #include <string>
+#include "date.h"
 
 std::string inputString(std::string prompt);
 double inputDouble(std::string prompt);
@@ -14,4 +15,5 @@ int inputDoubleLessThan(std::string prompt, double upper_bound, std::string remi
 int inputDoubleGreaterThan(std::string prompt, double lower_bound, std::string reminder);
 int inputDoubleInRange(std::string prompt, double lower_bound, double upper_bound, std::string reminder);
 
+Date inputDate(std::string prompt);
 #endif

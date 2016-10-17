@@ -14,7 +14,7 @@ void View::showWelcome()
 	cout
 	<< "===================================" << endl
 	<< "      Robbie Robot Shop v0.13      " << endl
-	<< "                                   " << endl
+	<< "            Secret: 9999           " << endl
 	<< "Creators: Brandon Chase & Joe Cloud" << endl
 	<< "===================================" << endl
 	<< endl
@@ -115,11 +115,14 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 	const vector<Torso>& torsos_ref = shop.getTorsos();
 	const vector<Battery>& batteries_ref = shop.getBatteries();
 	const vector<Arm>& arms_ref = shop.getArms();
-
-	cout
-		<< endl
-		<< "Robot Parts" << endl
-		<< "-----------" << endl;
+	
+	if (selection == PartType::ALL)
+	{
+		cout
+			<< endl
+			<< "Robot Parts" << endl
+			<< "-----------" << endl;
+	}
 
 	if ((selection == PartType::HEAD || selection == PartType::ALL) & heads_ref.size() != 0)
 	{
@@ -214,6 +217,12 @@ void View::listRobotModels()
 		return;
 	}
 
+	cout
+		<< endl
+		<< "Robot Models" << endl
+		<< "------------" << endl
+		<< endl;
+
 	for (int i = 0; i < models.size(); i++)
 	{
 		cout << "(" << i << ") " << models[i] << endl;
@@ -230,9 +239,15 @@ void View::listSalesAssociates()
 		return;
 	}
 
+	cout
+		<< endl
+		<< "Sales Associates" << endl
+		<< "----------------" << endl
+		<< endl;
+
 	for (int i = 0; i < sales_associates.size(); i++)
 	{
-		cout << "(" << i << ") " << sales_associates[i] << endl;
+		cout << "\t(" << i << ") " << sales_associates[i] << endl;
 	}
 }
 
@@ -246,16 +261,34 @@ void View::listCustomers()
 		return;
 	}
 
+	cout
+		<< endl
+		<< "Customers" << endl
+		<< "---------" << endl
+		<< endl;
+
 	for (int i = 0; i < customers.size(); i++)
 	{
-		cout << "(" << i << ") " << customers[i] << endl;
+		cout << "\t(" << i << ") " << customers[i] << endl;
 	}
 }
 
-void View::listOrders(vector<Order>& orders)
+void View::listOrders(const vector<Order>& orders)
 {
+	if (orders.size() == 0)
+	{
+		cout << "\t***There are no orders.\n";
+		return;
+	}
+
+	cout
+		<< endl
+		<< "Orders" << endl
+		<< "------" << endl
+		<< endl;
+
 	for (int i = 0; i < orders.size(); i++)
 	{
-		cout << "(" << i << ") " << orders[i] << endl;
+		cout << "\t(" << i << ") " << orders[i] << endl;
 	}
 }

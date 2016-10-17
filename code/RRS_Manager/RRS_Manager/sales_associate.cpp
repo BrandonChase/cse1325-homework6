@@ -12,3 +12,14 @@ const vector<Order>& SalesAssociate::getOrders()
 {
 	return orders;
 }
+
+void SalesAssociate::addOrder(Order p_order)
+{
+	orders.push_back(p_order);
+}
+
+//GETTERS
+int SalesAssociate::getSalesAssociateNumber()
+{
+	return employee_number;
+}

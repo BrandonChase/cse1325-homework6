@@ -115,3 +115,32 @@ int inputDoubleInRange(string prompt, double lower_bound, double upper_bound, st
 
 	return result;
 }
+
+Date inputDate(std::string prompt)
+{
+	cout << prompt;
+	int month, day, year;
+	try
+	{
+		cin >> month;
+		cin.get();
+		cin >> day;
+		cin.get();
+		cin >> year;
+	}
+
+	catch (...)
+	{
+		cerr << "\t***Error: Entered invalid numeric value for either month, day, or year. Try again.\n";
+		inputDate(prompt);
+	}
+
+	if (month < 1 || month > 12 || day < 1 || day > 31 || year < 1950)
+	{
+		cerr << "\t***Error: Entered invalid date format. Year must be greater than 1949. Try again.\n";
+		inputDate(prompt);
+	}
+
+	Date result(month, day, year);
+	return result;
+}

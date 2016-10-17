@@ -74,8 +74,13 @@ void Controller::executeMainMenuCommand(int command)
 		loadsaveCLI();
 		break;
 	
+	case 9999:
+		shop.populateShopForTesting();
+		cout << "Populated shop for testing ...\n";
+		break;
+
 	case 9:
-	break;
+		break;
 
 	default: // Unknown
 		cerr << "\t***Error: " << command << " is an invalid Main Menu option.\n";
@@ -120,12 +125,15 @@ void Controller::executeReportMenuCommand(int command)
 	switch (command)
 	{
 	case 1: // Orders
+		view.listOrders(shop.getOrders());
 		break;
 
 	case 2: // Customers
+		view.listCustomers();
 		break;
 
 	case 3: // Sales Associates
+		view.listSalesAssociates();
 		break;
 
 	case 4: // Robot Models
@@ -164,13 +172,13 @@ void Controller::executeLoadSaveMenuCommand(int command)
 	}
 }
 
-//Create Functions
+//CREATE FUNCTIONS
 
 void Controller::createRobotModel()
 {
 	if (shop.isAnyPartListEmpty())
 	{
-		cout << "\t***Error: The shop doesn't have an adequate supply of robot part types to create an entire model.\n";
+		cout << "\t***Alert: The shop doesn't have an adequate supply of robot part types to create an entire model.\n";
 		cout << "\t***Suggestion: Ensure you've created at least one robot part of each necessary type.\n";
 		return;
 	}
@@ -181,8 +189,8 @@ void Controller::createRobotModel()
 	const vector<Battery>& batteries_x = shop.getBatteries();
 	const vector<Arm>& arms_x = shop.getArms();
 
-	cout << "Creating a Robot Model: \n";
-	string model_name = inputString(" Model Name: ");
+	cout << "Creating a Robot Model... \n";
+	string model_name = inputString("Model Name: ");
 	int model_number = inputIntGreaterThan("Model Number: ", 0, "Model numbers must be positive!");
 	double model_cost;
 
@@ -257,15 +265,65 @@ void Controller::createRobotPart()
 
 void Controller::createOrder()
 {
+	vector<SalesAssociate> associates = shop.getSalesAssociates();
+	vector<Customer> customers = shop.getCustomers();
+	vector<RobotModel> models = shop.getModels();
+	if (associates.size() == 0)
+	{
+		cout << "\t***Alert: The shop doesn't have any sales associates to create the order.\n";
+		return;
+	}
 
+	if (customers.size() == 0)
+	{
+		cout << "\t***Alert: The shop doesn't have any customers for which to create an order.\n";
+		return;
+	}
+
+	if (models.size() == 0)
+	{
+		cout << "\t***Alert: The shop doesn't have any robot models with which to create an order.\n";
+		return;
+	}
+
+	Date order_date = inputDate("Date of Order [m/d/yr] [12/31/1950]: ");
+
+	view.listSalesAssociates();
+	int sales_associate_index = inputIntInRange("Sales Associate Index: ", 0, associates.size() - 1, "Invalid Sales Associate Index!");
+
+	view.listCustomers();
+	int customer_index = inputIntInRange("Customer Index: ", 0, customers.size() - 1, "Invalid Customer Index!");
+
+	int order_number = inputIntGreaterThan("Order Number: ", 0, "Order Number must be positive!");
+	
+	vector<RobotModel> order_models;
+	int add_another_model = 1;
+	while (add_another_model)
+	{
+		view.listRobotModels();
+		int model_index = inputIntInRange("Desired Robot Model Index: ", 0, models.size() - 1, "Invalid Robot Model Index!");
+		RobotModel current_model = models[model_index];
+		order_models.push_back(current_model);
+		add_another_model = inputIntInRange("Add another model for this order? [0 = No, 1 = Yes]: ", 0, 1, "Answer must be 0 or 1!");
+	}
+	
+	double order_price = Order::calculatePrice(order_models);
+	int customer_num = customers[customer_index].getCustomerNumber();
+	int sales_Associate_number = associates[sales_associate_index].getSalesAssociateNumber();
+	shop.addOrder(Order(order_number, customer_num, sales_Associate_number, models, order_price, order_date));
+	
 }
 
 void Controller::createCustomer()
 {
-
+	string name = inputString("Customer Name: ");
+	int customer_number = inputIntGreaterThan("Customer Number: ", 0, "Customer number must be positive!");
+	shop.addCustomer(Customer(name, customer_number));
 }
 
 void Controller::createSalesAssociate()
 {
-
+	string name = inputString("Sales Associate Name: ");
+	int sa_number = inputIntGreaterThan("Sales Associate Number: ", 0, "Customer number must be positive!");
+	shop.addSalesAssociate(SalesAssociate(name, sa_number));
 }

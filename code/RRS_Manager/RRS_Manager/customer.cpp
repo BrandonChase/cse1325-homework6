@@ -12,3 +12,15 @@ const vector<Order>& Customer::getOrders()
 {
 	return orders;
 }
+
+void Customer::addOrder(Order p_order)
+{
+	orders.push_back(p_order);
+}
+
+//GETTERS
+
+int Customer::getCustomerNumber()
+{
+	return customer_number;
+}

@@ -18,6 +18,9 @@ public:
 	void addBattery(Battery p_battery);
 	void addArm(Arm p_arm);
 	void addRobotModel(RobotModel p_model);
+	void addOrder(Order p_order);
+	void addCustomer(Customer p_customer);
+	void addSalesAssociate(SalesAssociate p_sa);
 
 	const std::vector<Customer>& getCustomers();
 	const std::vector<Order>& getOrders();
@@ -31,6 +34,8 @@ public:
 
 	bool isAnyPartListEmpty();
 	bool areAllPartListsEmpty();
+
+	void populateShopForTesting();
 
 private:
 	std::vector<SalesAssociate> sales_associates;
