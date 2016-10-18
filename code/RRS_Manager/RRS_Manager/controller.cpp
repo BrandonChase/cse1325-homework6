@@ -63,28 +63,28 @@ void Controller::executeMainMenuCommand(int command)
 	switch (command)
 	{
 	case 1: // Create
-		createCLI();
-		break;
+	createCLI();
+	break;
 
 	case 2: // Report
-		reportCLI();
-		break;
+	reportCLI();
+	break;
 
 	case 3: // Save
-		loadsaveCLI();
-		break;
+	loadsaveCLI();
+	break;
 	
 	case 9999:
-		shop.populateShopForTesting();
-		cout << "Populated shop for testing ...\n";
-		break;
+	shop.populateShopForTesting();
+	cout << "Populated shop for testing ...\n";
+	break;
 
 	case 9:
-		break;
+	break;
 
 	default: // Unknown
-		cerr << "\t***Error: " << command << " is an invalid Main Menu option.\n";
-	}
+	cerr << "\t***Error: " << command << " is an invalid Main Menu option.\n";
+}
 }
 
 void Controller::executeCreateMenuCommand(int command)
@@ -92,32 +92,32 @@ void Controller::executeCreateMenuCommand(int command)
 	switch(command)
 	{
 	case 1: // Order
-		createOrder();
-		break;
+	createOrder();
+	break;
 
 	case 2: // Customer
-		createCustomer();
-		break;
+	createCustomer();
+	break;
 
 	case 3: // Sales Associate
-		createSalesAssociate();
-		break;
+	createSalesAssociate();
+	break;
 
 	case 4: // Robot Model
 		createRobotModel(); // Seperate method due to declarations within switch/case is no go.
 		break;
 
 	case 5: // Robot Part
-		createRobotPart();
-		break;
+	createRobotPart();
+	break;
 
 	case 9:
-		break;
+	break;
 
 	default:
-		cerr << "\t***Error: " << command << " is an invalid Create Menu option!\n";
-		break;
-	}
+	cerr << "\t***Error: " << command << " is an invalid Create Menu option!\n";
+	break;
+}
 }
 
 void Controller::executeReportMenuCommand(int command)
@@ -125,31 +125,31 @@ void Controller::executeReportMenuCommand(int command)
 	switch (command)
 	{
 	case 1: // Orders
-		view.listOrders(shop.getOrders());
-		break;
+	view.listOrders(shop.getOrders());
+	break;
 
 	case 2: // Customers
-		view.listCustomers();
-		break;
+	view.listCustomers();
+	break;
 
 	case 3: // Sales Associates
-		view.listSalesAssociates();
-		break;
+	view.listSalesAssociates();
+	break;
 
 	case 4: // Robot Models
-		view.listRobotModels();
-		break;
+	view.listRobotModels();
+	break;
 
 	case 5: // Robot Parts
-		view.listRobotParts(PartType::ALL);
-		break;
+	view.listRobotParts(PartType::ALL);
+	break;
 
 	case 9:
-		break;
+	break;
 
 	default: //Unkown
-		cerr << "\t***Error: " << command << " is an invalid Report Menu option.\n";
-	}
+	cerr << "\t***Error: " << command << " is an invalid Report Menu option.\n";
+}
 }
 
 void Controller::executeLoadSaveMenuCommand(int command)
@@ -157,11 +157,11 @@ void Controller::executeLoadSaveMenuCommand(int command)
 	switch(command)
 	{
 		case 1:
-		fileio.loadfile();
+		loadfile();
 		break;
 
 		case 2:
-		fileio.savefile();
+		savefile();
 		break;
 
 		case 9:
@@ -326,4 +326,105 @@ void Controller::createSalesAssociate()
 	string name = inputString("Sales Associate Name: ");
 	int sa_number = inputIntGreaterThan("Sales Associate Number: ", 0, "Customer number must be positive!");
 	shop.addSalesAssociate(SalesAssociate(name, sa_number));
+}
+
+
+
+
+void Controller::loadfile()
+{
+/*	cout << "Name of file to read from: ";
+	string infile;
+	cin >> infile;
+	ifstream ist {infile};
+	if(!ist) throw runtime_error("Unable to load specified file "+infile);
+	string line, s; 
+	vector<string> tokenized_line;
+
+	while (getline(infile,line))
+	{
+		//istringstream f(line);
+		while (getline(line, s, ',')) {
+			tokenized_line.push_back(s);
+		}
+	}
+*/
+}
+
+
+
+void Controller::savefile()
+{
+	cout << "Name of file to write to: ";
+	string outfile;
+	cin >> outfile;
+	ofstream ofs;
+	ofs.open(outfile.c_str());
+	if(!ofs) throw runtime_error("Unable to open output file "+outfile);
+
+
+	const vector<Head>& heads = shop.getHeads();
+	const vector<Locomotor>& locomotors = shop.getLocomotors();
+	const vector<Torso>& torsos = shop.getTorsos();
+	const vector<Battery>& batteries = shop.getBatteries();
+	const vector<Arm>& arms = shop.getArms();
+	const vector<SalesAssociate>& associates = shop.getSalesAssociates();
+	const vector<Customer>& customers = shop.getCustomers();
+	const vector<Order>& orders = shop.getOrders();
+	vector<RobotModel> models = shop.getModels();
+
+	for (int i = 0; i < PartType::NUM_OF_PART_TYPES; i++)
+	{
+		ofs << "/" << PartType(i) << "/\n";
+
+		if (i==PartType::HEAD)
+		{
+			for (int j = 0; j < heads.size(); j++)
+			{
+				ofs <<  heads[j].getData() << "\n";
+			}
+		}
+		if (i==PartType::TORSO)
+		{
+			for (int j = 0; j < torsos.size(); j++)
+			{
+				ofs <<  torsos[j].getData() << "\n";
+			}
+		}
+		if (i==PartType::BATTERY)
+		{
+			for (int j = 0; j < batteries.size(); j++)
+			{
+				ofs <<  batteries[j].getData() << "\n";
+			}
+		}
+		if (i==PartType::ARM)
+		{
+			for (int j = 0; j < arms.size(); j++)
+			{
+				ofs <<  arms[j].getData() << "\n";
+			}
+		}
+		if (i==PartType::LOCOMOTOR)
+		{
+			for (int j = 0; j < locomotors.size(); j++)
+			{
+				ofs <<  locomotors[j].getData() << "\n";
+			}
+		}
+		
+
+		ofs << "/" << PartType(i) << "/\n";
+	}
+	ofs << "/RobotModel/\n";
+	for (int i = 0; i < models.size(); i++)
+	{
+		ofs << models[i].getData() << "\n";
+	}
+	ofs << "/RobotModel/\n";
+
+
+
+
+	ofs.close();
 }

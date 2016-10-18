@@ -3,7 +3,12 @@
 
 #include "shop.h"
 #include "view.h"
-#include "fileio.h"
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <stdexcept>
 
 class Controller
 {
@@ -21,17 +26,22 @@ public:
 	void executeReportMenuCommand(int command);
 	void executeLoadSaveMenuCommand(int command);
 
+
+
+
 	void createRobotModel();
 	void createRobotPart();
 	void createOrder();
 	void createCustomer();
 	void createSalesAssociate();
-
 		
+
+	void loadfile();
+	void savefile();
+
 private:
 	Shop& shop;
 	View view;
-	Fileio fileio;
 };
 
 #endif

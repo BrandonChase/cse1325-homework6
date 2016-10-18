@@ -3,6 +3,7 @@
 
 #include <string>
 #include <ostream>
+#include <sstream>
 #include "part_type.h"
 
 class RobotPart
@@ -23,9 +24,10 @@ public:
 	type(p_type),
 	description(p_description) {}
 
+	int getPartNumber() const;
 	double getPrice() const;
 	void ostreamBaseFields(std::ostream& os) const;
-
+	std::string getData() const; // will be dif depending on part type
 protected:
 	std::string name;
 	int part_number;
@@ -49,7 +51,6 @@ public:
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description) {}
 
 	friend std::ostream& operator<<(std::ostream& os, const Head& part);
-
 private:
 };
 
@@ -72,7 +73,7 @@ public:
 	power_consumed(p_power_consumed) {}
 
 	friend std::ostream& operator<<(std::ostream& os, const Locomotor& part);
-
+	std::string getData() const;
 private:
 	double max_speed; //MPH
 	double power_consumed; //W
@@ -92,7 +93,7 @@ public:
 
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description), 
 	battery_compartments(p_battery_compartments){}
-
+	std::string getData() const;
 	friend std::ostream& operator<<(std::ostream& os, const Torso& part);
     int getNumBatteries() const;
 private:
@@ -113,7 +114,7 @@ public:
 
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
 	contained_energy(p_contained_energy) {}
-
+	std::string getData() const;
 	friend std::ostream& operator<<(std::ostream& os, const Battery& part);
 
 private:
@@ -134,7 +135,7 @@ public:
 
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
 	power_consumed(p_power_consumed) {}
-	
+	std::string getData() const;
 	friend std::ostream& operator<<(std::ostream& os, const Arm& part);
 
 private:

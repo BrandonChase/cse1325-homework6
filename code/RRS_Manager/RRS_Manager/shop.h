@@ -22,6 +22,8 @@ public:
 	void addCustomer(Customer p_customer);
 	void addSalesAssociate(SalesAssociate p_sa);
 
+
+
 	const std::vector<Customer>& getCustomers();
 	const std::vector<Order>& getOrders();
 	const std::vector<RobotModel>& getModels();

@@ -23,3 +23,8 @@ double RobotModel::getPrice()
 {
 	return price;
 }
+string RobotModel::getData()
+{
+	return name + "," + to_string(model_number) + "," + to_string(price) + "," + to_string(s_head.getPartNumber()) + "," + to_string(s_torso.getPartNumber())
+	 + "," + to_string(s_locomotor.getPartNumber()) + "," + to_string(s_battery.getPartNumber()) + "," + to_string(s_arm.getPartNumber());
+}

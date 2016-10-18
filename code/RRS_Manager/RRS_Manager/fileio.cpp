@@ -1,6 +1,8 @@
+//OBSOLOTE - KEPT FOR REFERENCE FOR TUESDAY
 #include "fileio.h"
 
 using namespace std;
+
 /*
 process for saving:
 
@@ -33,24 +35,26 @@ once end, go to next  **there are some potential issues here**
 
 
 
-
-
-
-
 */
-
 
 void Fileio::loadfile()
 {
-	cout << "Name of file to read from: ";
+/*	cout << "Name of file to read from: ";
 	string infile;
 	cin >> infile;
 	ifstream ist {infile};
-	if(!ist) throw runtime_error("Unable to load specified file"+infile);
+	if(!ist) throw runtime_error("Unable to load specified file "+infile);
+	string line, s; 
+	vector<string> tokenized_line;
 
-	//Logic for reading in a file.
-
-
+	while (getline(infile,line))
+	{
+		//istringstream f(line);
+		while (getline(line, s, ',')) {
+			tokenized_line.push_back(s);
+		}
+	}
+*/
 }
 
 void Fileio::savefile()
@@ -60,14 +64,78 @@ void Fileio::savefile()
 	cin >> outfile;
 	ofstream ofs;
 	ofs.open (outfile.c_str());
-	if(!ofs) throw runtime_error("Unable to open output file"+outfile);
-
-	// Logic for outputting to file
+	if(!ofs) throw runtime_error("Unable to open output file "+outfile);
 
 
+	//const vector<Head>& heads = shop.getHeads();
+	//const vector<Locomotor>& locomotors = shop.getLocomotors();
+	//const vector<Torso>& torsos = shop.getTorsos();
+	//const vector<Battery>& batteries = shop.getBatteries();
+	//const vector<Arm>& arms = shop.getArms();
+	vector<SalesAssociate> associates = shop.getSalesAssociates();
+	vector<Customer> customers = shop.getCustomers();
+	vector<RobotModel> models = shop.getModels();
 
-	ofs << "Writing this to a file\n";
+	for (int i = 0; i < PartType::NUM_OF_PART_TYPES; i++)
+	{
+		ofs << "//start " << PartType(i) << "//\n";
+		const PartType type(i);
+		vector<type> partp;
+		switch (partp)
+		{
+			case 0:
+			shop.getHeads();
+			break;
+
+			case 1:
+			shop.getLocomotors();
+			break;
+
+			case 2:
+			shop.getTorsos();
+			break;
+
+			case 3:
+			shop.getBatteries();
+			break;
+
+			case 4:
+			shop.getArms();
+		}
+
+		for (int j = 0; j < partp.size(); j++)
+		{
+			ofs << partp[i].getData << "\n";
+		}
+
+		ofs << "//end " << PartType(i) << "//\n";
+	}
+
+
+
+
 	ofs.close();
-
-
 }
+
+
+
+/*
+Good stuff for tokenizing
+
+#include <sstream>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<string> strings;
+    istringstream f("denmark;sweden;india;us");
+    string s;    
+    while (getline(f, s, ';')) {
+        cout << s << endl;
+        strings.push_back(s);
+    }
+}
+
+*/

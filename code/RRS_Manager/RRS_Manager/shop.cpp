@@ -139,9 +139,12 @@ void Shop::populateShopForTesting()
 	addCustomer(Customer("John Smith", 12345));
 	addCustomer(Customer("Joe Cloud", 42069));
 	addCustomer(Customer("Brandon Chase", 10012));
-	addCustomer(Customer("Serial Killer", 121212));
+	addCustomer(Customer("Ted Cruz", 666));
 
 	addSalesAssociate(SalesAssociate("Seller 1", 1));
 	addSalesAssociate(SalesAssociate("Seller 2", 2));
 	addSalesAssociate(SalesAssociate("Seller 3", 3));
 }
+
+
+
