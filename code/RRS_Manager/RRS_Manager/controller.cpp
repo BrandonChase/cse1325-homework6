@@ -459,7 +459,15 @@ void Controller::loadfile()
 					break;
 
 					case 6:
-					//shop.addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4], stoi(spline[5])));
+					shop.addCustomer(Customer(spline[0],  stoi(spline[1])));
+					break;
+
+					case 7:
+					shop.addSalesAssociate(SalesAssociate(spline[0], stoi(spline[1])));
+					break;
+
+					case 8:
+					//shop.addOrder(Order(order_number, customer_num, sales_Associate_number, models, order_price, order_date));
 					break;
 				}
 			}
@@ -534,7 +542,7 @@ void Controller::savefile()
 		}		
 	}
 
-	ofs << "\n/RobotModel/\n";
+	ofs << "/RobotModel/\n";
 	for (int i = 0; i < models.size(); i++)
 	{
 		ofs << models[i].saveData() << "\n";
@@ -542,7 +550,7 @@ void Controller::savefile()
 
 
 
-	ofs << "\n/Customers/\n";
+	ofs << "/Customers/\n";
 	for (int i = 0; i < customers.size(); i++)
 	{
 		ofs << customers[i].saveData() << "\n";
@@ -550,7 +558,7 @@ void Controller::savefile()
 
 
 
-	ofs << "\n/SalesAssociates/\n";
+	ofs << "/SalesAssociates/\n";
 	for (int i = 0; i < associates.size(); i++)
 	{
 		ofs << associates[i].saveData() << "\n";
@@ -558,7 +566,7 @@ void Controller::savefile()
 
 
 
-	ofs << "\n/Orders/\n";
+	ofs << "/Orders/\n";
 	for (int i = 0; i < orders.size(); i++)
 	{
 		ofs << orders[i].saveData() << "\n";
