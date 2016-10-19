@@ -122,16 +122,19 @@ Date inputDate(std::string prompt)
 	int month, day, year;
 	try
 	{
-		cin >> month;
-		cin.get();
-		cin >> day;
-		cin.get();
-		cin >> year;
+		string temp;
+		getline(cin >> ws, temp, '/');
+		month = stoi(temp);
+		getline(cin >> ws, temp, '/');
+		day = stoi(temp);
+		getline(cin >> ws, temp);
+		year = stoi(temp);
 	}
 
 	catch (...)
 	{
 		cerr << "\t***Error: Entered invalid numeric value for either month, day, or year. Try again.\n";
+		cin.ignore();//ignore possible extra characters left in buffer from crash
 		inputDate(prompt);
 	}
 
