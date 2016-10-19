@@ -1,6 +1,7 @@
 #include "easy_input.h"
 
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <exception>
 
@@ -123,24 +124,41 @@ Date inputDate(std::string prompt)
 	try
 	{
 		string temp;
-		getline(cin >> ws, temp, '/');
-		month = stoi(temp);
-		getline(cin >> ws, temp, '/');
-		day = stoi(temp);
 		getline(cin >> ws, temp);
+		int forwardslash_count = 0;
+		for (char c : temp)
+		{
+			if (c == '/')
+			{
+				forwardslash_count++;
+			}
+		}
+
+		if (forwardslash_count != 3)
+		{
+			throw runtime_error("Invalid date format");
+		}
+
+		stringstream s;
+		s >> temp;
+
+		getline(s, temp, '/');
+		month = stoi(temp);
+		getline(s, temp, '/');
+		day = stoi(temp);
+		getline(s, temp);
 		year = stoi(temp);
 	}
 
 	catch (...)
 	{
 		cerr << "\t***Error: Entered invalid numeric value for either month, day, or year. Try again.\n";
-		cin.ignore();//ignore possible extra characters left in buffer from crash
 		inputDate(prompt);
 	}
 
 	if (month < 1 || month > 12 || day < 1 || day > 31 || year < 1950)
 	{
-		cerr << "\t***Error: Entered invalid date format. Year must be greater than 1949. Try again.\n";
+		cerr << "\t***Error: Entered invalid date format. Reminder: Year must be greater than 1949. Try again.\n";
 		inputDate(prompt);
 	}
 
