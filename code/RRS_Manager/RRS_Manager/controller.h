@@ -36,7 +36,7 @@ public:
 	void createCustomer();
 	void createSalesAssociate();
 
-	std::vector<std::string> splitter(const std::string &s, char delim);
+
 	void loadfile();
 
 

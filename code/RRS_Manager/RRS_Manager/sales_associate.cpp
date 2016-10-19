@@ -20,7 +20,16 @@ void SalesAssociate::addOrder(Order p_order)
 
 string SalesAssociate::saveData() const
 {
-	return name + "," + to_string(employee_number) + "," + "ORDERS";
+	
+
+	string ordernums = to_string(orders[0].getOrderNumber());
+	for (int i = 1; i < orders.size(); i++)
+	{
+		ordernums += "," + to_string(orders[i].getOrderNumber());
+	}
+
+
+	return name + "," + to_string(employee_number) + "," + ordernums;
 }
 
 

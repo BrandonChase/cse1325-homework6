@@ -23,6 +23,12 @@ double RobotModel::getPrice()
 {
 	return price;
 }
+
+int RobotModel::getModelNumber() const
+{
+	return model_number;
+}
+
 string RobotModel::saveData()
 {
 	return name + "," + to_string(model_number) + "," + to_string(price) + "," + to_string(s_head.getPartNumber()) + "," + to_string(s_torso.getPartNumber())

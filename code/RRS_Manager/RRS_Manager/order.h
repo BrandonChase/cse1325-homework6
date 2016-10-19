@@ -10,6 +10,7 @@
 #include <ostream>
 #include <sstream>
 
+
 class Order
 {
 public:
@@ -38,6 +39,8 @@ public:
 
 		return result;
 	}
+	int getOrderNumber() const;
+	std::string getOrderRobotModels() const;
 	std::string saveData() const;
 	friend std::ostream& operator<<(std::ostream& os, const Order& order);
 private:

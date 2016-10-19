@@ -310,7 +310,7 @@ void Controller::createOrder()
 	double order_price = Order::calculatePrice(order_models);
 	int customer_num = customers[customer_index].getCustomerNumber();
 	int sales_Associate_number = associates[sales_associate_index].getSalesAssociateNumber();
-	shop.addOrder(Order(order_number, customer_num, sales_Associate_number, models, order_price, order_date));
+	shop.addOrder(Order(order_number, customer_num, sales_Associate_number, models, order_price, order_date), sales_Associate_number, customer_num);
 	
 }
 
@@ -329,16 +329,6 @@ void Controller::createSalesAssociate()
 }
 
 
-vector<string> Controller::splitter(const string &s, char delim) 
-{
-	stringstream ss(s);
-	string item;
-	vector<string> tokens;
-	while (getline(ss, item, delim)) {
-		tokens.push_back(item);
-	}
-	return tokens;
-}
 
 
 void Controller::loadfile()
@@ -359,7 +349,7 @@ void Controller::loadfile()
 		{
 			int i = 0, j = 0;
 			is_changing = false;
-			spline = splitter(line, ',');
+			spline = shop.splitter(line, ',');
 
 			for (j = 0; j < load_tags.size(); j++)
 			{
@@ -406,7 +396,7 @@ void Controller::loadfile()
 					break;
 
 					case 8:
-					//LoadOrder(spline[0])
+					shop.LoadOrder(line);
 					//shop.addOrder(Order(order_number, customer_num, sales_Associate_number, models, order_price, order_date));
 					break;
 				}

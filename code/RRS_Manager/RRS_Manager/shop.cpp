@@ -14,8 +14,23 @@ void Shop::addSalesAssociate(SalesAssociate p_sa)
 	sales_associates.push_back(p_sa);
 }
 
-void Shop::addOrder(Order p_order)
+void Shop::addOrder(Order p_order, int sales_associate_id, int customer_id)
 {
+	for (int i = 0; i < customers.size(); i++)
+	{
+		if (customers[i].getCustomerNumber() == customer_id)
+		{
+			customers[i].addOrder(p_order);
+		}
+	}
+
+	for (int i = 0; i < sales_associates.size(); i++)
+	{
+		if (sales_associates[i].getSalesAssociateNumber() == sales_associate_id)
+		{
+			sales_associates[i].addOrder(p_order);
+		}
+	}
 	orders.push_back(p_order);
 }
 
@@ -166,6 +181,39 @@ void Shop::LoadRobotModel(string name, int model_num, double price, int head_p, 
 }
 
 
+void Shop::LoadOrder(string line)
+{
+	vector<string> spline = splitter(line, ',');
+	vector<RobotModel> ordermodels;
+	for (int i = 3; i < spline.size() - 3; i++)
+	{
+		for (int j = 0; j < models.size(); j++)
+		{
+			if (stoi(spline[i]) == models[j].getModelNumber())
+			{
+				ordermodels.push_back(models[j]);
+			}
+		}
+	}
+	vector<string> spdate = splitter( spline[spline.size()-1], '/');
+	Date dresult(stoi(spdate[0]), stoi(spdate[1]), stoi(spdate[2]));
+
+	addOrder(Order(stoi(spline[0]), stoi(spline[1]), stoi(spline[2]), ordermodels,stod(spline[spline.size()-2]), dresult), stoi(spline[1]), stoi(spline[2])); //last var needs some work, needs to convert to date.
+}
+
+vector<string> Shop::splitter(const string &s, char delim) 
+{
+	stringstream ss(s);
+	string item;
+	vector<string> tokens;
+	while (getline(ss, item, delim)) {
+		tokens.push_back(item);
+	}
+	return tokens;
+}
+
+
+
 void Shop::savefile()
 {
 	cout << "Name of file to write to: ";
@@ -283,7 +331,14 @@ void Shop::populateShopForTesting()
 	addSalesAssociate(SalesAssociate("Seller 1", 1));
 	addSalesAssociate(SalesAssociate("Seller 2", 2));
 	addSalesAssociate(SalesAssociate("Seller 3", 3));
+	vector<RobotModel> models_pop = {models[0], models[1]};
+	Date odate(5,6,1996);
+	addOrder(Order(1, 12345, 1, models_pop, 600.0, odate), 1, 12345);
+	addOrder(Order(2, 666, 1, models_pop, 600.0, odate), 2, 666);
+	addOrder(Order(3, 12345, 1, models_pop, 500.0, odate), 3, 12345);
+
 }
+
 
 
 

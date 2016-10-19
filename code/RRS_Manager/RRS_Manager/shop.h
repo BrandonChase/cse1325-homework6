@@ -7,6 +7,7 @@
 #include "robot_models.h"
 #include "robot_parts.h"
 #include "part_type.h"
+#include "date.h"
 
 #include <iostream>
 #include <algorithm>
@@ -25,7 +26,7 @@ public:
 	void addBattery(Battery p_battery);
 	void addArm(Arm p_arm);
 	void addRobotModel(RobotModel p_model);
-	void addOrder(Order p_order);
+	void addOrder(Order p_order, int sales_associate_id, int customer_id);
 	void addCustomer(Customer p_customer);
 	void addSalesAssociate(SalesAssociate p_sa);
 
@@ -44,6 +45,9 @@ public:
 	bool isAnyPartListEmpty();
 	bool areAllPartListsEmpty();
 	void LoadRobotModel(std::string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p);
+	void LoadOrder(std::string line);
+	std::vector<std::string> splitter(const std::string &s, char delim);
+
 	void populateShopForTesting();
 	void savefile();
 
