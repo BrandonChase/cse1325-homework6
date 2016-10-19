@@ -175,50 +175,39 @@ void Shop::savefile()
 	ofs.open(outfile.c_str());
 	if(!ofs) throw runtime_error("Unable to open output file " + outfile);
 
-
-	/*const vector<Head>& heads = shop.getHeads();
-	const vector<Locomotor>& locomotors = shop.getLocomotors();
-	const vector<Torso>& torsos = shop.getTorsos();
-	const vector<Battery>& batteries = shop.getBatteries();
-	const vector<Arm>& arms = shop.getArms();
-	const vector<SalesAssociate>& associates = shop.getSalesAssociates();
-	const vector<Customer>& customers = shop.getCustomers();
-	const vector<Order>& orders = shop.getOrders();
-	vector<RobotModel> models = shop.getModels();*/
-
 	for (int i = 0; i < PartType::NUM_OF_PART_TYPES; i++)
 	{
 		ofs << "/" << PartType(i) << "/\n";
 
-		if (i==PartType::HEAD)
+		if (i == PartType::HEAD)
 		{
 			for (int j = 0; j < heads.size(); j++)
 			{
 				ofs <<  heads[j].saveData() << "\n";
 			}
 		}
-		if (i==PartType::TORSO)
+		if (i == PartType::TORSO)
 		{
 			for (int j = 0; j < torsos.size(); j++)
 			{
 				ofs <<  torsos[j].saveData() << "\n";
 			}
 		}
-		if (i==PartType::BATTERY)
+		if (i == PartType::BATTERY)
 		{
 			for (int j = 0; j < batteries.size(); j++)
 			{
 				ofs <<  batteries[j].saveData() << "\n";
 			}
 		}
-		if (i==PartType::ARM)
+		if (i = PartType::ARM)
 		{
 			for (int j = 0; j < arms.size(); j++)
 			{
 				ofs <<  arms[j].saveData() << "\n";
 			}
 		}
-		if (i==PartType::LOCOMOTOR)
+		if (i == PartType::LOCOMOTOR)
 		{
 			for (int j = 0; j < locomotors.size(); j++)
 			{
@@ -260,6 +249,7 @@ void Shop::savefile()
 
 	ofs.close();
 }
+
 
 void Shop::populateShopForTesting()
 {

@@ -329,7 +329,6 @@ void Controller::createSalesAssociate()
 }
 
 
-
 vector<string> Controller::splitter(const string &s, char delim) 
 {
 	stringstream ss(s);
@@ -340,10 +339,6 @@ vector<string> Controller::splitter(const string &s, char delim)
 	}
 	return tokens;
 }
-
-
-
-
 
 
 void Controller::loadfile()
@@ -423,5 +418,3 @@ void Controller::loadfile()
 	}
 
 }
-
-
