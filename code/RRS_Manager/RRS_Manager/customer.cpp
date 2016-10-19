@@ -18,6 +18,10 @@ void Customer::addOrder(Order p_order)
 	orders.push_back(p_order);
 }
 
+
+// SAVE METHOD FOR LOAD/SAVE
+
+
 string Customer::saveData() const 
 {
 	return  name + "," + to_string(customer_number);

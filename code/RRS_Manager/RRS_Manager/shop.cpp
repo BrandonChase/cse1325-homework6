@@ -14,7 +14,7 @@ void Shop::addSalesAssociate(SalesAssociate p_sa)
 	sales_associates.push_back(p_sa);
 }
 
-void Shop::addOrder(Order p_order, int sales_associate_id, int customer_id)
+void Shop::addOrder(Order p_order, int sales_associate_id, int customer_id) // was not adding orders to sales assoc or customer, so save was seg faulting. 
 {
 	for (int i = 0; i < customers.size(); i++)
 	{
@@ -212,6 +212,7 @@ vector<string> Shop::splitter(const string &s, char delim)
 	return tokens;
 }
 
+// SAVE METHOD FOR LOAD/SAVE
 
 
 void Shop::savefile()

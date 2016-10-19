@@ -11,10 +11,8 @@ int Order::getOrderNumber() const
 {
 	return order_number;
 }
-string Order::saveData() const 
-{
-	return  to_string(order_number) + "," + to_string(customer_number) + "," + to_string(sales_associate_number) + "," + getOrderRobotModels() + "," + to_string(price) + "," + date.saveDate();
-}
+
+
 
 string Order::getOrderRobotModels() const
 {
@@ -24,4 +22,12 @@ string Order::getOrderRobotModels() const
 		modelparts += "," + to_string(models[i].getModelNumber());
 	}
 	return modelparts;
+}
+
+
+// SAVE METHOD FOR LOAD/SAVE
+
+string Order::saveData() const 
+{
+	return  to_string(order_number) + "," + to_string(customer_number) + "," + to_string(sales_associate_number) + "," + getOrderRobotModels() + "," + to_string(price) + "," + date.saveDate();
 }

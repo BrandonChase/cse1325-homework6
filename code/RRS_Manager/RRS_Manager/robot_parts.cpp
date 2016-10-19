@@ -50,7 +50,6 @@ ostream& operator<<(ostream& os, const Arm& part)
 	return os;
 }
 
-//RobotPart [Base Class]
 
 int RobotPart::getPartNumber() const // necessary to match reference part for models when loading back data
 {
@@ -67,6 +66,8 @@ int Torso::getNumBatteries() const // returns number of battery compartments
 {
 	return battery_compartments;
 }
+
+// SAVE METHODS FOR LOAD/SAVE
 
 string RobotPart::saveData() const // works for base class
 {
@@ -92,13 +93,3 @@ string Arm::saveData() const
 {
 	return RobotPart::saveData() + "," + to_string(power_consumed);
 }
-
-//Head [Derived] [empty]
-
-//Locomotor [Derived]
-
-//Torso [Derived]
-
-//Battery [Derived]
-
-//Arm [Derived]
