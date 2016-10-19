@@ -36,7 +36,7 @@ public:
 
 	bool isAnyPartListEmpty();
 	bool areAllPartListsEmpty();
-
+	void LoadRobotModel(std::string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p);
 	void populateShopForTesting();
 
 private:

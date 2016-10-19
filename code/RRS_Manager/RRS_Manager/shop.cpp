@@ -110,6 +110,64 @@ bool Shop::areAllPartListsEmpty()
 	return(heads.size() == 0 && torsos.size() == 0 && batteries.size() == 0 && arms.size() == 0 && locomotors.size() == 0);
 }
 
+
+
+void Shop::LoadRobotModel(string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p)
+{
+
+	int h_choice = -1 , l_choice = -1 , t_choice = -1, b_choice = -1, a_choice = -1;
+
+	for (int i = 0; i < heads.size(); i++)
+	{
+		if (heads[i].getPartNumber() == head_p)
+		{	
+			h_choice = i;
+		}
+	}
+
+	for (int i = 0; i < locomotors.size(); i++)
+	{
+		if (locomotors[i].getPartNumber() == locomotor_p)
+		{
+			l_choice = i;
+		}
+	}
+
+	for (int i = 0; i < torsos.size(); i++)
+	{
+		if (torsos[i].getPartNumber() == torso_p)
+		{
+			t_choice = i;
+		}
+	}
+
+	for (int i = 0; i < batteries.size(); i++)
+	{
+		if (batteries[i].getPartNumber() == battery_p)
+		{
+			b_choice = i;
+		}
+	}
+
+	for (int i = 0; i < arms.size(); i++)
+	{
+		if (arms[i].getPartNumber() == arm_p)
+		{
+			a_choice = i;
+		}
+	}
+
+	if ((h_choice == -1) || (l_choice == -1) || (t_choice == -1) || (b_choice == -1) || (a_choice == -1))
+	{
+		cout << "\t***Error: Was unable to load Model - corrupted save file.\n";
+		return;
+	}
+
+	addRobotModel(RobotModel(name, model_num, price, heads[h_choice], torsos[t_choice], locomotors[l_choice], batteries[b_choice], arms[a_choice]));
+}
+
+
+
 void Shop::populateShopForTesting()
 {
 	addHead(Head("Destroyer Head", 111, 1, 5, PartType::HEAD, "This is destroyer head no. 1"));

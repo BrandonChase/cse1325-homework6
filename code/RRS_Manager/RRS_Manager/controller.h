@@ -35,7 +35,7 @@ public:
 	void createOrder();
 	void createCustomer();
 	void createSalesAssociate();
-	void LoadRobotModel(std::string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p);
+
 	std::vector<std::string> splitter(const std::string &s, char delim);
 	void loadfile();
 	void savefile();

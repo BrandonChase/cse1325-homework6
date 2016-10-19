@@ -342,63 +342,7 @@ vector<string> Controller::splitter(const string &s, char delim)
 }
 
 
-void Controller::LoadRobotModel(string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p)
-{
-	const vector<Head>& heads = shop.getHeads();
-	const vector<Locomotor>& locomotors = shop.getLocomotors();
-	const vector<Torso>& torsos = shop.getTorsos();
-	const vector<Battery>& batteries = shop.getBatteries();
-	const vector<Arm>& arms = shop.getArms();
-	int h_choice = -1 , l_choice = -1 , t_choice = -1, b_choice = -1, a_choice = -1;
 
-	for (int i = 0; i < heads.size(); i++)
-	{
-		if (heads[i].getPartNumber() == head_p)
-		{	
-			h_choice = i;
-		}
-	}
-
-	for (int i = 0; i < locomotors.size(); i++)
-	{
-		if (locomotors[i].getPartNumber() == locomotor_p)
-		{
-			l_choice = i;
-		}
-	}
-
-	for (int i = 0; i < torsos.size(); i++)
-	{
-		if (torsos[i].getPartNumber() == torso_p)
-		{
-			t_choice = i;
-		}
-	}
-
-	for (int i = 0; i < batteries.size(); i++)
-	{
-		if (batteries[i].getPartNumber() == battery_p)
-		{
-			b_choice = i;
-		}
-	}
-
-	for (int i = 0; i < arms.size(); i++)
-	{
-		if (arms[i].getPartNumber() == arm_p)
-		{
-			a_choice = i;
-		}
-	}
-
-	if ((h_choice == -1) || (l_choice == -1) || (t_choice == -1) || (b_choice == -1) || (a_choice == -1))
-	{
-		cout << "\t***Error: Was unable to load Model - corrupted save file.\n";
-		return;
-	}
-
-	shop.addRobotModel(RobotModel(name, model_num, price, heads[h_choice], torsos[t_choice], locomotors[l_choice], batteries[b_choice], arms[a_choice]));
-}
 
 
 
@@ -455,7 +399,7 @@ void Controller::loadfile()
 					break;
 
 					case 5:
-					LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7])); // 3-n are IDs for parts
+					shop.LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7])); // 3-n are IDs for parts
 					break;
 
 					case 6:
@@ -467,6 +411,7 @@ void Controller::loadfile()
 					break;
 
 					case 8:
+					//LoadOrder(spline[0])
 					//shop.addOrder(Order(order_number, customer_num, sales_Associate_number, models, order_price, order_date));
 					break;
 				}
