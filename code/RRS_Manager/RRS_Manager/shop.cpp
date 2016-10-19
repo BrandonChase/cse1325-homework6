@@ -111,7 +111,6 @@ bool Shop::areAllPartListsEmpty()
 }
 
 
-
 void Shop::LoadRobotModel(string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p)
 {
 
@@ -167,6 +166,100 @@ void Shop::LoadRobotModel(string name, int model_num, double price, int head_p, 
 }
 
 
+void Shop::savefile()
+{
+	cout << "Name of file to write to: ";
+	string outfile;
+	cin >> outfile;
+	ofstream ofs;
+	ofs.open(outfile.c_str());
+	if(!ofs) throw runtime_error("Unable to open output file " + outfile);
+
+
+	/*const vector<Head>& heads = shop.getHeads();
+	const vector<Locomotor>& locomotors = shop.getLocomotors();
+	const vector<Torso>& torsos = shop.getTorsos();
+	const vector<Battery>& batteries = shop.getBatteries();
+	const vector<Arm>& arms = shop.getArms();
+	const vector<SalesAssociate>& associates = shop.getSalesAssociates();
+	const vector<Customer>& customers = shop.getCustomers();
+	const vector<Order>& orders = shop.getOrders();
+	vector<RobotModel> models = shop.getModels();*/
+
+	for (int i = 0; i < PartType::NUM_OF_PART_TYPES; i++)
+	{
+		ofs << "/" << PartType(i) << "/\n";
+
+		if (i==PartType::HEAD)
+		{
+			for (int j = 0; j < heads.size(); j++)
+			{
+				ofs <<  heads[j].saveData() << "\n";
+			}
+		}
+		if (i==PartType::TORSO)
+		{
+			for (int j = 0; j < torsos.size(); j++)
+			{
+				ofs <<  torsos[j].saveData() << "\n";
+			}
+		}
+		if (i==PartType::BATTERY)
+		{
+			for (int j = 0; j < batteries.size(); j++)
+			{
+				ofs <<  batteries[j].saveData() << "\n";
+			}
+		}
+		if (i==PartType::ARM)
+		{
+			for (int j = 0; j < arms.size(); j++)
+			{
+				ofs <<  arms[j].saveData() << "\n";
+			}
+		}
+		if (i==PartType::LOCOMOTOR)
+		{
+			for (int j = 0; j < locomotors.size(); j++)
+			{
+				ofs <<  locomotors[j].saveData() << "\n";
+			}
+		}		
+	}
+
+	ofs << "/RobotModel/\n";
+	for (int i = 0; i < models.size(); i++)
+	{
+		ofs << models[i].saveData() << "\n";
+	}
+
+
+
+	ofs << "/Customers/\n";
+	for (int i = 0; i < customers.size(); i++)
+	{
+		ofs << customers[i].saveData() << "\n";
+	}
+
+
+
+	ofs << "/SalesAssociates/\n";
+	for (int i = 0; i < sales_associates.size(); i++)
+	{
+		ofs << sales_associates[i].saveData() << "\n";
+	}
+
+
+
+	ofs << "/Orders/\n";
+	for (int i = 0; i < orders.size(); i++)
+	{
+		ofs << orders[i].saveData() << "\n";
+	}
+
+
+	ofs.close();
+}
 
 void Shop::populateShopForTesting()
 {

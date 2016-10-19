@@ -7,7 +7,12 @@
 #include "robot_models.h"
 #include "robot_parts.h"
 
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
 #include <vector>
+#include <stdexcept>
 
 class Shop
 {
@@ -38,6 +43,7 @@ public:
 	bool areAllPartListsEmpty();
 	void LoadRobotModel(std::string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p);
 	void populateShopForTesting();
+	void savefile();
 
 private:
 	std::vector<SalesAssociate> sales_associates;
