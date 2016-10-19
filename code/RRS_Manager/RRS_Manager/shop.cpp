@@ -174,76 +174,74 @@ void Shop::savefile()
 	ofstream ofs;
 	ofs.open(outfile.c_str());
 	if(!ofs) throw runtime_error("Unable to open output file " + outfile);
-
+	int i=1;
 	for (int i = 0; i < PartType::NUM_OF_PART_TYPES; i++)
 	{
 		ofs << "/" << PartType(i) << "/\n";
 
 		if (i == PartType::HEAD)
 		{
-			for (int j = 0; j < heads.size(); j++)
+			for (Head head : heads)
 			{
-				ofs <<  heads[j].saveData() << "\n";
+				ofs <<  head.saveData() << "\n";
 			}
 		}
 		if (i == PartType::TORSO)
 		{
-			for (int j = 0; j < torsos.size(); j++)
+			for (Torso torso : torsos)
 			{
-				ofs <<  torsos[j].saveData() << "\n";
+				ofs <<  torso.saveData() << "\n";
 			}
 		}
 		if (i == PartType::BATTERY)
 		{
-			for (int j = 0; j < batteries.size(); j++)
+			for (Battery battery : batteries)
 			{
-				ofs <<  batteries[j].saveData() << "\n";
+				ofs <<  battery.saveData() << "\n";
 			}
 		}
-		if (i = PartType::ARM)
+		if (i == PartType::ARM)
 		{
-			for (int j = 0; j < arms.size(); j++)
+			for (Arm arm : arms)
 			{
-				ofs <<  arms[j].saveData() << "\n";
+				ofs <<  arm.saveData() << "\n";
 			}
 		}
 		if (i == PartType::LOCOMOTOR)
 		{
-			for (int j = 0; j < locomotors.size(); j++)
+			for (Locomotor locomotor : locomotors)
 			{
-				ofs <<  locomotors[j].saveData() << "\n";
+				ofs <<  locomotor.saveData() << "\n";
 			}
 		}		
 	}
 
 	ofs << "/RobotModel/\n";
-	for (int i = 0; i < models.size(); i++)
+	for (RobotModel model : models)
 	{
-		ofs << models[i].saveData() << "\n";
+		ofs << model.saveData() << "\n";
 	}
 
 
 
 	ofs << "/Customers/\n";
-	for (int i = 0; i < customers.size(); i++)
+	for (Customer customer : customers)
 	{
-		ofs << customers[i].saveData() << "\n";
+		ofs << customer.saveData() << "\n";
 	}
-
 
 
 	ofs << "/SalesAssociates/\n";
-	for (int i = 0; i < sales_associates.size(); i++)
+	for (SalesAssociate sales_associate : sales_associates)
 	{
-		ofs << sales_associates[i].saveData() << "\n";
+		ofs << sales_associate.saveData() << "\n";
 	}
 
 
-
 	ofs << "/Orders/\n";
-	for (int i = 0; i < orders.size(); i++)
+	for (Order order : orders)
 	{
-		ofs << orders[i].saveData() << "\n";
+		ofs << order.saveData() << "\n";
 	}
 
 

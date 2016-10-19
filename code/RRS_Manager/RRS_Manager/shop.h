@@ -6,8 +6,10 @@
 #include "order.h"
 #include "robot_models.h"
 #include "robot_parts.h"
+#include "part_type.h"
 
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include <fstream>
 #include <sstream>
