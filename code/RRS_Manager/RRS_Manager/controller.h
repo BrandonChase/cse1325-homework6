@@ -5,6 +5,7 @@
 #include "view.h"
 
 #include <iostream>
+#include <string>
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -35,7 +36,7 @@ public:
 	void createCustomer();
 	void createSalesAssociate();
 		
-
+	std::vector<std::string> splitter(const std::string &s, char delim);
 	void loadfile();
 	void savefile();
 

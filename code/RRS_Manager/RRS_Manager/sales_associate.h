@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <ostream>
+#include <sstream>
 
 class SalesAssociate
 {
@@ -15,7 +17,7 @@ public:
 	const std::vector<Order>& getOrders();
 	void addOrder(Order p_order);
 	int getSalesAssociateNumber();
-
+	std::string saveData() const;
 private:
 	std::string name;
 	int employee_number;

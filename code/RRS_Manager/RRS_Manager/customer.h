@@ -14,7 +14,7 @@ public:
 	const std::vector<Order>& getOrders();
 	void addOrder(Order p_order);
 	int getCustomerNumber();
-
+	std::string saveData() const;
 private:
 	std::string name;
 	int customer_number;

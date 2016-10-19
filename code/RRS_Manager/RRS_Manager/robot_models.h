@@ -29,7 +29,7 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& os, const RobotModel& model);
 	double getPrice();
-	std::string getData();
+	std::string saveData();
 
 private:
 	std::string name;

@@ -18,6 +18,12 @@ void SalesAssociate::addOrder(Order p_order)
 	orders.push_back(p_order);
 }
 
+string SalesAssociate::saveData() const
+{
+	return name + "," + to_string(employee_number) + "," + "ORDERS";
+}
+
+
 //GETTERS
 int SalesAssociate::getSalesAssociateNumber()
 {

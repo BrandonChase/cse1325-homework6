@@ -5,8 +5,10 @@
 #include "date.h"
 
 #include <vector>
+#include <string>
 #include <chrono>
 #include <ostream>
+#include <sstream>
 
 class Order
 {
@@ -36,7 +38,7 @@ public:
 
 		return result;
 	}
-
+	std::string saveData() const;
 	friend std::ostream& operator<<(std::ostream& os, const Order& order);
 private:
 	int order_number;

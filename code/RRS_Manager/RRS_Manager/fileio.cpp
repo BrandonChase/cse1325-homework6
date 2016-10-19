@@ -79,7 +79,7 @@ void Fileio::savefile()
 	for (int i = 0; i < PartType::NUM_OF_PART_TYPES; i++)
 	{
 		ofs << "//start " << PartType(i) << "//\n";
-		const PartType type(i);
+		PartType type(i);
 		vector<type> partp;
 		switch (partp)
 		{

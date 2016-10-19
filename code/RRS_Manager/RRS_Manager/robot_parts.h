@@ -27,7 +27,7 @@ public:
 	int getPartNumber() const;
 	double getPrice() const;
 	void ostreamBaseFields(std::ostream& os) const;
-	std::string getData() const; // will be dif depending on part type
+	std::string saveData() const; // will be dif depending on part type
 protected:
 	std::string name;
 	int part_number;
@@ -73,7 +73,7 @@ public:
 	power_consumed(p_power_consumed) {}
 
 	friend std::ostream& operator<<(std::ostream& os, const Locomotor& part);
-	std::string getData() const;
+	std::string saveData() const;
 private:
 	double max_speed; //MPH
 	double power_consumed; //W
@@ -93,7 +93,7 @@ public:
 
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description), 
 	battery_compartments(p_battery_compartments){}
-	std::string getData() const;
+	std::string saveData() const;
 	friend std::ostream& operator<<(std::ostream& os, const Torso& part);
     int getNumBatteries() const;
 private:
@@ -114,7 +114,7 @@ public:
 
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
 	contained_energy(p_contained_energy) {}
-	std::string getData() const;
+	std::string saveData() const;
 	friend std::ostream& operator<<(std::ostream& os, const Battery& part);
 
 private:
@@ -135,7 +135,7 @@ public:
 
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
 	power_consumed(p_power_consumed) {}
-	std::string getData() const;
+	std::string saveData() const;
 	friend std::ostream& operator<<(std::ostream& os, const Arm& part);
 
 private:

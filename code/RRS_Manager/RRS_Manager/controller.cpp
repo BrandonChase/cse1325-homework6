@@ -330,25 +330,85 @@ void Controller::createSalesAssociate()
 
 
 
+vector<string> Controller::splitter(const string &s, char delim) 
+{
+	stringstream ss(s);
+	string item;
+	vector<string> tokens;
+	while (getline(ss, item, delim)) {
+		tokens.push_back(item);
+	}
+	return tokens;
+}
+
 
 void Controller::loadfile()
 {
-/*	cout << "Name of file to read from: ";
+	cout << "Name of file to read from: ";
 	string infile;
 	cin >> infile;
-	ifstream ist {infile};
-	if(!ist) throw runtime_error("Unable to load specified file "+infile);
 	string line, s; 
-	vector<string> tokenized_line;
+	vector<string> spline, load_tags = {"/Head/","/Torso/","/Battery/","/Arm/","/Locomotor/","/RobotModel/","/Customers/","/SalesAssociates/","/Orders/","/Blank/"};
 
-	while (getline(infile,line))
+	ifstream loadfile(infile);
+	if(!loadfile) throw runtime_error("Unable to load specified file " + infile);
+	if (loadfile.good())  
 	{
-		//istringstream f(line);
-		while (getline(line, s, ',')) {
-			tokenized_line.push_back(s);
+		bool is_changing = false; 
+		int cur_tagtype = 0;
+		while (getline(loadfile, line)) 
+		{
+			int i = 0, j = 0;
+			is_changing = false;
+			spline = splitter(line, ',');
+
+			for (j = 0; j < load_tags.size(); j++)
+			{
+				if(load_tags[j] == spline[0])
+				{
+					is_changing = true;
+					cur_tagtype = j;
+				}
+			}
+			if(!is_changing)
+			{
+				switch(cur_tagtype)
+				{
+					case 0:
+					shop.addHead(Head(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4]));
+					break;
+					
+					case 1:
+					shop.addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::TORSO, spline[4], stoi(spline[5])));
+					break;
+
+					case 2:
+					shop.addBattery(Battery(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::BATTERY, spline[4], stod(spline[5])));
+					break;
+
+					case 3:
+					shop.addArm(Arm(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::ARM, spline[4], stod(spline[5])));
+					break;
+
+					case 4:
+					shop.addLocomotor(Locomotor(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::LOCOMOTOR, spline[4], stod(spline[5]), stod(spline[6])));
+					break;
+
+					case 5:
+					//shop.addRobotModel(RobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]))); // 3-n are IDs for parts
+					break;
+
+					case 6:
+					//shop.addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4], stoi(spline[5])));
+					break;
+				}
+			}
+
 		}
+
+		loadfile.close();
 	}
-*/
+
 }
 
 
@@ -360,7 +420,7 @@ void Controller::savefile()
 	cin >> outfile;
 	ofstream ofs;
 	ofs.open(outfile.c_str());
-	if(!ofs) throw runtime_error("Unable to open output file "+outfile);
+	if(!ofs) throw runtime_error("Unable to open output file " + outfile);
 
 
 	const vector<Head>& heads = shop.getHeads();
@@ -381,49 +441,68 @@ void Controller::savefile()
 		{
 			for (int j = 0; j < heads.size(); j++)
 			{
-				ofs <<  heads[j].getData() << "\n";
+				ofs <<  heads[j].saveData() << "\n";
 			}
 		}
 		if (i==PartType::TORSO)
 		{
 			for (int j = 0; j < torsos.size(); j++)
 			{
-				ofs <<  torsos[j].getData() << "\n";
+				ofs <<  torsos[j].saveData() << "\n";
 			}
 		}
 		if (i==PartType::BATTERY)
 		{
 			for (int j = 0; j < batteries.size(); j++)
 			{
-				ofs <<  batteries[j].getData() << "\n";
+				ofs <<  batteries[j].saveData() << "\n";
 			}
 		}
 		if (i==PartType::ARM)
 		{
 			for (int j = 0; j < arms.size(); j++)
 			{
-				ofs <<  arms[j].getData() << "\n";
+				ofs <<  arms[j].saveData() << "\n";
 			}
 		}
 		if (i==PartType::LOCOMOTOR)
 		{
 			for (int j = 0; j < locomotors.size(); j++)
 			{
-				ofs <<  locomotors[j].getData() << "\n";
+				ofs <<  locomotors[j].saveData() << "\n";
 			}
-		}
-		
-
-		ofs << "/" << PartType(i) << "/\n";
+		}		
 	}
-	ofs << "/RobotModel/\n";
+
+	ofs << "\n/RobotModel/\n";
 	for (int i = 0; i < models.size(); i++)
 	{
-		ofs << models[i].getData() << "\n";
+		ofs << models[i].saveData() << "\n";
 	}
-	ofs << "/RobotModel/\n";
 
 
+
+	ofs << "\n/Customers/\n";
+	for (int i = 0; i < customers.size(); i++)
+	{
+		ofs << customers[i].saveData() << "\n";
+	}
+
+
+
+	ofs << "\n/SalesAssociates/\n";
+	for (int i = 0; i < associates.size(); i++)
+	{
+		ofs << associates[i].saveData() << "\n";
+	}
+
+
+
+	ofs << "\n/Orders/\n";
+	for (int i = 0; i < orders.size(); i++)
+	{
+		ofs << orders[i].saveData() << "\n";
+	}
 
 
 	ofs.close();

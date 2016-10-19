@@ -68,29 +68,29 @@ int Torso::getNumBatteries() const // returns number of battery compartments
 	return battery_compartments;
 }
 
-string RobotPart::getData() const // works for base class
+string RobotPart::saveData() const // works for base class
 {
 	return name + "," + to_string(part_number) + "," + to_string(weight) + "," + to_string(price) + "," + description;
 }
 
-string Locomotor::getData() const 
+string Locomotor::saveData() const 
 {
-	return RobotPart::getData() + "," + to_string(max_speed) + "," + to_string(power_consumed);
+	return RobotPart::saveData() + "," + to_string(max_speed) + "," + to_string(power_consumed);
 }
 
-string Torso::getData() const 
+string Torso::saveData() const 
 {
-	return RobotPart::getData() + "," + to_string(battery_compartments);
+	return RobotPart::saveData() + "," + to_string(battery_compartments);
 }
 
-string Battery::getData() const 
+string Battery::saveData() const 
 {
-	return RobotPart::getData() + "," + to_string(contained_energy);
+	return RobotPart::saveData() + "," + to_string(contained_energy);
 }
 
-string Arm::getData() const 
+string Arm::saveData() const 
 {
-	return RobotPart::getData() + "," + to_string(power_consumed);
+	return RobotPart::saveData() + "," + to_string(power_consumed);
 }
 
 //Head [Derived] [empty]
