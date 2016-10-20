@@ -1,4 +1,5 @@
 #include "order.h"
+#include "easy_input.h"
 
 using namespace std;
 
@@ -19,10 +20,17 @@ string Order::getOrderRobotModels() const
 	return modelparts;
 }
 
-string Order::outputFormattedString() const
+string Order::outputFormattedString(string offset, bool show_details) const
 {
 	string result;
 	result += "Order #: " + to_string(order_number);
+	if (show_details)
+	{
+		result += "\n" + offset + "Date: " + date.formatString() + "\n";
+		result += offset + "Price: $" + doubleToString(price) + "\n";
+		result += offset + "Customer #: " + to_string(customer_number) + "\n";
+		result += offset + "Sales Associate #: " + to_string(sales_associate_number) + "\n";
+	}
 
 	return result;
 }

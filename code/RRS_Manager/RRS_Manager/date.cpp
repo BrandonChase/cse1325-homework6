@@ -9,6 +9,11 @@ ostream& operator<<(ostream& os, const Date& date)
 	return os;
 }
 
+std::string Date::formatString() const
+{
+	return (to_string(month) + "/" + to_string(day) + "/" + to_string(year));
+}
+
 // SAVE METHOD FOR LOAD/SAVE
 
 string Date::saveDate() const

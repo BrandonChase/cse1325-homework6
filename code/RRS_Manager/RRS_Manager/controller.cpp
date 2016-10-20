@@ -375,10 +375,11 @@ void Controller::reportRobotModels(vector<RobotModel> models, string offset)
 	while (model_choice != -1)
 	{
 		view.listRobotModels(models, offset);
+		if (models.size() == 0) { break; }
 		model_choice = inputIntInRange(offset + "\tEnter robot model index to view details [-1 to exit]: ", -1, models.size() - 1, "Invalid robot model index!");
 		if (model_choice != -1)
 		{
-			cout << offset+"\t" << models[model_choice].outputFormattedString(offset+"\t\t", 1);
+			cout << offset + "\t" << models[model_choice].outputFormattedString(offset + "\t\t", 1);
 		}
 	}
 }
@@ -389,11 +390,12 @@ void Controller::reportOrders(vector<Order> orders, string offset)
 	while (order_choice != -1)
 	{
 		view.listOrders(orders, offset);
+		if (orders.size() == 0) { break; }
 		order_choice = inputIntInRange("\n" + offset + "\tEnter order index to view details [-1 to exit]: ", -1, orders.size() - 1, "Invalid order index!");
 		if (order_choice != -1)
 		{
-			cout << endl << offset+"\t" << orders[order_choice].outputFormattedString();
-			reportRobotModels(orders[order_choice].getRobotModels(), offset+"\t\t");
+			cout << endl << offset + "\t" << orders[order_choice].outputFormattedString(offset + "\t\t", 1);
+			reportRobotModels(orders[order_choice].getRobotModels(), offset + "\t\t");
 		}
 	}
 }
@@ -404,11 +406,12 @@ void Controller::reportCustomers(vector<Customer> customers)
 	while (customer_choice != -1)
 	{
 		view.listCustomers(customers, "");
+		if (customers.size() == 0) { break; }
 		customer_choice = inputIntInRange("\tEnter customer index to view details [-1 to exit]: ", -1, customers.size() - 1, "Invalid customer index!");
 		if (customer_choice != -1)
 		{
 			cout << endl << "\t" << customers[customer_choice].outputFormattedString();
-			reportOrders(customers[customer_choice].getOrders(),"\t\t");
+			reportOrders(customers[customer_choice].getOrders(), "\t\t");
 		}
 	}
 }
@@ -419,11 +422,12 @@ void Controller::reportSalesAssociates(vector<SalesAssociate> sales_associates)
 	while (sa_choice != -1)
 	{
 		view.listSalesAssociates(sales_associates, "");
+		if (sales_associates.size() == 0) { break; }
 		sa_choice = inputIntInRange("\tEnter customer index to view details [-1 to exit]: ", -1, sales_associates.size() - 1, "Invalid customer index!");
 		if (sa_choice != -1)
 		{
 			cout << endl << "\t" << sales_associates[sa_choice].outputFormattedString() << endl;
-			reportOrders(sales_associates[sa_choice].getOrders(),"\t\t");
+			reportOrders(sales_associates[sa_choice].getOrders(), "\t\t");
 		}
 	}
 }
