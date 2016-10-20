@@ -159,13 +159,29 @@ void Controller::executeLoadSaveMenuCommand(int command)
 	switch(command)
 	{
 		case 1:
-			filepath = inputString("Name of file to read from: ");
-			shop.loadfile(filepath);
+			try
+			{
+				filepath = inputString("Name of file to read from: ");
+				shop.loadfile(filepath + ".shop");
+			}
+
+			catch (...)
+			{
+				cerr << "\t***Error: Failed to load file.\n";
+			}
 			break;
 
 		case 2:
-			filepath = inputString("Name of file to write to: ");
-			shop.savefile(filepath);
+			try
+			{
+				filepath = inputString("Name of file to write to: ");
+				shop.savefile(filepath + ".shop");
+			}
+
+			catch (...)
+			{
+				cerr << "\t***Error: Failed to save file.\n";
+			}
 			break;
 
 		case 9:

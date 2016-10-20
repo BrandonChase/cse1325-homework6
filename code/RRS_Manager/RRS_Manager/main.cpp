@@ -9,9 +9,9 @@ using namespace std;
 
 int main()
 {
-	//Tester::testOutputingRobotParts();
-
 	Shop shop;
+	//Tester t(shop);
+
 	Controller controller(shop);
 	controller.CLI();
 }
