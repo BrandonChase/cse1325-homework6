@@ -125,6 +125,7 @@ void Controller::executeReportMenuCommand(int command)
 	switch (command)
 	{
 	case 1: // Orders
+		cout << "Total Price of All Orders = $" << doubleToString(Order::calculateTotalPrice(shop.getOrders())) << endl;
 		reportOrders(shop.getOrders(), "");
 		break;
 
