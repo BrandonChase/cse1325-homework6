@@ -1,4 +1,5 @@
 #include "customer.h"
+#include "easy_input.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ void Customer::addOrder(Order p_order)
 
 string Customer::outputFormattedString() const
 {
-	return (name + " ~ Customer #: " + to_string(customer_number) + "\n");
+	return (name + " ~ Customer #: " + to_string(customer_number) + " ~ Total Bill: $" + doubleToString(Order::calculateTotalPrice(orders)) + "\n");
 }
 
 // SAVE METHOD FOR LOAD/SAVE

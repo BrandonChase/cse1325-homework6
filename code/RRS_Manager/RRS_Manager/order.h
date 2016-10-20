@@ -28,7 +28,7 @@ public:
 		models(p_models),
 		price(p_price),
 		date(p_date) {};
-
+	static double calculateTotalPrice(std::vector<Order> orders);
 	static double calculatePrice(std::vector<RobotModel> models)
 	{
 		double result = 0;
@@ -41,6 +41,7 @@ public:
 	}
 	int getOrderNumber() const;
 	std::string getOrderRobotModels() const;
+	double getPrice() const;
 	std::string saveData() const;
 	std::string outputFormattedString(std::string offset, bool show_details) const;
 

@@ -45,3 +45,19 @@ string Order::saveData() const
 {
 	return  to_string(order_number) + "," + to_string(customer_number) + "," + to_string(sales_associate_number) + "," + getOrderRobotModels() + "," + to_string(price) + "," + date.saveDate();
 }
+
+double Order::calculateTotalPrice(std::vector<Order> orders)
+{
+	double result = 0;
+	for (Order o : orders)
+	{
+		result +=o.getPrice();
+	}
+
+	return result;
+}
+
+double Order::getPrice() const
+{
+	return price;
+}

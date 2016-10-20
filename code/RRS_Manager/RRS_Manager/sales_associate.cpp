@@ -1,4 +1,5 @@
 #include "sales_associate.h"
+#include "easy_input.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ string SalesAssociate::saveData() const
 
 string SalesAssociate::outputFormattedString() const
 {
-	return (name + " ~ Sales Associate #: " + to_string(employee_number) + "\n");
+	return (name + " ~ Sales Associate #: " + to_string(employee_number) + " ~ Total Sales: $" + doubleToString(Order::calculateTotalPrice(orders)) + "\n");
 }
 
 //GETTERS
