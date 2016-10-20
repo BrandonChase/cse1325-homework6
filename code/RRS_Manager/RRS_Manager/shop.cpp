@@ -14,7 +14,7 @@ void Shop::addSalesAssociate(SalesAssociate p_sa)
 	sales_associates.push_back(p_sa);
 }
 
-void Shop::addOrder(Order p_order, int sales_associate_id, int customer_id) // was not adding orders to sales assoc or customer, so save was seg faulting. 
+void Shop::addOrder(Order p_order, int sales_associate_id, int customer_id)  
 {
 	for (int i = 0; i < customers.size(); i++)
 	{
@@ -198,7 +198,7 @@ void Shop::LoadOrder(string line)
 	vector<string> spdate = splitter( spline[spline.size()-1], '/');
 	Date dresult(stoi(spdate[0]), stoi(spdate[1]), stoi(spdate[2]));
 
-	addOrder(Order(stoi(spline[0]), stoi(spline[1]), stoi(spline[2]), ordermodels,stod(spline[spline.size()-2]), dresult), stoi(spline[1]), stoi(spline[2])); //last var needs some work, needs to convert to date.
+	addOrder(Order(stoi(spline[0]), stoi(spline[1]), stoi(spline[2]), ordermodels,stod(spline[spline.size()-2]), dresult), stoi(spline[1]), stoi(spline[2])); 
 }
 
 vector<string> Shop::splitter(const string &s, char delim) 
@@ -344,7 +344,7 @@ void Shop::loadfile(string infile)
 					break;
 
 				case 5:
-					LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7]), stoi(spline[8]), stoi(spline[9])); // 3-n are IDs for parts
+					LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7]), stoi(spline[8]), stoi(spline[9])); // 3 to n-3 are IDs for parts
 					break;
 
 				case 6:

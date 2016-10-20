@@ -3,7 +3,6 @@
 
 #include "shop.h"
 #include "view.h"
-
 #include <iostream>
 #include <string>
 #include <fstream>

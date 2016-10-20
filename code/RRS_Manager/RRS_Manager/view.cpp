@@ -71,7 +71,7 @@ void View::showReportMenu()
 	<< endl;
 }
 
-void View::showLoadSaveMenu() //I don't know if this will be necessary (or at least not a menu) -- now it is.
+void View::showLoadSaveMenu()
 {
 	cout
 	<< endl 

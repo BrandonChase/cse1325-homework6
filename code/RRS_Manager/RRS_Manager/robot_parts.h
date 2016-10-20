@@ -27,7 +27,7 @@ public:
 	int getPartNumber() const;
 	double getPrice() const;
 	virtual std::string outputFormattedString(std::string offset, bool show_details) const = 0;
-	std::string saveData() const; // will be dif depending on part type
+	std::string saveData() const; 
 protected:
 	std::string name;
 	int part_number;

@@ -97,7 +97,7 @@ string Arm::outputFormattedString(string offset, bool show_details) const
 }
 
 
-int RobotPart::getPartNumber() const // necessary to match reference part for models when loading back data
+int RobotPart::getPartNumber() const 
 {
 	return part_number;
 }
@@ -108,14 +108,14 @@ double RobotPart::getPrice() const
 	return price;
 }
 
-int Torso::getNumBatteries() const // returns number of battery compartments
+int Torso::getNumBatteries() const 
 {
 	return battery_compartments;
 }
 
 // SAVE METHODS FOR LOAD/SAVE
 
-string RobotPart::saveData() const // works for base class
+string RobotPart::saveData() const 
 {
 	return name + "," + to_string(part_number) + "," + to_string(weight) + "," + to_string(price) + "," + description;
 }

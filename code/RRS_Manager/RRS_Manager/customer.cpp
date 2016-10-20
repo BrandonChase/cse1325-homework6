@@ -20,7 +20,6 @@ string Customer::outputFormattedString() const
 
 // SAVE METHOD FOR LOAD/SAVE
 
-
 string Customer::saveData() const 
 {
 	return  name + "," + to_string(customer_number);

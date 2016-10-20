@@ -49,7 +49,7 @@ void Controller::reportCLI()
 void Controller::loadsaveCLI()
 {
 	int command = -1;
-	while(command != 9)
+	while(command != 9) // 9) Quit to main menu
 	{
 		view.showLoadSaveMenu();
 		command = inputInt("Command: ");
@@ -74,7 +74,7 @@ void Controller::executeMainMenuCommand(int command)
 	loadsaveCLI();
 	break;
 	
-	case 9999:
+	case 9999: // Auto populates shop for testing
 	shop.populateShopForTesting();
 	cout << "Populated shop for testing ...\n";
 	break;
@@ -104,8 +104,8 @@ void Controller::executeCreateMenuCommand(int command)
 	break;
 
 	case 4: // Robot Model
-		createRobotModel(); // Seperate method due to declarations within switch/case is no go.
-		break;
+	createRobotModel(); 
+	break;
 
 	case 5: // Robot Part
 	createRobotPart();
