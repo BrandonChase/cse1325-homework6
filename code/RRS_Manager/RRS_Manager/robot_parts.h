@@ -35,7 +35,8 @@ protected:
 	double price; //$
 	PartType type;
 	std::string description;
-	std::string outputBaseFields(std::string offset) const;
+	std::string outputBasics(std::string offset) const;
+	std::string outputSpecifics(std::string offset) const;
 };
 
 class Head : public RobotPart 

@@ -44,7 +44,7 @@ public:
 
 	bool isAnyPartListEmpty();
 	bool areAllPartListsEmpty();
-	void LoadRobotModel(std::string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p);
+	void LoadRobotModel(std::string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p, int battery_quantity, int arm_quantity);
 	void LoadOrder(std::string line);
 	std::vector<std::string> splitter(const std::string &s, char delim);
 

@@ -42,7 +42,9 @@ public:
 	int getOrderNumber() const;
 	std::string getOrderRobotModels() const;
 	std::string saveData() const;
-	friend std::ostream& operator<<(std::ostream& os, const Order& order);
+	std::string outputFormattedString() const;
+
+	const std::vector<RobotModel>& getRobotModels();
 private:
 	int order_number;
 	int customer_number;

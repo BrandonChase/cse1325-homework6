@@ -125,31 +125,31 @@ void Controller::executeReportMenuCommand(int command)
 	switch (command)
 	{
 	case 1: // Orders
-	view.listOrders(shop.getOrders());
-	break;
+		reportOrders(shop.getOrders(), "");
+		break;
 
 	case 2: // Customers
-	view.listCustomers();
-	break;
+		reportCustomers(shop.getCustomers());
+		break;
 
 	case 3: // Sales Associates
-	view.listSalesAssociates();
-	break;
+		reportSalesAssociates(shop.getSalesAssociates());
+		break;
 
 	case 4: // Robot Models
-	view.listRobotModels();
-	break;
+		reportRobotModels(shop.getModels(), "");
+		break;
 
 	case 5: // Robot Parts
-	view.listRobotParts(PartType::ALL);
-	break;
+		view.listRobotParts(PartType::ALL, "");
+		break;
 
 	case 9:
-	break;
+		break;
 
 	default: //Unkown
-	cerr << "\t***Error: " << command << " is an invalid Report Menu option.\n";
-}
+		cerr << "\t***Error: " << command << " is an invalid Report Menu option.\n";
+	}
 }
 
 void Controller::executeLoadSaveMenuCommand(int command)
@@ -206,26 +206,26 @@ void Controller::createRobotModel()
 
 	double model_cost;
 
-	view.listRobotParts(PartType::HEAD); // Choose head
+	view.listRobotParts(PartType::HEAD, ""); // Choose head
 	int head_choice = inputIntInRange("Head choice: ", 0, heads_x.size(), "Invalid head choice!");
 
-	view.listRobotParts(PartType::LOCOMOTOR); // Choose locomotor
+	view.listRobotParts(PartType::LOCOMOTOR, ""); // Choose locomotor
 	int locomotor_choice = inputIntInRange("locomotor choice: ", 0, locomotors_x.size(), "Invalid locomotor choice!");
 
-	view.listRobotParts(PartType::TORSO); // Choose torsos
+	view.listRobotParts(PartType::TORSO, ""); // Choose torsos
 	int torso_choice = inputIntInRange("Torso choice: ", 0, torsos_x.size(), "Invalid torso choice!");
 
-	view.listRobotParts(PartType::BATTERY); // Choose batteries
+	view.listRobotParts(PartType::BATTERY, ""); // Choose batteries
 	int battery_choice = inputIntInRange("Battery choice: ", 0, batteries_x.size(), "Invalid battery choice!");
 	int num_batteries = inputIntInRange("Number of batteries: ", 1, torsos_x[torso_choice].getNumBatteries(), "Invalid number of batteries!"); // New getter for number of batteries
 
-	view.listRobotParts(PartType::ARM); // Choose arms
+	view.listRobotParts(PartType::ARM, ""); // Choose arms
 	int arm_choice = inputIntInRange("Arm choice: ", 0, arms_x.size(), "Invalid arm choice!");
 	int num_arms = inputIntInRange("Number of arms: ", 1, 2, "Invalid number of arms!");
 
 	model_cost = heads_x[head_choice].getPrice() + locomotors_x[locomotor_choice].getPrice() + torsos_x[torso_choice].getPrice() + batteries_x[battery_choice].getPrice()*num_batteries + arms_x[arm_choice].getPrice()*num_arms;
 	double model_price = inputDoubleGreaterThan("Model Price [$]: ", model_cost, "Price must be greater than cost!"); // May run into an issue with double casting?
-	shop.addRobotModel(RobotModel(model_name, model_number, model_price, heads_x[head_choice], torsos_x[torso_choice], locomotors_x[locomotor_choice], batteries_x[battery_choice], arms_x[arm_choice]));
+	shop.addRobotModel(RobotModel(model_name, model_number, model_price, heads_x[head_choice], torsos_x[torso_choice], locomotors_x[locomotor_choice], batteries_x[battery_choice], arms_x[arm_choice],num_batteries,num_arms));
 }
 
 void Controller::createRobotPart()
@@ -307,10 +307,10 @@ void Controller::createOrder()
 
 	Date order_date = inputDate("Date of Order [m/d/yr] [12/31/1950]: ");
 
-	view.listSalesAssociates();
+	view.listSalesAssociates(shop.getSalesAssociates(), "");
 	int sales_associate_index = inputIntInRange("Sales Associate Index: ", 0, associates.size() - 1, "Invalid Sales Associate Index!");
 
-	view.listCustomers();
+	view.listCustomers(shop.getCustomers(), "");
 	int customer_index = inputIntInRange("Customer Index: ", 0, customers.size() - 1, "Invalid Customer Index!");
 
 	int order_number = inputIntGreaterThan("Order Number: ", 0, "Order Number must be positive!");
@@ -325,7 +325,7 @@ void Controller::createOrder()
 	int add_another_model = 1;
 	while (add_another_model)
 	{
-		view.listRobotModels();
+		view.listRobotModels(shop.getModels(), "");
 		int model_index = inputIntInRange("Desired Robot Model Index: ", 0, models.size() - 1, "Invalid Robot Model Index!");
 		RobotModel current_model = models[model_index];
 		order_models.push_back(current_model);
@@ -365,4 +365,65 @@ void Controller::createSalesAssociate()
 	}
 
 	shop.addSalesAssociate(SalesAssociate(name, sa_number));
+}
+
+//REPORT FUNCTIONS
+
+void Controller::reportRobotModels(vector<RobotModel> models, string offset)
+{
+	int model_choice = 0;
+	while (model_choice != -1)
+	{
+		view.listRobotModels(models, offset);
+		model_choice = inputIntInRange(offset + "\tEnter robot model index to view details [-1 to exit]: ", -1, models.size() - 1, "Invalid robot model index!");
+		if (model_choice != -1)
+		{
+			cout << offset+"\t" << models[model_choice].outputFormattedString(offset+"\t\t", 1);
+		}
+	}
+}
+
+void Controller::reportOrders(vector<Order> orders, string offset)
+{
+	int order_choice = 0;
+	while (order_choice != -1)
+	{
+		view.listOrders(orders, offset);
+		order_choice = inputIntInRange("\n" + offset + "\tEnter order index to view details [-1 to exit]: ", -1, orders.size() - 1, "Invalid order index!");
+		if (order_choice != -1)
+		{
+			cout << endl << offset+"\t" << orders[order_choice].outputFormattedString();
+			reportRobotModels(orders[order_choice].getRobotModels(), offset+"\t\t");
+		}
+	}
+}
+
+void Controller::reportCustomers(vector<Customer> customers)
+{
+	int customer_choice = 0;
+	while (customer_choice != -1)
+	{
+		view.listCustomers(customers, "");
+		customer_choice = inputIntInRange("\tEnter customer index to view details [-1 to exit]: ", -1, customers.size() - 1, "Invalid customer index!");
+		if (customer_choice != -1)
+		{
+			cout << endl << "\t" << customers[customer_choice].outputFormattedString();
+			reportOrders(customers[customer_choice].getOrders(),"\t\t");
+		}
+	}
+}
+
+void Controller::reportSalesAssociates(vector<SalesAssociate> sales_associates)
+{
+	int sa_choice = 0;
+	while (sa_choice != -1)
+	{
+		view.listSalesAssociates(sales_associates, "");
+		sa_choice = inputIntInRange("\tEnter customer index to view details [-1 to exit]: ", -1, sales_associates.size() - 1, "Invalid customer index!");
+		if (sa_choice != -1)
+		{
+			cout << endl << "\t" << sales_associates[sa_choice].outputFormattedString() << endl;
+			reportOrders(sales_associates[sa_choice].getOrders(),"\t\t");
+		}
+	}
 }

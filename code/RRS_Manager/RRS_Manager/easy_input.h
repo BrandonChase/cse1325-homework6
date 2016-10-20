@@ -16,4 +16,6 @@ int inputDoubleGreaterThan(std::string prompt, double lower_bound, std::string r
 int inputDoubleInRange(std::string prompt, double lower_bound, double upper_bound, std::string reminder);
 
 Date inputDate(std::string prompt);
+
+std::string doubleToString(double d);
 #endif

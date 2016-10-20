@@ -1,76 +1,99 @@
 #include "robot_parts.h"
 #include <iomanip>
+#include "easy_input.h"
 
 using namespace std;
 
-ostream& operator<<(ostream& os, const Locomotor& part)
-{
-	part.ostreamBaseFields(os);
-	os 
-		<< " | Max of " << part.max_speed << " MPH" << endl 
-		<< " | Consumes " << part.power_consumed << " W" << endl;
-	return os;
-}
-
-ostream& operator<<(ostream& os, const Torso& part)
-{
-	part.ostreamBaseFields(os);
-	os << " | " << part.battery_compartments << " Battery Compartments"<< endl;
-	return os;
-}
-
-ostream& operator<<(ostream& os, const Battery& part)
-{
-	part.ostreamBaseFields(os);
-	os << " | Contains " << part.contained_energy << " kWh" << endl;
-	return os;
-}
-
-ostream& operator<<(ostream& os, const Arm& part)
-{
-	part.ostreamBaseFields(os);
-	os << " | Consumes " << part.power_consumed << " W" << endl;
-	return os;
-}
-
 //STRING OUTPUT
-string RobotPart::outputBaseFields(string offset) const
+string RobotPart::outputBasics(string offset) const
+{
+	return (name + " ~ Part #: " + to_string(part_number) + "\n");
+}
+
+string RobotPart::outputSpecifics(string offset) const
 {
 	string result;
-	result += offset + name + "\n";
 
-	offset += "\t"; //following data will be indented
 	result += offset + "Description: " + description + "\n";
-	result += offset + "Part Number: " + to_string(part_number) + "\n";
-	result += offset + "Weight: " + to_string(weight) + "lbs\n";
-	result += offset + "Price: $" + to_string(price) + "\n";
+	result += offset + "Weight: " + doubleToString(weight) + "lbs\n";
+	result += offset + "Price: $" + doubleToString(price) + "\n";
 
 	return result;
 }
 
 string Head::outputFormattedString(string offset, bool show_details) const
 {
-	outputBaseFields(offset);
+	string result;
+	result += outputBasics(offset);
+
+	if (show_details)
+	{
+		offset += "\t";
+		result += outputSpecifics(offset);
+	}
+
+	return result;
 }
 
 string Torso::outputFormattedString(string offset, bool show_details) const
 {
+	string result;
+	result += outputBasics(offset);
 
+	if (show_details)
+	{
+		offset += "\t";
+		result += outputSpecifics(offset);
+		result += offset + "Battery Compartments: " + to_string(battery_compartments) + " compartments\n";
+	}
+
+	return result;
 }
 
 string Locomotor::outputFormattedString(string offset, bool show_details) const
 {
+	string result;
+	result += outputBasics(offset);
 
+	if (show_details)
+	{
+		offset += "\t";
+		result += outputSpecifics(offset);
+		result += offset + "Max Speed: " + doubleToString(max_speed) + "MPH\n";
+		result += offset + "Power Consumed: " + doubleToString(power_consumed) + "W\n";
+	}
+
+	return result;
 }
 
 string Battery::outputFormattedString(string offset, bool show_details) const
 {
+	string result;
+	result += outputBasics(offset);
 
+	if (show_details)
+	{
+		offset += "\t";
+		result += outputSpecifics(offset);
+		result += offset + "Contained Energy: " + doubleToString(contained_energy) + "kWh\n";
+	}
+
+	return result;
 }
 
 string Arm::outputFormattedString(string offset, bool show_details) const
 {
+	string result;
+	result += outputBasics(offset);
 
+	if (show_details)
+	{
+		offset += "\t";
+		result += outputSpecifics(offset);
+		result += offset + "Power Consumed: " + doubleToString(power_consumed) + "W\n";
+	}
+
+	return result;
 }
 
 
@@ -109,7 +132,7 @@ string Torso::saveData() const
 
 string Battery::saveData() const 
 {
-	return RobotPart::saveData() + "," + to_string(contained_energy);
+	return RobotPart::saveData() + "," + to_string(contained_energy) + ",";
 }
 
 string Arm::saveData() const 

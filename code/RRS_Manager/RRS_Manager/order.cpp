@@ -2,11 +2,6 @@
 
 using namespace std;
 
-ostream& operator<<(ostream& os, const Order& order)
-{
-	os << order.order_number;
-	return os;
-}
 int Order::getOrderNumber() const
 {
 	return order_number;
@@ -24,7 +19,18 @@ string Order::getOrderRobotModels() const
 	return modelparts;
 }
 
+string Order::outputFormattedString() const
+{
+	string result;
+	result += "Order #: " + to_string(order_number);
 
+	return result;
+}
+
+const vector<RobotModel>&  Order::getRobotModels()
+{
+	return models;
+}
 // SAVE METHOD FOR LOAD/SAVE
 
 string Order::saveData() const 

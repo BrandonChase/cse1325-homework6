@@ -16,11 +16,11 @@ public:
 	void showLoadSaveMenu();
 
 	void listPartTypes();
-	void listRobotParts(int selection);
-	void listRobotModels();
-	void listSalesAssociates();
-	void listCustomers();
-	void listOrders(const std::vector<Order>& orders);
+	void listRobotParts(int selection, std::string offset);
+	void listRobotModels(const std::vector<RobotModel>& models, std::string offset);
+	void listSalesAssociates(const std::vector<SalesAssociate>& sales_associates, std::string offset);
+	void listCustomers(const std::vector<Customer>& customers, std::string offset);
+	void listOrders(const std::vector<Order>& orders, std::string offset);
 
 private:
 	Shop& shop;

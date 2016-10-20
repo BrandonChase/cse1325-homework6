@@ -10,7 +10,7 @@ class Customer
 {
 public:
 	Customer(std::string p_name, int p_customer_number) : name(p_name), customer_number(p_customer_number) {}
-	friend std::ostream& operator<<(std::ostream& os, const Customer& customer);
+	std::string outputFormattedString() const;
 	const std::vector<Order>& getOrders();
 	void addOrder(Order p_order);
 	int getCustomerNumber();

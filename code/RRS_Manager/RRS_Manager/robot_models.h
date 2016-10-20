@@ -16,7 +16,9 @@ public:
 				Torso p_torso,
 				Locomotor p_locomotor,
 				Battery p_battery,
-				Arm p_arm) :
+				Arm p_arm,
+				int p_battery_quantity,
+				int p_arm_quantity) :
 
 				name(m_name),
 				model_number(m_number),
@@ -25,9 +27,11 @@ public:
 				s_torso(p_torso),
 				s_locomotor(p_locomotor),
 				s_battery(p_battery),
-				s_arm(p_arm) {}
+				s_arm(p_arm),
+				battery_quantity(p_battery_quantity),
+				arm_quantity(p_arm_quantity){}
 
-	friend std::ostream& operator<<(std::ostream& os, const RobotModel& model);
+	std::string outputFormattedString(std::string offset, bool show_details) const;
 	double getPrice();
 	std::string saveData();
 	int getModelNumber() const;
@@ -41,7 +45,8 @@ private:
 	Locomotor s_locomotor;
 	Battery s_battery; // 1-3
 	Arm s_arm; // 1-2
-
+	int battery_quantity;
+	int arm_quantity;
 };
 
 

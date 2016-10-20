@@ -102,11 +102,11 @@ void View::listPartTypes()
 	cout << endl;
 }
 
-void View::listRobotParts(int selection) // selection allows a specific part type to be outputted, {0...4} = {Head...Arms}, -1 = All
+void View::listRobotParts(int selection, std::string offset) // selection allows a specific part type to be outputted, {0...4} = {Head...Arms}, -1 = All
 {
 	if (shop.areAllPartListsEmpty())
 	{
-		cout << "\t***The are no robot parts in the shop.\n";
+		cout << offset << "\t***The are no robot parts in the shop.\n";
 		return;
 	}
 
@@ -120,23 +120,21 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 	{
 		cout
 			<< endl
-			<< "Robot Parts" << endl
-			<< "-----------" << endl;
+			<< offset << "Robot Parts" << endl
+			<< offset << "-----------" << endl;
 	}
 
 	if ((selection == PartType::HEAD || selection == PartType::ALL) & heads_ref.size() != 0)
 	{
 		//list heads
 		cout
-			<< endl
-			<< "\tHeads" << endl
-			<< "\t-----" << endl
-			<< endl;
+			<< offset << "\tHeads" << endl
+			<< offset << "\t-----" << endl;
 
 		for (int i = 0; i < heads_ref.size(); i++)
 		{
 			cout
-				<< "\t\t(" << i << ") " << heads_ref[i] << endl;
+				<< offset << "\t\t(" << i << ") " << heads_ref[i].outputFormattedString("\t\t", 1) << endl;
 		}
 	}
 
@@ -144,15 +142,13 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 	{
 	//list torsos
 		cout
-		<< endl
-		<< "\tTorsos" << endl
-		<< "\t------" << endl
-		<< endl;
+			<< offset << "\tTorsos" << endl
+			<< offset << "\t------" << endl;
 
 		for (int i = 0; i < torsos_ref.size(); i++)
 		{
 			cout
-			<< "\t\t(" << i << ") " << torsos_ref[i] << endl;
+			<< offset << "\t\t(" << i << ") " << torsos_ref[i].outputFormattedString("\t\t", 1) << endl;
 		}
 	}
 
@@ -160,15 +156,13 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 	{
 		//list batteries
 		cout
-			<< endl
-			<< "\tBatteries" << endl
-			<< "\t---------" << endl
-			<< endl;
+			<< offset << "\tBatteries" << endl
+			<< offset << "\t---------" << endl;
 
 		for (int i = 0; i < batteries_ref.size(); i++)
 		{
 			cout
-				<< "\t\t(" << i << ") " << batteries_ref[i] << endl;
+				<< offset << "\t\t(" << i << ") " << batteries_ref[i].outputFormattedString("\t\t", 1) << endl;
 		}
 	}
 
@@ -176,17 +170,14 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 	{
 	//list arms
 		cout
-		<< endl
-		<< "\tArms" << endl
-		<< "\t----" << endl
-		<< endl;
+			<< offset << "\tArms" << endl
+			<< offset << "\t----" << endl;
 
 		for (int i = 0; i < arms_ref.size(); i++)
 		{
 			cout
-			<< "\t\t(" << i << ") " << arms_ref[i] << endl;
+			<< offset << "\t\t(" << i << ") " << arms_ref[i].outputFormattedString("\t\t", 1) << endl;
 		}
-		//cout << endl;  ~~~ JUST WHY?
 	}
 
 	if ((selection == PartType::LOCOMOTOR || selection == PartType::ALL) & locomotors_ref.size() != 0)
@@ -194,101 +185,87 @@ void View::listRobotParts(int selection) // selection allows a specific part typ
 
 	//list locomotors
 		cout
-		<< endl
-		<< "\tLocomotors" << endl
-		<< "\t----------" << endl
+		<< offset << "\tLocomotors" << endl
+		<< offset << "\t----------" << endl
 		<< endl;
 
 		for (int i = 0; i < locomotors_ref.size(); i++)
 		{
 			cout
-			<< "\t\t(" << i << ") " << locomotors_ref[i] << endl;
+			<< offset << "\t\t(" << i << ") " << locomotors_ref[i].outputFormattedString("\t\t", 1) << endl;
 		}
 	}
 }
 
-void View::listRobotModels()
+void View::listRobotModels(const vector<RobotModel>& models, std::string offset)
 {
-	const vector<RobotModel>& models = shop.getModels();
-
 	if (models.size() == 0)
 	{
-		cout << "\t***There are no robot models in the shop.\n";
+		cout << offset << "\t***There are no robot models to report.\n";
 		return;
 	}
 
 	cout
 		<< endl
-		<< "Robot Models" << endl
-		<< "------------" << endl
-		<< endl;
+		<< offset << "Robot Models" << endl
+		<< offset << "------------" << endl;
 
 	for (int i = 0; i < models.size(); i++)
 	{
-		cout << "(" << i << ") " << models[i] << endl;
+		cout << offset << "\t(" << i << ") " << models[i].outputFormattedString("\t\t", 0) << endl;
 	}
 }
 
-void View::listSalesAssociates()
+void View::listSalesAssociates(const std::vector<SalesAssociate>& sales_associates, std::string offset)
 {
-	const vector<SalesAssociate>& sales_associates = shop.getSalesAssociates();
-
 	if (sales_associates.size() == 0)
 	{
-		cout << "\t***There are no sales associates in the shop.\n";
+		cout << offset << "\t***There are no sales associates to report.\n";
 		return;
 	}
 
 	cout
-		<< endl
-		<< "Sales Associates" << endl
-		<< "----------------" << endl
-		<< endl;
+		<< offset << "Sales Associates" << endl
+		<< offset << "----------------" << endl;
 
 	for (int i = 0; i < sales_associates.size(); i++)
 	{
-		cout << "\t(" << i << ") " << sales_associates[i] << endl;
+		cout << offset << "\t(" << i << ") " << sales_associates[i].outputFormattedString() << endl;
 	}
 }
 
-void View::listCustomers()
+void View::listCustomers(const std::vector<Customer>& customers, std::string offset)
 {
-	const vector<Customer>& customers = shop.getCustomers();
-
 	if (customers.size() == 0)
 	{
-		cout << "\t***There are no customer in the shop.\n";
+		cout << offset << "\t***There are no customers to report.\n";
 		return;
 	}
 
 	cout
-		<< endl
-		<< "Customers" << endl
-		<< "---------" << endl
-		<< endl;
+		<< offset << "Customers" << endl
+		<< offset << "---------" << endl;
 
 	for (int i = 0; i < customers.size(); i++)
 	{
-		cout << "\t(" << i << ") " << customers[i] << endl;
+		cout << offset << "\t(" << i << ") " << customers[i].outputFormattedString() << endl;
 	}
 }
 
-void View::listOrders(const vector<Order>& orders)
+void View::listOrders(const vector<Order>& orders, std::string offset)
 {
 	if (orders.size() == 0)
 	{
-		cout << "\t***There are no orders.\n";
+		cout << offset << "\t***There are no orders to report.\n";
 		return;
 	}
 
 	cout
-		<< endl
-		<< "Orders" << endl
-		<< "------" << endl
-		<< endl;
+		<< offset << "Orders" << endl
+		<< offset << "------" << endl;
 
 	for (int i = 0; i < orders.size(); i++)
 	{
-		cout << "\t(" << i << ") " << orders[i] << endl;
+		cout << offset << "\t(" << i << ") " << orders[i].outputFormattedString() << endl;
 	}
 }

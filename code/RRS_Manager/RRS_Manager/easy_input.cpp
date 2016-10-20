@@ -165,3 +165,28 @@ Date inputDate(std::string prompt)
 	Date result(month, day, year);
 	return result;
 }
+
+string doubleToString(double d)
+{
+	if (d == (int)d)
+	{
+		return to_string((int)d);
+	}
+
+	string temp = to_string(d);
+	string result = "";
+
+	for (int i = temp.size() - 1; i >= 0; i--) //replace trailing zeros with ~
+	{
+		char c = temp[i];
+		if (c == '.' || c != '0') { break; }
+		else if (c == '0') { temp[i] = '~'; }
+	}
+
+	for (char c : temp)
+	{
+		if (c != '~') { result += c; }
+	}
+
+	return result;
+}

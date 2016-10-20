@@ -2,12 +2,6 @@
 
 using namespace std;
 
-ostream& operator<<(ostream& os, const SalesAssociate& sales_associate)
-{
-	os << sales_associate.name << sales_associate.employee_number;
-	return os;
-}
-
 const vector<Order>& SalesAssociate::getOrders()
 {
 	return orders;
@@ -32,6 +26,11 @@ string SalesAssociate::saveData() const
 	return name + "," + to_string(employee_number) + "," + ordernums;
 }
 
+
+string SalesAssociate::outputFormattedString() const
+{
+	return (name + " ~ Sales Associate #: " + to_string(employee_number) + "\n");
+}
 
 //GETTERS
 int SalesAssociate::getSalesAssociateNumber()

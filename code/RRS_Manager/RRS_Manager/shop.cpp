@@ -126,7 +126,7 @@ bool Shop::areAllPartListsEmpty()
 }
 
 
-void Shop::LoadRobotModel(string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p)
+void Shop::LoadRobotModel(string name, int model_num, double price, int head_p, int torso_p, int locomotor_p, int battery_p, int arm_p, int battery_quantity, int arm_quantity)
 {
 
 	int h_choice = -1 , l_choice = -1 , t_choice = -1, b_choice = -1, a_choice = -1;
@@ -177,7 +177,7 @@ void Shop::LoadRobotModel(string name, int model_num, double price, int head_p, 
 		return;
 	}
 
-	addRobotModel(RobotModel(name, model_num, price, heads[h_choice], torsos[t_choice], locomotors[l_choice], batteries[b_choice], arms[a_choice]));
+	addRobotModel(RobotModel(name, model_num, price, heads[h_choice], torsos[t_choice], locomotors[l_choice], batteries[b_choice], arms[a_choice],battery_quantity,arm_quantity));
 }
 
 
@@ -344,7 +344,7 @@ void Shop::loadfile(string infile)
 					break;
 
 				case 5:
-					LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7])); // 3-n are IDs for parts
+					LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7]), stoi(spline[8]), stoi(spline[9])); // 3-n are IDs for parts
 					break;
 
 				case 6:
@@ -390,9 +390,9 @@ void Shop::populateShopForTesting()
 	addLocomotor(Locomotor("Servant Locomotor", 543, 2, 19, PartType::LOCOMOTOR, "This is servant locomotor no. 1", 20, 750));
 	addLocomotor(Locomotor("War Locomotor", 234, 8, 91, PartType::LOCOMOTOR, "This is war locomotor no. 1", 20, 750));
 
-	addRobotModel(RobotModel("Destroyer 9000", 111, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0]));
-	addRobotModel(RobotModel("Personal Servant", 223, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0]));
-	addRobotModel(RobotModel("War Bot", 3345, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0]));
+	addRobotModel(RobotModel("Destroyer 9000", 111, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],2,1));
+	addRobotModel(RobotModel("Personal Servant", 223, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],1,1));
+	addRobotModel(RobotModel("War Bot", 3345, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],2,2));
 
 	addCustomer(Customer("John Smith", 12345));
 	addCustomer(Customer("Joe Cloud", 42069));

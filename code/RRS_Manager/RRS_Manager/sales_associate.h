@@ -13,7 +13,7 @@ class SalesAssociate
 public:
 	SalesAssociate(std::string p_name, int p_employee_number) : name(p_name), employee_number(p_employee_number) {};
 
-	friend std::ostream& operator<<(std::ostream& os, const SalesAssociate& sales_associate);
+	std::string outputFormattedString() const;
 	const std::vector<Order>& getOrders();
 	void addOrder(Order p_order);
 	int getSalesAssociateNumber();
