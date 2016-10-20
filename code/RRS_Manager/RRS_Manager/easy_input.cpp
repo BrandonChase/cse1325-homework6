@@ -134,13 +134,12 @@ Date inputDate(std::string prompt)
 			}
 		}
 
-		if (forwardslash_count != 3)
+		if (forwardslash_count != 2)
 		{
 			throw runtime_error("Invalid date format");
 		}
 
-		stringstream s;
-		s >> temp;
+		stringstream s(temp);
 
 		getline(s, temp, '/');
 		month = stoi(temp);

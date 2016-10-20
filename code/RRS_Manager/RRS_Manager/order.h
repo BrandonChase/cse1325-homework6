@@ -42,7 +42,7 @@ public:
 	int getOrderNumber() const;
 	std::string getOrderRobotModels() const;
 	std::string saveData() const;
-	std::string outputFormattedString() const;
+	std::string outputFormattedString(std::string offset, bool show_details) const;
 
 	const std::vector<RobotModel>& getRobotModels();
 private:

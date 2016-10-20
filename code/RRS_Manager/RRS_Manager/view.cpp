@@ -106,7 +106,7 @@ void View::listRobotParts(int selection, std::string offset) // selection allows
 {
 	if (shop.areAllPartListsEmpty())
 	{
-		cout << offset << "\t***The are no robot parts in the shop.\n";
+		cout << offset << "\t***There are no robot parts in the shop.\n";
 		return;
 	}
 
@@ -266,6 +266,6 @@ void View::listOrders(const vector<Order>& orders, std::string offset)
 
 	for (int i = 0; i < orders.size(); i++)
 	{
-		cout << offset << "\t(" << i << ") " << orders[i].outputFormattedString() << endl;
+		cout << offset << "\t(" << i << ") " << orders[i].outputFormattedString("",0) << endl;
 	}
 }
