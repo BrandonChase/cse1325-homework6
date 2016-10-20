@@ -49,7 +49,14 @@ public:
 	std::vector<std::string> splitter(const std::string &s, char delim);
 
 	void populateShopForTesting();
-	void savefile();
+	void savefile(std::string outfile);
+	void loadfile(std::string infile);
+
+	bool isPartNumberUnique(int desired_part_number);
+	bool isModelNumberUnique(int desired_model_number);
+	bool isCustomerNumberUnique(int desired_customer_number);
+	bool isSANumberUnique(int desired_sa_number);
+	bool isOrderNumberUnique(int desired_order_number);
 
 private:
 	std::vector<SalesAssociate> sales_associates;

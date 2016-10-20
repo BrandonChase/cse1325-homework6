@@ -154,15 +154,19 @@ void Controller::executeReportMenuCommand(int command)
 
 void Controller::executeLoadSaveMenuCommand(int command)
 {
+	string filepath;
+
 	switch(command)
 	{
 		case 1:
-		loadfile();
-		break;
+			filepath = inputString("Name of file to read from: ");
+			shop.loadfile(filepath);
+			break;
 
 		case 2:
-		shop.savefile();
-		break;
+			filepath = inputString("Name of file to write to: ");
+			shop.savefile(filepath);
+			break;
 
 		case 9:
 		break;
@@ -191,7 +195,15 @@ void Controller::createRobotModel()
 
 	cout << "Creating a Robot Model... \n";
 	string model_name = inputString("Model Name: ");
+
+
 	int model_number = inputIntGreaterThan("Model Number: ", 0, "Model numbers must be positive!");
+	while (!shop.isModelNumberUnique(model_number))
+	{
+		cout << "\t***Error: That model number is already taken! Try again!\n";
+		model_number = inputIntGreaterThan("Model Number: ", 0, "Model numbers must be positive!");
+	}
+
 	double model_cost;
 
 	view.listRobotParts(PartType::HEAD); // Choose head
@@ -224,6 +236,13 @@ void Controller::createRobotPart()
 
 	string name = inputString("Part Name: ");
 	int part_number = inputIntGreaterThan("Part Number: ", 0, "Part numbers must be positive!");
+
+	while (!shop.isPartNumberUnique(part_number))
+	{
+		cout << "\t***Error: That part number is already taken! Try again!\n";
+		part_number = inputIntGreaterThan("Part Number: ", 0, "Part numbers must be positive!");
+	}
+
 	double weight = inputDoubleGreaterThan("Part Weight [lb]: ", 0, "Part weight must be positive!");
 	double price = inputDoubleGreaterThan("Part Price [$]: ", 0, "Price must be positive!");
 	string description = inputString("Part Description: ");
@@ -295,6 +314,12 @@ void Controller::createOrder()
 	int customer_index = inputIntInRange("Customer Index: ", 0, customers.size() - 1, "Invalid Customer Index!");
 
 	int order_number = inputIntGreaterThan("Order Number: ", 0, "Order Number must be positive!");
+
+	while (!shop.isOrderNumberUnique(order_number))
+	{
+		cout << "\t***Error: That order number is already taken! Try again!\n";
+		order_number = inputIntGreaterThan("Order Number: ", 0, "Order Number must be positive!");
+	}
 	
 	vector<RobotModel> order_models;
 	int add_another_model = 1;
@@ -318,6 +343,13 @@ void Controller::createCustomer()
 {
 	string name = inputString("Customer Name: ");
 	int customer_number = inputIntGreaterThan("Customer Number: ", 0, "Customer number must be positive!");
+
+	while (!shop.isCustomerNumberUnique(customer_number))
+	{
+		cout << "\t***Error: That customer number is already taken! Try again!\n";
+		customer_number = inputIntGreaterThan("Customer Number: ", 0, "Customer number must be positive!");
+	}
+
 	shop.addCustomer(Customer(name, customer_number));
 }
 
@@ -325,86 +357,12 @@ void Controller::createSalesAssociate()
 {
 	string name = inputString("Sales Associate Name: ");
 	int sa_number = inputIntGreaterThan("Sales Associate Number: ", 0, "Customer number must be positive!");
-	shop.addSalesAssociate(SalesAssociate(name, sa_number));
-}
 
-
-
-
-void Controller::loadfile()
-{
-	cout << "Name of file to read from: ";
-	string infile;
-	cin >> infile;
-	string line, s; 
-	vector<string> spline, load_tags = {"/Head/","/Torso/","/Battery/","/Arm/","/Locomotor/","/RobotModel/","/Customers/","/SalesAssociates/","/Orders/","/Blank/"};
-
-	ifstream loadfile(infile);
-	if(!loadfile) throw runtime_error("Unable to load specified file " + infile);
-	if (loadfile.good())  
+	while (!shop.isSANumberUnique(sa_number))
 	{
-		bool is_changing = false; 
-		int cur_tagtype = 0;
-		while (getline(loadfile, line)) 
-		{
-			int i = 0, j = 0;
-			is_changing = false;
-			spline = shop.splitter(line, ',');
-
-			for (j = 0; j < load_tags.size(); j++)
-			{
-				if(load_tags[j] == spline[0])
-				{
-					is_changing = true;
-					cur_tagtype = j;
-				}
-			}
-			if(!is_changing)
-			{
-				switch(cur_tagtype)
-				{
-					case 0:
-					shop.addHead(Head(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4]));
-					break;
-					
-					case 1:
-					shop.addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::TORSO, spline[4], stoi(spline[5])));
-					break;
-
-					case 2:
-					shop.addBattery(Battery(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::BATTERY, spline[4], stod(spline[5])));
-					break;
-
-					case 3:
-					shop.addArm(Arm(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::ARM, spline[4], stod(spline[5])));
-					break;
-
-					case 4:
-					shop.addLocomotor(Locomotor(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::LOCOMOTOR, spline[4], stod(spline[5]), stod(spline[6])));
-					break;
-
-					case 5:
-					shop.LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7])); // 3-n are IDs for parts
-					break;
-
-					case 6:
-					shop.addCustomer(Customer(spline[0],  stoi(spline[1])));
-					break;
-
-					case 7:
-					shop.addSalesAssociate(SalesAssociate(spline[0], stoi(spline[1])));
-					break;
-
-					case 8:
-					shop.LoadOrder(line);
-					//shop.addOrder(Order(order_number, customer_num, sales_Associate_number, models, order_price, order_date));
-					break;
-				}
-			}
-
-		}
-
-		loadfile.close();
+		cout << "\t***Error: That sales associate number is already taken! Try again!\n";
+		sa_number = inputIntGreaterThan("Sales Associate Number: ", 0, "Customer number must be positive!");
 	}
 
+	shop.addSalesAssociate(SalesAssociate(name, sa_number));
 }

@@ -215,11 +215,8 @@ vector<string> Shop::splitter(const string &s, char delim)
 // SAVE METHOD FOR LOAD/SAVE
 
 
-void Shop::savefile()
+void Shop::savefile(string outfile)
 {
-	cout << "Name of file to write to: ";
-	string outfile;
-	cin >> outfile;
 	ofstream ofs;
 	ofs.open(outfile.c_str());
 	if(!ofs) throw runtime_error("Unable to open output file " + outfile);
@@ -297,6 +294,79 @@ void Shop::savefile()
 	ofs.close();
 }
 
+void Shop::loadfile(string infile)
+{
+	string line, s;
+	vector<string> spline, load_tags = { "/Head/","/Torso/","/Battery/","/Arm/","/Locomotor/","/RobotModel/","/Customers/","/SalesAssociates/","/Orders/","/Blank/" };
+
+	ifstream loadfile(infile);
+	if (!loadfile) throw runtime_error("Unable to load specified file " + infile);
+	if (loadfile.good())
+	{
+		bool is_changing = false;
+		int cur_tagtype = 0;
+		while (getline(loadfile, line))
+		{
+			int i = 0, j = 0;
+			is_changing = false;
+			spline = splitter(line, ',');
+
+			for (j = 0; j < load_tags.size(); j++)
+			{
+				if (load_tags[j] == spline[0])
+				{
+					is_changing = true;
+					cur_tagtype = j;
+				}
+			}
+			if (!is_changing)
+			{
+				switch (cur_tagtype)
+				{
+				case 0:
+					addHead(Head(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4]));
+					break;
+
+				case 1:
+					addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::TORSO, spline[4], stoi(spline[5])));
+					break;
+
+				case 2:
+					addBattery(Battery(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::BATTERY, spline[4], stod(spline[5])));
+					break;
+
+				case 3:
+					addArm(Arm(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::ARM, spline[4], stod(spline[5])));
+					break;
+
+				case 4:
+					addLocomotor(Locomotor(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::LOCOMOTOR, spline[4], stod(spline[5]), stod(spline[6])));
+					break;
+
+				case 5:
+					LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7])); // 3-n are IDs for parts
+					break;
+
+				case 6:
+					addCustomer(Customer(spline[0], stoi(spline[1])));
+					break;
+
+				case 7:
+					addSalesAssociate(SalesAssociate(spline[0], stoi(spline[1])));
+					break;
+
+				case 8:
+					LoadOrder(line); //also adds to orders vector
+					break;
+				}
+			}
+
+		}
+
+		loadfile.close();
+	}
+}
+
 
 void Shop::populateShopForTesting()
 {
@@ -337,8 +407,84 @@ void Shop::populateShopForTesting()
 	addOrder(Order(1, 12345, 1, models_pop, 600.0, odate), 1, 12345);
 	addOrder(Order(2, 666, 1, models_pop, 600.0, odate), 2, 666);
 	addOrder(Order(3, 12345, 1, models_pop, 500.0, odate), 3, 12345);
-
 }
+
+
+bool Shop::isPartNumberUnique(int desired_part_number)
+{
+	//asume unique until match is found
+	for (Head h : heads)
+	{
+		if (desired_part_number == h.getPartNumber()) {return false;}
+	}
+
+	for (Torso t : torsos)
+	{
+		if (desired_part_number == t.getPartNumber()) { return false; }
+	}
+
+	for (Battery b : batteries)
+	{
+		if (desired_part_number == b.getPartNumber()) { return false; }
+	}
+
+	for (Arm a : arms)
+	{
+		if (desired_part_number == a.getPartNumber()) { return false; }
+	}
+
+	for (Locomotor l : locomotors)
+	{
+		if (desired_part_number == l.getPartNumber()) { return false; }
+	}
+
+	return true;
+}
+
+
+bool Shop::isModelNumberUnique(int desired_model_number)
+{
+	bool result = true; //asume unique until match is found
+
+	for (RobotModel m : models)
+	{
+		if (desired_model_number == m.getModelNumber()) {return false;}
+	}
+
+	return true;
+}
+
+bool Shop::isCustomerNumberUnique(int desired_customer_number)
+{
+	for (Customer c : customers)
+	{
+		if (desired_customer_number == c.getCustomerNumber()) {return false;}
+	}
+
+	return true;
+}
+
+bool Shop::isSANumberUnique(int desired_sa_number)
+{
+	for (SalesAssociate sa : sales_associates)
+	{
+		if (desired_sa_number == sa.getSalesAssociateNumber()) { return false; }
+	}
+
+	return true;
+}
+
+bool Shop::isOrderNumberUnique(int desired_order_number)
+{
+	for (Order o : orders)
+	{
+		if (desired_order_number == o.getOrderNumber()) { return false; }
+	}
+
+	return true;
+}
+
+
 
 
 
