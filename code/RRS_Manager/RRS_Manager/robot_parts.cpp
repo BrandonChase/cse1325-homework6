@@ -3,23 +3,6 @@
 
 using namespace std;
 
-//Operator Overloading
-void RobotPart::ostreamBaseFields(ostream& os) const
-{
-	os
-		<< name
-		<< "    || " << "\"" << description << "\""
-		<< " | Part #" << part_number
-		<< " | " << weight << " lb(s)"
-		<< " | $" << price;
-}
-
-ostream& operator<<(ostream& os, const Head& part)
-{
-	part.ostreamBaseFields(os);
-	return os;
-}
-
 ostream& operator<<(ostream& os, const Locomotor& part)
 {
 	part.ostreamBaseFields(os);
@@ -48,6 +31,46 @@ ostream& operator<<(ostream& os, const Arm& part)
 	part.ostreamBaseFields(os);
 	os << " | Consumes " << part.power_consumed << " W" << endl;
 	return os;
+}
+
+//STRING OUTPUT
+string RobotPart::outputBaseFields(string offset) const
+{
+	string result;
+	result += offset + name + "\n";
+
+	offset += "\t"; //following data will be indented
+	result += offset + "Description: " + description + "\n";
+	result += offset + "Part Number: " + to_string(part_number) + "\n";
+	result += offset + "Weight: " + to_string(weight) + "lbs\n";
+	result += offset + "Price: $" + to_string(price) + "\n";
+
+	return result;
+}
+
+string Head::outputFormattedString(string offset, bool show_details) const
+{
+	outputBaseFields(offset);
+}
+
+string Torso::outputFormattedString(string offset, bool show_details) const
+{
+
+}
+
+string Locomotor::outputFormattedString(string offset, bool show_details) const
+{
+
+}
+
+string Battery::outputFormattedString(string offset, bool show_details) const
+{
+
+}
+
+string Arm::outputFormattedString(string offset, bool show_details) const
+{
+
 }
 
 

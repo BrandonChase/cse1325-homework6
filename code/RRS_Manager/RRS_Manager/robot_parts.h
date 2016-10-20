@@ -26,7 +26,7 @@ public:
 
 	int getPartNumber() const;
 	double getPrice() const;
-	void ostreamBaseFields(std::ostream& os) const;
+	virtual std::string outputFormattedString(std::string offset, bool show_details) const = 0;
 	std::string saveData() const; // will be dif depending on part type
 protected:
 	std::string name;
@@ -35,6 +35,7 @@ protected:
 	double price; //$
 	PartType type;
 	std::string description;
+	std::string outputBaseFields(std::string offset) const;
 };
 
 class Head : public RobotPart 
@@ -49,8 +50,8 @@ public:
 		std::string p_description) :
 
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description) {}
+	std::string outputFormattedString(std::string offset, bool show_details) const;
 
-	friend std::ostream& operator<<(std::ostream& os, const Head& part);
 private:
 };
 
@@ -72,8 +73,9 @@ public:
 	max_speed(p_max_speed),
 	power_consumed(p_power_consumed) {}
 
-	friend std::ostream& operator<<(std::ostream& os, const Locomotor& part);
+	std::string outputFormattedString(std::string offset, bool show_details) const;
 	std::string saveData() const;
+
 private:
 	double max_speed; //MPH
 	double power_consumed; //W
@@ -94,8 +96,8 @@ public:
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description), 
 	battery_compartments(p_battery_compartments){}
 	std::string saveData() const;
-	friend std::ostream& operator<<(std::ostream& os, const Torso& part);
-    int getNumBatteries() const;
+	std::string outputFormattedString(std::string offset, bool show_details) const;
+	int getNumBatteries() const;
 private:
 	int battery_compartments;
 };
@@ -115,7 +117,7 @@ public:
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
 	contained_energy(p_contained_energy) {}
 	std::string saveData() const;
-	friend std::ostream& operator<<(std::ostream& os, const Battery& part);
+	std::string outputFormattedString(std::string offset, bool show_details) const;
 
 private:
 	double contained_energy; //kWh
@@ -136,7 +138,7 @@ public:
 	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
 	power_consumed(p_power_consumed) {}
 	std::string saveData() const;
-	friend std::ostream& operator<<(std::ostream& os, const Arm& part);
+	std::string outputFormattedString(std::string offset, bool show_details) const;
 
 private:
 	double power_consumed; //W
