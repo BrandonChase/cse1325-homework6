@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Arms">
+      <UniqueIdentifier>{b3908b8c-78ae-45c2-8cfa-7ff950dd54b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Heads">
+      <UniqueIdentifier>{f5e964a7-57cc-4904-bef2-fa0699e42861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Locomotors">
+      <UniqueIdentifier>{9a5e6924-2ea3-49e7-a223-cf7f48a88f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Batteries">
+      <UniqueIdentifier>{e9198123-d6c4-4467-9d2c-9edd1798e855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Torsos">
+      <UniqueIdentifier>{9255ce5f-3f86-410c-9426-56ddcd629b93}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="customer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_parts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_models.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sales_associate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="order.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tester.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="easy_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="part_type.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_parts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_models.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tester.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="easy_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="customer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sales_associate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="part_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\arm_left_orange.png">
+      <Filter>Resource Files\Arms</Filter>
+    </Image>
+    <Image Include="Images\arm_left_orange_power.png">
+      <Filter>Resource Files\Arms</Filter>
+    </Image>
+    <Image Include="Images\arm_left_power.png">
+      <Filter>Resource Files\Arms</Filter>
+    </Image>
+    <Image Include="Images\arm_left_silver_disk.png">
+      <Filter>Resource Files\Arms</Filter>
+    </Image>
+    <Image Include="Images\arm_right_orange.png">
+      <Filter>Resource Files\Arms</Filter>
+    </Image>
+    <Image Include="Images\arm_right_orange_power.png">
+      <Filter>Resource Files\Arms</Filter>
+    </Image>
+    <Image Include="Images\arm_right_power.png">
+      <Filter>Resource Files\Arms</Filter>
+    </Image>
+    <Image Include="Images\arm_right_silver_disk.png">
+      <Filter>Resource Files\Arms</Filter>
+    </Image>
+    <Image Include="Images\battery_blue.png">
+      <Filter>Resource Files\Batteries</Filter>
+    </Image>
+    <Image Include="Images\battery_green.png">
+      <Filter>Resource Files\Batteries</Filter>
+    </Image>
+    <Image Include="Images\battery_red.png">
+      <Filter>Resource Files\Batteries</Filter>
+    </Image>
+    <Image Include="Images\battery_yellow.png">
+      <Filter>Resource Files\Batteries</Filter>
+    </Image>
+    <Image Include="Images\head_antennae.png">
+      <Filter>Resource Files\Heads</Filter>
+    </Image>
+    <Image Include="Images\head_antennaeless.png">
+      <Filter>Resource Files\Heads</Filter>
+    </Image>
+    <Image Include="Images\head_asymmetric_antenna.png">
+      <Filter>Resource Files\Heads</Filter>
+    </Image>
+    <Image Include="Images\head_orange.png">
+      <Filter>Resource Files\Heads</Filter>
+    </Image>
+    <Image Include="Images\head_orange_antennae.png">
+      <Filter>Resource Files\Heads</Filter>
+    </Image>
+    <Image Include="Images\head_satellite_dish.png">
+      <Filter>Resource Files\Heads</Filter>
+    </Image>
+    <Image Include="Images\head_smart.png">
+      <Filter>Resource Files\Heads</Filter>
+    </Image>
+    <Image Include="Images\head_soldier.png">
+      <Filter>Resource Files\Heads</Filter>
+    </Image>
+    <Image Include="Images\locomotor_fancy_legs.png">
+      <Filter>Resource Files\Locomotors</Filter>
+    </Image>
+    <Image Include="Images\locomotor_flatfoot.png">
+      <Filter>Resource Files\Locomotors</Filter>
+    </Image>
+    <Image Include="Images\locomotor_orange.png">
+      <Filter>Resource Files\Locomotors</Filter>
+    </Image>
+    <Image Include="Images\locomotor_orange_flatfoot.png">
+      <Filter>Resource Files\Locomotors</Filter>
+    </Image>
+    <Image Include="Images\torso_button.png">
+      <Filter>Resource Files\Torsos</Filter>
+    </Image>
+    <Image Include="Images\torso_can.png">
+      <Filter>Resource Files\Torsos</Filter>
+    </Image>
+    <Image Include="Images\torso_orange.png">
+      <Filter>Resource Files\Torsos</Filter>
+    </Image>
+    <Image Include="Images\torso_orange_can.png">
+      <Filter>Resource Files\Torsos</Filter>
+    </Image>
+    <Image Include="Images\torso_soldier.png">
+      <Filter>Resource Files\Torsos</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
