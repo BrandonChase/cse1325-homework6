@@ -1,0 +1,29 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cxx}
+Function {make_window()} {open
+} {
+  Fl_Window {} {
+    label {Robbie Robot Shop v0.15} open
+    xywh {3152 468 640 480} type Double size_range {640 480 640 480} visible
+  } {
+    Fl_Menu_Bar {} {open
+      xywh {0 0 640 25}
+    } {
+      Submenu {} {
+        label File open
+        xywh {0 0 100 20}
+      } {
+        Submenu {} {
+          label New
+          xywh {0 0 100 20}
+        } {}
+      }
+      Submenu {} {
+        label Edit
+        xywh {0 0 100 20}
+      } {}
+    }
+  }
+} 

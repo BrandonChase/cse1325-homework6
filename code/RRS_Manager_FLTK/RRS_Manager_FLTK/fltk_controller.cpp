@@ -1,5 +1,5 @@
 #include "fltk_controller.h"
-
+#include <FL/Fl_Menu_Bar.H>
 
 #include "shop.h"
 #include "view.h"
@@ -8,71 +8,87 @@
 
 using namespace std;
 
-void Controller::CLI()
+int Controller::GUI()
 {
-	view.showWelcome();
-	mainMenuCLI();
+	Fl_Menu_Item menuitems[] = {
+		{"&File", 0, 0, 0, FL_SUBMENU },
+			{"&New", FL_ALT + 'n', 0},
+			{"&Open", FL_ALT + 'o', 0},
+			{"&Save", FL_ALT + 's', 0},
+			{"Save As", FL_ALT + FL_SHIFT + 's', 0},
+			{"Save Default", FL_ALT + FL_SHIFT + 'd', 0},
+			{"&Quit", FL_ALT + 'q', 0},
+			{0},
+		{"&Edit", 0, 0, 0, FL_SUBMENU },
+			{"&Undo", 0, 0},
+			{"Cu&t", 0, 0},
+			{"&Copy", 0, 0},
+			{"&Paste", 0, 0},
+			{0},
+		{"&Create", 0, 0, 0, FL_SUBMENU },
+			{"Order", 0, 0, 0},
+			{"Customer", 0, 0, 0},
+			{"Sales Associate", 0, 0, 0},
+			{"Robot Part", 0, 0, 0},
+			{"Robot Model", 0, 0, 0},
+			{0},
+		{"&Report", 0, 0, 0, FL_SUBMENU },
+			{"Invoice", 0, 0, 0},
+			{"All Orders", 0, 0, 0},
+			{"Orders by Customer", 0, 0, 0},
+			{"Orders by Sales Associate", 0, 0, 0},
+			{"All Customers", 0, 0, 0},
+			{"All Sales Associates", 0, 0, 0},
+			{"All Robot Models", 0, 0, 0},
+			{"All Robot Parts", 0, 0, 0},
+			{0},
+		{"&Help", 0, 0, 0, FL_SUBMENU },
+			{"&Manual", 0, 0, 0},
+			{"&About", 0, 0, 0},
+			{0},
+		{0}
+	};
+	const int x =640;
+	const int y = 480;
+	const int border =10;
+	//fl_register_images();
+	Fl_Window *win= new Fl_Window{x+3*border, y+3*border, "Robbie Robot Shop v0.15"};
+	Fl_Box *box = new Fl_Box{border, border, x+border, y+border};
+	Fl_Menu_Bar *menubar;
+	//View *view;
+
+
+	menubar = new Fl_Menu_Bar(0,0,x+3*border,30);
+	menubar->menu(menuitems);
+
+	//win->resizable(box);
+	win->end();
+	win->show();
+	return(Fl::run());
 }
 
-void Controller::mainMenuCLI()
-{
-	int command = -1;
-	while (command != 9) // 9) Quit program
-	{
-		view.showMainMenu();
-		command = inputInt("Command: ");
-		executeMainMenuCommand(command);
-	}
-}
 
-void Controller::createCLI()
-{
-	int command = -1;
-	while (command != 9) // 9) Quit to main menu
-	{
-		view.showCreateMenu();
-		command = inputInt("Command: ");
-		executeCreateMenuCommand(command);
-	}
-}
 
-void Controller::reportCLI()
-{
-	int command = -1;
-	while (command != 9) // 9) Quit to main menu
-	{
-		view.showReportMenu();
-		command = inputInt("Command: ");
-		executeReportMenuCommand(command);
-	}
-}
 
-void Controller::loadsaveCLI()
-{
-	int command = -1;
-	while(command != 9) // 9) Quit to main menu
-	{
-		view.showLoadSaveMenu();
-		command = inputInt("Command: ");
-		executeLoadSaveMenuCommand(command);
-	}
-	
-}
+
+
+
+
+
+
+
 
 void Controller::executeMainMenuCommand(int command)
 {
 	switch (command)
 	{
 	case 1: // Create
-	createCLI();
 	break;
 
 	case 2: // Report
-	reportCLI();
 	break;
 
 	case 3: // Save
-	loadsaveCLI();
 	break;
 	
 	case 9999: // Auto populates shop for testing
@@ -126,32 +142,32 @@ void Controller::executeReportMenuCommand(int command)
 	switch (command)
 	{
 	case 1: // Orders
-		cout << "Total Price of All Orders = $" << doubleToString(Order::calculateTotalPrice(shop.getOrders())) << endl;
-		reportOrders(shop.getOrders(), "");
-		break;
+	cout << "Total Price of All Orders = $" << doubleToString(Order::calculateTotalPrice(shop.getOrders())) << endl;
+	reportOrders(shop.getOrders(), "");
+	break;
 
 	case 2: // Customers
-		reportCustomers(shop.getCustomers());
-		break;
+	reportCustomers(shop.getCustomers());
+	break;
 
 	case 3: // Sales Associates
-		reportSalesAssociates(shop.getSalesAssociates());
-		break;
+	reportSalesAssociates(shop.getSalesAssociates());
+	break;
 
 	case 4: // Robot Models
-		reportRobotModels(shop.getModels(), "");
-		break;
+	reportRobotModels(shop.getModels(), "");
+	break;
 
 	case 5: // Robot Parts
-		view.listRobotParts(PartType::ALL, "");
-		break;
+	view.listRobotParts(PartType::ALL, "");
+	break;
 
 	case 9:
-		break;
+	break;
 
 	default: //Unkown
-		cerr << "\t***Error: " << command << " is an invalid Report Menu option.\n";
-	}
+	cerr << "\t***Error: " << command << " is an invalid Report Menu option.\n";
+}
 }
 
 void Controller::executeLoadSaveMenuCommand(int command)
@@ -161,30 +177,30 @@ void Controller::executeLoadSaveMenuCommand(int command)
 	switch(command)
 	{
 		case 1:
-			try
-			{
-				filepath = inputString("Name of file to read from: ");
-				shop.loadfile(filepath + ".shop");
-			}
+		try
+		{
+			filepath = inputString("Name of file to read from: ");
+			shop.loadfile(filepath + ".shop");
+		}
 
-			catch (...)
-			{
-				cerr << "\t***Error: Failed to load file.\n";
-			}
-			break;
+		catch (...)
+		{
+			cerr << "\t***Error: Failed to load file.\n";
+		}
+		break;
 
 		case 2:
-			try
-			{
-				filepath = inputString("Name of file to write to: ");
-				shop.savefile(filepath + ".shop");
-			}
+		try
+		{
+			filepath = inputString("Name of file to write to: ");
+			shop.savefile(filepath + ".shop");
+		}
 
-			catch (...)
-			{
-				cerr << "\t***Error: Failed to save file.\n";
-			}
-			break;
+		catch (...)
+		{
+			cerr << "\t***Error: Failed to save file.\n";
+		}
+		break;
 
 		case 9:
 		break;

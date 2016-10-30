@@ -1,5 +1,5 @@
 #include "fltk_controller.h"
-
+#include <FL/Fl_Menu_Bar.H>
 
 #include "shop.h"
 #include "view.h"
@@ -8,10 +8,25 @@
 
 using namespace std;
 
-void Controller::CLI()
+int Controller::GUI()
 {
-	view.showWelcome();
-	mainMenuCLI();
+	const int x =640;
+	const int y = 480;
+	const int border =10;
+	fl_register_images();
+	Fl_Window *win= new Fl_Window{x+3*border, y+3*border, "Robbie Robot Shop v0.15"};
+	Fl_Box *box = new Fl_Box{border, border, x+border, y+border, "Hello"};
+	Fl_Menu_Bar *menubar;
+	//View *view;
+
+
+	menubar = new Fl_Menu_Bar(0,0,x+3*border,30);
+	//menubar->menu(menuitems);
+
+	//win->resizable(box);
+	win->end();
+	win->show();
+	return(Fl::run());
 }
 
 void Controller::mainMenuCLI()

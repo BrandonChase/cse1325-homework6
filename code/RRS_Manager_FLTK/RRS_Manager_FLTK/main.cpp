@@ -1,11 +1,17 @@
-#include <FL/Fl.H>
-#include <FL/Fl_Box.H>
-#include <FL/Fl_Window.H>
+#include "shop.h"
+#include "fltk_controller.h"
+
+#include "tester.h"
+#include <iostream>
+
+#include "easy_input.h"
+
+using namespace std;
 
 int main()
 {
-	Fl_Window window(200, 200, "My window title");
-	Fl_Box box(0, 50, 200, 20, "Hello");
-	window.show();
-	return Fl::run();
+	Shop shop;
+	//Tester t(shop);
+	Controller controller(shop);
+	controller.GUI();
 }
