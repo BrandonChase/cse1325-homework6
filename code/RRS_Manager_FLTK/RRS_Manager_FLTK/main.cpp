@@ -12,6 +12,6 @@ int main()
 {
 	Shop shop;
 	//Tester t(shop);
-	Controller controller(shop);
+	FLTKController controller(shop);
 	controller.GUI();
 }

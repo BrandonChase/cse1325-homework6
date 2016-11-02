@@ -1,6 +1,10 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H 2016
 
+#ifdef _WIN32
+#define WIN32
+#endif
+
 #include "shop.h"
 #include "view.h"
 #include <iostream>
@@ -18,10 +22,10 @@
 #include <FL/Fl_Shared_Image.H>
 #include <FL/Fl_JPEG_Image.H>
 
-class Controller
+class FLTKController
 {
 public:
-	Controller(Shop& p_shop) : shop(p_shop), view(View(p_shop)) {};
+	FLTKController(Shop& p_shop) : shop(p_shop), view(View(p_shop)) {};
 
 	int GUI();
 
