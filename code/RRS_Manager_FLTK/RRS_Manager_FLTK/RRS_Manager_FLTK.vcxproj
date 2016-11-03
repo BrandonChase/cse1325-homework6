@@ -108,6 +108,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>fltkd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -151,6 +153,7 @@
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="date.cpp" />
     <ClCompile Include="easy_input.cpp" />
+    <ClCompile Include="fltk_controller.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="order.cpp" />
     <ClCompile Include="part_type.cpp" />
@@ -166,6 +169,7 @@
     <ClInclude Include="customer.h" />
     <ClInclude Include="date.h" />
     <ClInclude Include="easy_input.h" />
+    <ClInclude Include="fltk_controller.h" />
     <ClInclude Include="order.h" />
     <ClInclude Include="part_type.h" />
     <ClInclude Include="robot_models.h" />
