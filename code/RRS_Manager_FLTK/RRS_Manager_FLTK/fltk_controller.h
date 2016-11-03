@@ -5,6 +5,11 @@
 #define WIN32
 #endif
 
+#define HEIGHT 480
+#define WIDTH 640
+#define BORDER 10
+#define MENUHEIGHT 30
+
 #include "shop.h"
 #include "view.h"
 #include <iostream>
