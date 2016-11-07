@@ -46,7 +46,7 @@ private:
 	Fl_Button *create_widg = new Fl_Button(210, 10 * (tb_height + tb_spacing), 100, 50, "Create Part");
 	Fl_Button *choose_image_btn = new Fl_Button(475, 0, 100, 50, "Choose Image");
 	Fl_Box *picture_box = new Fl_Box(425, 100, 200, 200);
-	Fl_PNG_Image *image;
+	Fl_PNG_Image *image = new Fl_PNG_Image("Images/Battery/battery_red.png");
 
 	//Widget Callbacks
 	static void create_btn_CB(Fl_Widget* w, void* p)
