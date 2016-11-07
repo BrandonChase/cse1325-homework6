@@ -81,7 +81,7 @@ void CreatePartWindowFolder::part_type_widg_CB()
 
 void CreatePartWindowFolder::choose_image_btn_CB()
 {
-	string directory = "Images\\";
+	string directory = "./Images/";
 	switch (part_type_widg->value())
 	{
 	case 0: //Head
