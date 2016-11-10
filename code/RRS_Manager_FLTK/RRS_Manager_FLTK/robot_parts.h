@@ -15,14 +15,16 @@ public:
 		double p_weight,
 		double p_price,
 		PartType p_type,
-		std::string p_description) :
+		std::string p_description,
+		std::string p_image_filename) :
 
 	name(p_name),
 	part_number(p_part_number),
 	weight(p_weight),
 	price(p_price),
 	type(p_type),
-	description(p_description) {}
+	description(p_description),
+	image_filename(p_image_filename){}
 
 	int getPartNumber() const;
 	double getPrice() const;
@@ -35,6 +37,7 @@ protected:
 	double price; //$
 	PartType type;
 	std::string description;
+	std::string image_filename;
 	std::string outputBasics(std::string offset) const;
 	std::string outputSpecifics(std::string offset) const;
 };
@@ -48,9 +51,10 @@ public:
 		double p_weight,
 		double p_price,
 		PartType p_type,
-		std::string p_description) :
+		std::string p_description,
+		std::string p_image_filename) :
 
-	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description) {}
+	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description, p_image_filename) {}
 	std::string outputFormattedString(std::string offset, bool show_details) const;
 
 private:
@@ -67,10 +71,11 @@ public:
 		PartType p_type,
 		std::string p_description,
 		double p_max_speed,
-		double p_power_consumed) :
+		double p_power_consumed,
+		std::string p_image_filename) :
 
 
-	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
+	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description, p_image_filename),
 	max_speed(p_max_speed),
 	power_consumed(p_power_consumed) {}
 
@@ -92,9 +97,10 @@ public:
 		double p_price, 
 		PartType p_type, 
 		std::string p_description,
-		int p_battery_compartments) :
+		int p_battery_compartments,
+		std::string p_image_filename) :
 
-	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description), 
+	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description, p_image_filename),
 	battery_compartments(p_battery_compartments){}
 	std::string saveData() const;
 	std::string outputFormattedString(std::string offset, bool show_details) const;
@@ -113,9 +119,10 @@ public:
 		double p_price,
 		PartType p_type,
 		std::string p_description,
-		double p_contained_energy) :
+		double p_contained_energy,
+		std::string p_image_filename) :
 
-	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
+	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description, p_image_filename),
 	contained_energy(p_contained_energy) {}
 	std::string saveData() const;
 	std::string outputFormattedString(std::string offset, bool show_details) const;
@@ -134,9 +141,10 @@ public:
 		double p_price,
 		PartType p_type,
 		std::string p_description,
-		double p_power_consumed) :
+		double p_power_consumed,
+		std::string p_image_filename) :
 
-	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description),
+	RobotPart(p_name, p_part_number, p_weight, p_price, p_type, p_description, p_image_filename),
 	power_consumed(p_power_consumed) {}
 	std::string saveData() const;
 	std::string outputFormattedString(std::string offset, bool show_details) const;

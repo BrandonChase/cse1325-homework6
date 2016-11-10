@@ -12,6 +12,7 @@
 
 #include "shop.h"
 #include "view.h"
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -50,6 +51,8 @@ public:
 	void reportOrders(std::vector<Order> orders, std::string offset);
 	void reportCustomers(std::vector<Customer> customers);
 	void reportSalesAssociates(std::vector<SalesAssociate> sales_associates);
+
+	void displayCreateRobotPartsSW();
 
 private:
 	Shop& shop;

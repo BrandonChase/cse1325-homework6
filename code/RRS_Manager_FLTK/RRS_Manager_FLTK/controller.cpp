@@ -248,7 +248,7 @@ void Controller::createRobotModel()
 
 void Controller::createRobotPart()
 {
-	view.listPartTypes();
+	/*view.listPartTypes();
 	int type_int = inputIntInRange("Part Type: ", 0, 4, "Invalid part type number!");
 	PartType type(type_int);
 
@@ -297,7 +297,7 @@ void Controller::createRobotPart()
 	else //Unkown
 	{
 		cerr << "\t***Error: Invalid Create option.\n";
-	}
+	}*/
 }
 
 void Controller::createOrder()

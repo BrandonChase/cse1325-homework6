@@ -1,6 +1,7 @@
 #include "fltk_controller.h"
 
 #include <FL/Fl_Menu_Bar.H>
+#include <FL/Fl_Menu_Item.H>
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Int_Input.H>
 #include <FL/Fl_Float_Input.H>
@@ -12,13 +13,15 @@
 #include "view.h"
 #include "easy_input.h"
 #include "subwindows.h"
-
 using namespace std;
 
 int FLTKController::GUI()
 {
+	Fl_Widget* placeholder;
 	fl_register_images();
-	CreatePartWindowFolder cpwinfolder((*this));
+	//Create Subwindows ~ should go in constructor of controller
+	create_part_sw = new CreatePartSubWindow((*this));
+	create_part_sw->hide();
 
 	Fl_Menu_Item menuitems[] = {
 		{"&File", 0, 0, 0, FL_SUBMENU },
@@ -39,7 +42,7 @@ int FLTKController::GUI()
 			{"Order", 0, 0, 0},
 			{"Customer", 0, 0, 0},
 			{"Sales Associate", 0, 0, 0},
-			{"Robot Part", 0, 0, 0},
+			{"Robot Part", 0, 0},
 			{"Robot Model", 0, 0, 0},
 			{0},
 		{"&Report", 0, 0, 0, FL_SUBMENU },
@@ -58,24 +61,39 @@ int FLTKController::GUI()
 			{0},
 		{0}
 	};
-	//fl_register_images();
-	Fl_Window *win= new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.15"};
+
+	menuitems[19].callback(displayCreateRobotPartsSW_CB, this);
+
+	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.15"};
 	Fl_Box *box = new Fl_Box{BORDER, BORDER, WIDTH+BORDER, HEIGHT+BORDER};
 	Fl_Menu_Bar *menubar;
-	//View *view;
-
 
 	menubar = new Fl_Menu_Bar(0,0,WIDTH+3*BORDER, MENUHEIGHT);
 	menubar->menu(menuitems);
-	//win->resizable(box);
-	win->add(cpwinfolder.create_part_win);
+
+	//Add all subwindows
+	//for (Fl_Window* subwindow : subwindows)
+	//{
+	//	win->add(subwindow);
+	//}
+	win->add(create_part_sw);
+	//hideAllSubwindows();
+
 	win->end();
 	win->show();
 
 	return(Fl::run());
 }
 
-void FLTKController::createRobotPart()
+//CALLBACKS
+	//MENU
+static void displayCreateRobotPartsSW_CB(Fl_Widget* w, void* p)
 {
+	//Hide other subwindows
+	((FLTKController*)p)->displayCreateRobotPartsSW();
+}
 
+void FLTKController::displayCreateRobotPartsSW()
+{
+	create_part_sw->show();
 }
