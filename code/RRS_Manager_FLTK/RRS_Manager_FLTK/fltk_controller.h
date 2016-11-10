@@ -28,6 +28,9 @@
 #include <FL/Fl_Shared_Image.H>
 #include <FL/Fl_PNG_Image.H>
 
+//Forward Declarations
+class CreatePartSubWindow;
+
 class FLTKController
 {
 public:
@@ -35,14 +38,15 @@ public:
 
 	int GUI();
 
+	void createPart();
 
+	/* OLD STUFF
 	void executeMainMenuCommand(int command);
 	void executeCreateMenuCommand(int command);
 	void executeReportMenuCommand(int command);
 	void executeLoadSaveMenuCommand(int command);
 
 	void createRobotModel();
-	void createRobotPart();
 	void createOrder();
 	void createCustomer();
 	void createSalesAssociate();
@@ -51,12 +55,26 @@ public:
 	void reportOrders(std::vector<Order> orders, std::string offset);
 	void reportCustomers(std::vector<Customer> customers);
 	void reportSalesAssociates(std::vector<SalesAssociate> sales_associates);
-
-	void displayCreateRobotPartsSW();
-
+	*/
 private:
 	Shop& shop;
 	View view;
+
+	//
+	//WIDGETS
+	//
+	std::vector<Fl_Window*> subwindows;
+	CreatePartSubWindow* create_part_sw;
+
+	//
+	//Callbacks
+	//
+	static void displayCreatePartSubWindow_CB(Fl_Widget* w, void* p);
+	void displayCreatePartWindow();
+	static void createPart_CB(Fl_Widget* w, void* p);
+
+	//HELPER FUNCTIONS
+	void hideAllSubWindows();
 };
 
 #endif

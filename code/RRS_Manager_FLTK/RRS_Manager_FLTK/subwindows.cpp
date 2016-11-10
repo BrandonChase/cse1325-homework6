@@ -7,7 +7,7 @@
 using namespace std;
 
 //CreatePartWindowFolder
-CreatePartSubWindow::CreatePartSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_controller)
+CreatePartSubWindow::CreatePartSubWindow() : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT)
 {
 	add(picture_box);
 	//Set values for drop down box
@@ -23,14 +23,8 @@ CreatePartSubWindow::CreatePartSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIGHT
 	contained_energy_widg->hide();
 	choose_image_btn->hide();
 	//Setting Callbacks
-	create_widg->callback(create_btn_CB, this);
 	part_type_widg->callback(part_type_widg_CB, this);
 	choose_image_btn->callback(choose_image_btn_CB, this);
-}
-
-void CreatePartSubWindow::create_btn_CB()
-{
-	
 }
 
 void CreatePartSubWindow::part_type_widg_CB()
@@ -164,4 +158,9 @@ double CreatePartSubWindow::containedEnergy() const
 string CreatePartSubWindow::imageFileName() const
 {
 	return image_filename;
+}
+
+Fl_Button* CreatePartSubWindow::create_button()
+{
+	return create_widg;
 }

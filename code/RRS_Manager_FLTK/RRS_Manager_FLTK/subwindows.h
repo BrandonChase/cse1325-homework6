@@ -1,6 +1,11 @@
 #ifndef SUBWINDOWS_H
 #define SUBWINDOWS_H 2016
 
+#define HEIGHT 480
+#define WIDTH 640
+#define BORDER 10
+#define MENUHEIGHT 30
+
 #include <string>
 
 #include <FL/Fl.H>
@@ -19,12 +24,11 @@
 
 #include "robot_parts.h"
 #include "part_type.h"
-#include "shop.h"
 
 class CreatePartSubWindow : public Fl_Window
 {
 public:
-	CreatePartSubWindow(const Shop& p_shop);
+	CreatePartSubWindow();
 	
 	//Getters
 	PartType partType() const;
@@ -38,6 +42,7 @@ public:
 	double maxSpeed() const;
 	double containedEnergy() const;
 	std::string imageFileName() const;
+	Fl_Button* create_button();
 
 
 private:
@@ -46,8 +51,6 @@ private:
 	const int tb_width = 200;
 	const int tb_height = 30;
 	const int tb_spacing = 10;
-
-	const Shop& shop;
 
 	//Widgets
 	Fl_Choice *part_type_widg = new Fl_Choice(tb_offset, 0, tb_width, tb_height, "Part Type: ");
