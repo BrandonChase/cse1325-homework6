@@ -13,19 +13,34 @@ using namespace std;
 //
 	CreatePartSubWindow::CreatePartSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
 	{
+		//Initialize Widgets
+		part_type_dd = new Fl_Choice(tb_offset, 0, TB_WIDTH, TB_HEIGHT, "Part Type: ");
+		name_tb = new Fl_Input(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Name: ");
+		part_number_tb = new Fl_Int_Input(tb_offset, 2 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Part Number: ");
+		weight_tb = new Fl_Float_Input(tb_offset, 3 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Weight [lb]: ");
+		price_tb = new Fl_Float_Input(tb_offset, 4 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Price [$]: ");
+		description_tb = new Fl_Input(tb_offset, 5 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Description: ");
+		battery_compartments_tb = new Fl_Int_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Battery Compartments: ");
+		power_consumed_tb = new Fl_Float_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Power Consumed [W]: ");
+		max_speed_tb = new Fl_Float_Input(tb_offset, 7 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Max Speed [MPH]: ");
+		contained_energy_tb = new Fl_Float_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Contained Energy [kWh]: ");
+		create_btn = new Fl_Button(210, 10 * (TB_HEIGHT + TB_SPACING), 100, 50, "Create Part");
+		choose_image_btn = new Fl_Button(475, 0, 100, 50, "Choose Image");
+		picture_box = new Fl_Box(425, 100, 200, 200);
+
 		//Initialize drop down box
 		part_type_dd->add("Head");
 		part_type_dd->add("Torso");
 		part_type_dd->add("Battery");
 		part_type_dd->add("Arm");
 		part_type_dd->add("Locomotor");
+		part_type_dd->value(0);
 
 		//Disable extra textboxes by deafult
 		battery_compartments_tb->hide();
 		power_consumed_tb->hide();
 		max_speed_tb->hide();
 		contained_energy_tb->hide();
-		choose_image_btn->hide();
 
 		//Setting Callbacks
 		part_type_dd->callback(s_part_type_widg_CB, this);
@@ -105,13 +120,15 @@ using namespace std;
 			directory += "Locomotors";
 			break;
 		}
+
 		image_filename = fl_file_chooser("Robot Part", "*.png", directory.c_str(), 1);
-		if (part_image != NULL) 
+		if (part_image != NULL)
 		{
 			delete part_image;
 		}
 		part_image = new Fl_PNG_Image(image_filename.c_str());
 		picture_box->image(part_image);
+		picture_box->show();
 		redraw();
 	}
 
@@ -157,7 +174,7 @@ using namespace std;
 				shop.addLocomotor(Locomotor(name, part_number, weight, price, part_type, description, max_speed, power_consumed, image_filename));
 			}
 
-			//reset fields
+			reset();
 			this->hide();
 		}
 		catch (const exception& e)
@@ -349,4 +366,21 @@ using namespace std;
 			throw runtime_error("No image selected!");
 		}
 		return image_filename;
+	}
+
+//FUNCTIONS
+	void CreatePartSubWindow::reset()
+	{
+		part_type_dd->value(0);
+		name_tb->value(NULL);
+		part_number_tb->value(NULL);
+		weight_tb->value(NULL);
+		price_tb->value(NULL);
+		description_tb->value(NULL);
+		battery_compartments_tb->value(NULL);
+		power_consumed_tb->value(NULL);
+		max_speed_tb->value(NULL);
+		contained_energy_tb->value(NULL);
+		image_filename = "";
+		picture_box->hide();
 	}

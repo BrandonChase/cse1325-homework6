@@ -47,21 +47,24 @@ private:
 	const int tb_offset = 170;
 
 	//Widgets
-	Fl_Choice* part_type_dd = new Fl_Choice(tb_offset, 0, TB_WIDTH, TB_HEIGHT, "Part Type: ");
-	Fl_Input* name_tb = new Fl_Input(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Name: ");
-	Fl_Int_Input* part_number_tb = new Fl_Int_Input(tb_offset, 2 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Part Number: ");
-	Fl_Float_Input* weight_tb = new Fl_Float_Input(tb_offset, 3 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Weight [lb]: ");
-	Fl_Float_Input* price_tb = new Fl_Float_Input(tb_offset, 4 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Price [$]: ");
-	Fl_Input* description_tb = new Fl_Input(tb_offset, 5 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Description: ");
-	Fl_Int_Input* battery_compartments_tb = new Fl_Int_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Battery Compartments: ");
-	Fl_Float_Input* power_consumed_tb = new Fl_Float_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Power Consumed [W]: ");
-	Fl_Float_Input* max_speed_tb = new Fl_Float_Input(tb_offset, 7 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Max Speed [MPH]: ");
-	Fl_Float_Input* contained_energy_tb = new Fl_Float_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Contained Energy [kWh]: ");
-	Fl_Button* create_btn = new Fl_Button(210, 10 * (TB_HEIGHT + TB_SPACING), 100, 50, "Create Part");
-	Fl_Button* choose_image_btn = new Fl_Button(475, 0, 100, 50, "Choose Image");
-	Fl_Box* picture_box = new Fl_Box(425, 100, 200, 200);
+	Fl_Choice* part_type_dd;
+	Fl_Input* name_tb;
+	Fl_Int_Input* part_number_tb;
+	Fl_Float_Input* weight_tb;
+	Fl_Float_Input* price_tb;
+	Fl_Input* description_tb;
+	Fl_Int_Input* battery_compartments_tb;
+	Fl_Float_Input* power_consumed_tb;
+	Fl_Float_Input* max_speed_tb;
+	Fl_Float_Input* contained_energy_tb;
+	Fl_Button* create_btn;
+	Fl_Button* choose_image_btn;
+	Fl_Box* picture_box;
 	std::string image_filename;
 	Fl_PNG_Image* part_image;
+
+	//Functions
+	void reset();
 
 	//Widget Callbacks
 	static void s_create_btn_CB(Fl_Widget* w, void* p)
