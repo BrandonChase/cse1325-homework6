@@ -61,6 +61,7 @@ private:
 	Fl_Button* choose_image_btn = new Fl_Button(475, 0, 100, 50, "Choose Image");
 	Fl_Box* picture_box = new Fl_Box(425, 100, 200, 200);
 	std::string image_filename;
+	Fl_PNG_Image* part_image;
 
 	//Widget Callbacks
 	static void s_create_btn_CB(Fl_Widget* w, void* p)

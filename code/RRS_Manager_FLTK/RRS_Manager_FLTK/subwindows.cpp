@@ -1,5 +1,4 @@
 #include "subwindows.h"
-#include "window_properties.h"
 
 #include <FL/Fl_File_Chooser.H>
 
@@ -15,7 +14,7 @@ using namespace std;
 	CreatePartSubWindow::CreatePartSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
 	{
 		//Initialize Widgets
-
+		add(picture_box);
 		//Initialize drop down box
 		part_type_dd->add("Head");
 		part_type_dd->add("Torso");
@@ -109,7 +108,12 @@ using namespace std;
 			break;
 		}
 		image_filename = fl_file_chooser("Robot Part", "*.png", directory.c_str(), 1);
-		picture_box->image(Fl_PNG_Image(image_filename.c_str()));
+		if (part_image != NULL) 
+		{
+			delete part_image;
+		}
+		part_image = new Fl_PNG_Image(image_filename.c_str());
+		picture_box->image(part_image);
 		redraw();
 	}
 
