@@ -13,8 +13,6 @@ using namespace std;
 //
 	CreatePartSubWindow::CreatePartSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
 	{
-		//Initialize Widgets
-		add(picture_box);
 		//Initialize drop down box
 		part_type_dd->add("Head");
 		part_type_dd->add("Torso");
