@@ -5,13 +5,9 @@
 #define WIN32
 #endif
 
-#define HEIGHT 480
-#define WIDTH 640
-#define BORDER 10
-#define MENUHEIGHT 30
-
 #include "shop.h"
 #include "view.h"
+#include "subwindows.h"
 
 #include <iostream>
 #include <string>
@@ -27,9 +23,6 @@
 #include <FL/fl_ask.H>
 #include <FL/Fl_Shared_Image.H>
 #include <FL/Fl_PNG_Image.H>
-
-//Forward Declarations
-class CreatePartSubWindow;
 
 class FLTKController
 {
@@ -69,8 +62,8 @@ private:
 	//
 	//Callbacks
 	//
-	static void displayCreatePartSubWindow_CB(Fl_Widget* w, void* p);
-	void displayCreatePartWindow();
+	static void s_displayCreatePartSubWindow_CB(Fl_Widget* w, void* p);
+	void displayCreatePartSubWindow_CB();
 	static void createPart_CB(Fl_Widget* w, void* p);
 
 	//HELPER FUNCTIONS

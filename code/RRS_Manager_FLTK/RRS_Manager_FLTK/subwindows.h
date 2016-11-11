@@ -1,11 +1,6 @@
 #ifndef SUBWINDOWS_H
 #define SUBWINDOWS_H 2016
 
-#define HEIGHT 480
-#define WIDTH 640
-#define BORDER 10
-#define MENUHEIGHT 30
-
 #include <string>
 
 #include <FL/Fl.H>
@@ -14,7 +9,6 @@
 #include <FL/Fl_Menu_Item.H>
 #include <FL/Fl_Box.H>
 #include <FL/fl_ask.H>
-#include <FL/Fl_Shared_Image.H>
 #include <FL/Fl_PNG_Image.H>
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Int_Input.H>
@@ -24,11 +18,13 @@
 
 #include "robot_parts.h"
 #include "part_type.h"
+#include "shop.h"
+#include "window_properties.h"
 
 class CreatePartSubWindow : public Fl_Window
 {
 public:
-	CreatePartSubWindow();
+	CreatePartSubWindow(Shop& p_shop);
 	
 	//Getters
 	PartType partType() const;
@@ -42,44 +38,42 @@ public:
 	double maxSpeed() const;
 	double containedEnergy() const;
 	std::string imageFileName() const;
-	Fl_Button* create_button();
 
 
 private:
+	Shop& shop;
+
 	//Formatting
 	const int tb_offset = 170;
-	const int tb_width = 200;
-	const int tb_height = 30;
-	const int tb_spacing = 10;
 
 	//Widgets
-	Fl_Choice *part_type_widg = new Fl_Choice(tb_offset, 0, tb_width, tb_height, "Part Type: ");
-	Fl_Input *name_widg = new Fl_Input(tb_offset, 1 * (tb_height + tb_spacing), tb_width, tb_height, "Name: ");
-	Fl_Int_Input *part_number_widg = new Fl_Int_Input(tb_offset, 2 * (tb_height + tb_spacing), tb_width, tb_height, "Part Number: ");
-	Fl_Float_Input *weight_widg = new Fl_Float_Input(tb_offset, 3 * (tb_height + tb_spacing), tb_width, tb_height, "Weight [lb]: ");
-	Fl_Float_Input *price_widg = new Fl_Float_Input(tb_offset, 4 * (tb_height + tb_spacing), tb_width, tb_height, "Price [$]: ");
-	Fl_Input *description_widg = new Fl_Input(tb_offset, 5 * (tb_height + tb_spacing), tb_width, tb_height, "Description: ");
-	Fl_Int_Input *battery_compartments_widg = new Fl_Int_Input(tb_offset, 6 * (tb_height + tb_spacing), tb_width, tb_height, "Battery Compartments: ");
-	Fl_Float_Input *power_consumed_widg = new Fl_Float_Input(tb_offset, 6 * (tb_height + tb_spacing), tb_width, tb_height, "Power Consumed [W]: ");
-	Fl_Float_Input *max_speed_widg = new Fl_Float_Input(tb_offset, 7 * (tb_height + tb_spacing), tb_width, tb_height, "Max Speed [MPH]: ");
-	Fl_Float_Input *contained_energy_widg = new Fl_Float_Input(tb_offset, 6 * (tb_height + tb_spacing), tb_width, tb_height, "Contained Energy [kWh]: ");
-	Fl_Button *create_widg = new Fl_Button(210, 10 * (tb_height + tb_spacing), 100, 50, "Create Part");
-	Fl_Button *choose_image_btn = new Fl_Button(475, 0, 100, 50, "Choose Image");
-	Fl_Box *picture_box = new Fl_Box(425, 100, 200, 200);
+	Fl_Choice* part_type_dd = new Fl_Choice(tb_offset, 0, TB_WIDTH, TB_HEIGHT, "Part Type: ");
+	Fl_Input* name_tb = new Fl_Input(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Name: ");
+	Fl_Int_Input* part_number_tb = new Fl_Int_Input(tb_offset, 2 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Part Number: ");
+	Fl_Float_Input* weight_tb = new Fl_Float_Input(tb_offset, 3 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Weight [lb]: ");
+	Fl_Float_Input* price_tb = new Fl_Float_Input(tb_offset, 4 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Price [$]: ");
+	Fl_Input* description_tb = new Fl_Input(tb_offset, 5 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Description: ");
+	Fl_Int_Input* battery_compartments_tb = new Fl_Int_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Battery Compartments: ");
+	Fl_Float_Input* power_consumed_tb = new Fl_Float_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Power Consumed [W]: ");
+	Fl_Float_Input* max_speed_tb = new Fl_Float_Input(tb_offset, 7 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Max Speed [MPH]: ");
+	Fl_Float_Input* contained_energy_tb = new Fl_Float_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Contained Energy [kWh]: ");
+	Fl_Button* create_btn = new Fl_Button(210, 10 * (TB_HEIGHT + TB_SPACING), 100, 50, "Create Part");
+	Fl_Button* choose_image_btn = new Fl_Button(475, 0, 100, 50, "Choose Image");
+	Fl_Box* picture_box = new Fl_Box(425, 100, 200, 200);
 	std::string image_filename;
 
 	//Widget Callbacks
-	static void create_btn_CB(Fl_Widget* w, void* p)
+	static void s_create_btn_CB(Fl_Widget* w, void* p)
 	{
 		((CreatePartSubWindow*)p)->create_btn_CB();
 	}
 
-	static void part_type_widg_CB(Fl_Widget* w, void* p)
+	static void s_part_type_widg_CB(Fl_Widget* w, void* p)
 	{
 		((CreatePartSubWindow*)p)->part_type_widg_CB();
 	}
 
-	static void choose_image_btn_CB(Fl_Widget* w, void* p)
+	static void s_choose_image_btn_CB(Fl_Widget* w, void* p)
 	{
 		((CreatePartSubWindow*)p)->choose_image_btn_CB();
 	}

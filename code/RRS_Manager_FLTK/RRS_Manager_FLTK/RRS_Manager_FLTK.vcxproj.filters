@@ -104,5 +104,8 @@
     <ClInclude Include="subwindows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="window_properties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
