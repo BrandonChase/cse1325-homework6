@@ -18,7 +18,7 @@ public:
 	static const int NUM_OF_PART_TYPES = 5;
 
 	friend std::ostream& operator<<(std::ostream& os, const PartType& type);
-
+	friend bool operator==(const PartType& pt, const int value);
 private:
 	int value;
 };

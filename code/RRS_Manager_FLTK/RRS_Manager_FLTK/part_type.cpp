@@ -35,3 +35,8 @@ ostream& operator<<(ostream& os, const PartType& part)
 
 	return os;
 }
+
+bool operator==(const PartType& pt, const int value)
+{
+	return (pt.value == value);
+}
