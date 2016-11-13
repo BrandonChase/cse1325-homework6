@@ -40,9 +40,34 @@ CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIG
 	//CALLBACKS
 void CreateModelSubWindow::display_image_CB()
 {
+
+	Fl_Tabs *tabs = new Fl_Tabs(10,10,500-20,200-20);
+	{
+            // Aaa tab
+		Fl_Group *aaa = new Fl_Group(10,35,500-20,200-45,"Aaa");
+		{
+			Fl_Button *b1 = new Fl_Button(50, 60,90,25,"Button A1"); b1->color(88+1);
+			Fl_Button *b2 = new Fl_Button(50, 90,90,25,"Button A2"); b2->color(88+2);
+			Fl_Button *b3 = new Fl_Button(50,120,90,25,"Button A3"); b3->color(88+3);
+		}
+		aaa->end();
+
+            // Bbb tab
+		Fl_Group *bbb = new Fl_Group(10,35,500-10,200-35,"Bbb");
+		{
+			Fl_Button *b1 = new Fl_Button( 50,60,90,25,"Button B1"); b1->color(88+1);
+			Fl_Button *b2 = new Fl_Button(150,60,90,25,"Button B2"); b2->color(88+3);
+			Fl_Button *b3 = new Fl_Button(250,60,90,25,"Button B3"); b3->color(88+5);
+			Fl_Button *b4 = new Fl_Button( 50,90,90,25,"Button B4"); b4->color(88+2);
+			Fl_Button *b5 = new Fl_Button(150,90,90,25,"Button B5"); b5->color(88+4);
+			Fl_Button *b6 = new Fl_Button(250,90,90,25,"Button B6"); b6->color(88+6);
+		}
+		bbb->end();
+	}
+	tabs->end();
+	
 	if (heads_x.size() != 0)
 	{
-		
 		head_image = new Fl_PNG_Image(heads_x[head_choice_dd->value()].getImageLocation().c_str());
 		head_picture_box->image(head_image);
 		head_picture_box->show();
