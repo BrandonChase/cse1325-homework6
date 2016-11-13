@@ -57,7 +57,10 @@
     <ClCompile Include="fltk_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="subwindows.cpp">
+    <ClCompile Include="subw_create_part.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subw_create_customer_sa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,10 +104,13 @@
     <ClInclude Include="fltk_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="subwindows.h">
+    <ClInclude Include="window_properties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="window_properties.h">
+    <ClInclude Include="subw_create_part.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subw_create_customer_sa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

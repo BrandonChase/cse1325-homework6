@@ -1,5 +1,5 @@
-#ifndef SUBWINDOWS_H
-#define SUBWINDOWS_H 2016
+#ifndef SUBW_CREATE_PART_H
+#define SUBW_CREATE_PART_H 2016
 
 #include <string>
 

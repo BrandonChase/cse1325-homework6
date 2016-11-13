@@ -5,14 +5,10 @@
 #define WIN32
 #endif
 
-#define HEIGHT 480
-#define WIDTH 640
-#define BORDER 10
-#define MENUHEIGHT 30
-
 #include "shop.h"
 #include "view.h"
-#include "subwindows.h"
+#include "subw_create_part.h"
+#include "subw_create_customer_sa.h"
 
 #include <iostream>
 #include <string>
@@ -36,24 +32,6 @@ public:
 
 	int GUI();
 
-	void createPart();
-
-	/* OLD STUFF
-	void executeMainMenuCommand(int command);
-	void executeCreateMenuCommand(int command);
-	void executeReportMenuCommand(int command);
-	void executeLoadSaveMenuCommand(int command);
-
-	void createRobotModel();
-	void createOrder();
-	void createCustomer();
-	void createSalesAssociate();
-
-	void reportRobotModels(std::vector<RobotModel> models, std::string offset);
-	void reportOrders(std::vector<Order> orders, std::string offset);
-	void reportCustomers(std::vector<Customer> customers);
-	void reportSalesAssociates(std::vector<SalesAssociate> sales_associates);
-	*/
 private:
 	Shop& shop;
 	View view;
@@ -61,15 +39,22 @@ private:
 	//
 	//WIDGETS
 	//
+
 	std::vector<Fl_Window*> subwindows;
 	CreatePartSubWindow* create_part_sw;
+	CreateCustomerSubWindow* create_customer_sw;
+	CreateSASubWindow* create_sa_sw;
 
 	//
 	//Callbacks
 	//
+
 	static void s_displayCreatePartSubWindow_CB(Fl_Widget* w, void* p);
 	void displayCreatePartSubWindow_CB();
-	static void createPart_CB(Fl_Widget* w, void* p);
+	static void s_displayCreateCustomerSubWindow_CB(Fl_Widget* w, void* p);
+	void displayCreateCustomerSubWindow_CB();
+	static void s_displayCreateSASubWindow_CB(Fl_Widget* w, void* p);
+	void displayCreateSASubWindow_CB();
 
 	//HELPER FUNCTIONS
 	void hideAllSubWindows();

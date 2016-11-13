@@ -1,4 +1,4 @@
-#include "subwindows.h"
+#include "subw_create_part.h"
 
 #include <FL/Fl_File_Chooser.H>
 
@@ -8,9 +8,6 @@
 
 using namespace std;
 
-//
-//CREATEPARTSUBWINDOW
-//
 	CreatePartSubWindow::CreatePartSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
 	{
 		//Initialize Widgets
