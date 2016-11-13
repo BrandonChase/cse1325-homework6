@@ -20,14 +20,19 @@ int FLTKController::GUI()
 {
 	fl_register_images();
 
+
 	//Create Part Subwindow
 	create_part_sw = new CreatePartSubWindow(shop);
 	subwindows.push_back(create_part_sw);
 	
 	//Create Model Subwindow
-	create_model_sw = new CreateModelSubWindow(shop);  // JC
+	create_model_sw = new CreateModelSubWindow(&shop);  // JC
 	subwindows.push_back(create_model_sw);
 
+
+	shop.addHead(Head("Destroyer Head", 111, 1, 5, PartType::HEAD, "This is destroyer head no. 1","/Images/Heads/head_antennae.png"));
+	shop.addHead(Head("Servant Head", 123, 2, 10, PartType::HEAD, "This is servant head no. 1","/Images/Heads/head_antennae.png"));
+	shop.addHead(Head("War Head", 135, 4, 11, PartType::HEAD, "This is war head no. 1","/Images/Heads/head_antennae.png"));
 	//
 	//MENU
 	//

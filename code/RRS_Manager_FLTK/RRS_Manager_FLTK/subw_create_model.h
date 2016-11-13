@@ -27,7 +27,7 @@
 class CreateModelSubWindow : public Fl_Window
 {
 public:
-	CreateModelSubWindow(Shop& p_shop);
+	CreateModelSubWindow(Shop *p_shop);
 	
 	//Getters
 	std::string name() const;
@@ -38,7 +38,7 @@ public:
 
 
 private:
-	Shop& shop;
+	Shop *shop;
 
 	//Formatting
 	const int tb_offset = 170;

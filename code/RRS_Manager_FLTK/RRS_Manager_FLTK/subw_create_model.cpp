@@ -11,7 +11,7 @@ using namespace std;
 //
 //CreateModelSUBWINDOW
 //
-CreateModelSubWindow::CreateModelSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
+CreateModelSubWindow::CreateModelSubWindow(Shop *p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
 {
 		//Initialize Widgets
 	name_tb = new Fl_Input(tb_offset, 0, TB_WIDTH, TB_HEIGHT, "Name: ");
@@ -28,17 +28,15 @@ CreateModelSubWindow::CreateModelSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIG
 	picture_box = new Fl_Box(425, 100, 200, 200);
 
 
-	const vector<Head>& heads_x = shop.getHeads();
-	const vector<Locomotor>& locomotors_x = shop.getLocomotors();
-	const vector<Torso>& torsos_x = shop.getTorsos();
-	const vector<Battery>& batteries_x = shop.getBatteries();
-	const vector<Arm>& arms_x = shop.getArms();
+	const vector<Head>& heads_x = shop->getHeads();
+	const vector<Locomotor>& locomotors_x = shop->getLocomotors();
+	const vector<Torso>& torsos_x = shop->getTorsos();
+	const vector<Battery>& batteries_x = shop->getBatteries();
+	const vector<Arm>& arms_x = shop->getArms();
 	
 	//Testing the dd
 
-	shop.addHead(Head("Destroyer Head", 111, 1, 5, PartType::HEAD, "This is destroyer head no. 1","/Images/Heads/head_antennae.png"));
-	shop.addHead(Head("Servant Head", 123, 2, 10, PartType::HEAD, "This is servant head no. 1","/Images/Heads/head_antennae.png"));
-	shop.addHead(Head("War Head", 135, 4, 11, PartType::HEAD, "This is war head no. 1","/Images/Heads/head_antennae.png"));
+	
 	
 
 
