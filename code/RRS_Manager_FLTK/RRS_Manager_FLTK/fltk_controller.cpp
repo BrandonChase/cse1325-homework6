@@ -26,7 +26,7 @@ int FLTKController::GUI()
 	subwindows.push_back(create_part_sw);
 	
 	//Create Model Subwindow
-	create_model_sw = new CreateModelSubWindow(&shop);  // JC
+	create_model_sw = new CreateModelSubWindow(shop);  // JC
 	subwindows.push_back(create_model_sw);
 
 

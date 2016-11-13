@@ -11,7 +11,7 @@ using namespace std;
 //
 //CreateModelSUBWINDOW
 //
-CreateModelSubWindow::CreateModelSubWindow(Shop *p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
+CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
 {
 		//Initialize Widgets
 	name_tb = new Fl_Input(tb_offset, 0, TB_WIDTH, TB_HEIGHT, "Name: ");
@@ -28,11 +28,11 @@ CreateModelSubWindow::CreateModelSubWindow(Shop *p_shop) : Fl_Window(0, MENUHEIG
 	picture_box = new Fl_Box(425, 100, 200, 200);
 
 
-	const vector<Head>& heads_x = shop->getHeads();
-	const vector<Locomotor>& locomotors_x = shop->getLocomotors();
-	const vector<Torso>& torsos_x = shop->getTorsos();
-	const vector<Battery>& batteries_x = shop->getBatteries();
-	const vector<Arm>& arms_x = shop->getArms();
+	const vector<Head>& heads_x = shop.getHeads();
+	const vector<Locomotor>& locomotors_x = shop.getLocomotors();
+	const vector<Torso>& torsos_x = shop.getTorsos();
+	const vector<Battery>& batteries_x = shop.getBatteries();
+	const vector<Arm>& arms_x = shop.getArms();
 	
 	//Testing the dd
 
@@ -89,15 +89,18 @@ void CreateModelSubWindow::create_btn_CB()
 
 string CreateModelSubWindow::name() const
 {
+	return NULL;
 }
 
 int CreateModelSubWindow::modelNumber() const
 {
+	return NULL;
 }
 
 
 double CreateModelSubWindow::price() const
 {
+	return NULL;
 }
 
 

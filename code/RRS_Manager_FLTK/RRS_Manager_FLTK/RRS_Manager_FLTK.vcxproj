@@ -162,6 +162,7 @@
     <ClCompile Include="sales_associate.cpp" />
     <ClCompile Include="shop.cpp" />
     <ClCompile Include="subwindows.cpp" />
+    <ClCompile Include="subw_create_model.cpp" />
     <ClCompile Include="tester.cpp" />
     <ClCompile Include="view.cpp" />
   </ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="sales_associate.h" />
     <ClInclude Include="shop.h" />
     <ClInclude Include="subwindows.h" />
+    <ClInclude Include="subw_create_model.h" />
     <ClInclude Include="tester.h" />
     <ClInclude Include="view.h" />
     <ClInclude Include="window_properties.h" />
