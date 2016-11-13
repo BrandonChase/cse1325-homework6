@@ -15,7 +15,7 @@ CreatePersonSubWindow::CreatePersonSubWindow(Shop& p_shop) : Fl_Window(0, MENUHE
 	//Initialize widgets
 	name_tb = new Fl_Input(tb_offset, 0 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT);
 	number_tb = new Fl_Int_Input(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT);
-	create_btn = new Fl_Button(210, 2 * (TB_HEIGHT + TB_SPACING), 100, 50);
+	create_btn = new Fl_Button(200, 2 * (TB_HEIGHT + TB_SPACING), 150, 50);
 
 	//Set callbacks
 	create_btn->callback(s_create_btn_CB, this);
