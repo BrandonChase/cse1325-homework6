@@ -14,6 +14,8 @@
 #include "view.h"
 #include "subwindows.h"
 
+#include "subw_create_model.h"
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -64,6 +66,8 @@ private:
 	std::vector<Fl_Window*> subwindows;
 	CreatePartSubWindow* create_part_sw;
 
+
+	CreateModelSubWindow* create_model_sw;
 	//
 	//Callbacks
 	//
@@ -71,6 +75,10 @@ private:
 	void displayCreatePartSubWindow_CB();
 	static void createPart_CB(Fl_Widget* w, void* p);
 
+
+	static void s_displayCreateModelSubWindow_CB(Fl_Widget* w, void* p);
+	void displayCreateModelSubWindow_CB();	
+	static void createModel_CB(Fl_Widget* w, void* p);
 	//HELPER FUNCTIONS
 	void hideAllSubWindows();
 };

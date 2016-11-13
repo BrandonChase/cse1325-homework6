@@ -12,6 +12,7 @@
 #include "shop.h"
 #include "view.h"
 #include "subwindows.h"
+#include "subw_create_model.h"
 #include "window_properties.h"
 using namespace std;
 
@@ -23,6 +24,10 @@ int FLTKController::GUI()
 	create_part_sw = new CreatePartSubWindow(shop);
 	subwindows.push_back(create_part_sw);
 	
+	//Create Model Subwindow
+	create_model_sw = new CreateModelSubWindow(shop);  // JC
+	subwindows.push_back(create_model_sw);
+
 	//
 	//MENU
 	//
@@ -66,9 +71,13 @@ int FLTKController::GUI()
 	};
 
 	//Manual Menu Callbacks
-	menuitems[18].callback(s_displayCreatePartSubWindow_CB, this);
 
-	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.15"};
+
+	menuitems[18].callback(s_displayCreatePartSubWindow_CB, this);
+	menuitems[19].callback(s_displayCreateModelSubWindow_CB, this);
+
+
+	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.16"};
 	Fl_Menu_Bar *menubar;
 
 	menubar = new Fl_Menu_Bar(0,0,WIDTH+3*BORDER, MENUHEIGHT);
@@ -97,6 +106,12 @@ void FLTKController::hideAllSubWindows()
 }
 
 //Menu Callbacks
+
+
+
+//CREATE SUB MENU CALLBACKS:
+
+//CREATE: PART
 void FLTKController::s_displayCreatePartSubWindow_CB(Fl_Widget* w, void* p)
 {
 	((FLTKController*)p)->displayCreatePartSubWindow_CB();
@@ -106,4 +121,16 @@ void FLTKController::displayCreatePartSubWindow_CB()
 {
 	hideAllSubWindows();
 	create_part_sw->show();
+}
+
+//CREATE: MODEL
+void FLTKController::s_displayCreateModelSubWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayCreateModelSubWindow_CB();
+}
+
+void FLTKController::displayCreateModelSubWindow_CB()
+{
+	hideAllSubWindows();
+	create_model_sw->show();
 }

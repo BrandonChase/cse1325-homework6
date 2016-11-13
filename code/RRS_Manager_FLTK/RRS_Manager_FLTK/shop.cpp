@@ -371,9 +371,9 @@ void Shop::loadfile(string infile)
 void Shop::populateShopForTesting()
 {
 	//TODO: Account for RP having filenames
-	/*addHead(Head("Destroyer Head", 111, 1, 5, PartType::HEAD, "This is destroyer head no. 1"));
-	addHead(Head("Servant Head", 123, 2, 10, PartType::HEAD, "This is servant head no. 1"));
-	addHead(Head("War Head", 135, 4, 11, PartType::HEAD, "This is war head no. 1"));
+	/*addHead(Head("Destroyer Head", 111, 1, 5, PartType::HEAD, "This is destroyer head no. 1","/Images/Heads/head_antennae.png"));
+	addHead(Head("Servant Head", 123, 2, 10, PartType::HEAD, "This is servant head no. 1","/Images/Heads/head_antennae.png"));
+	addHead(Head("War Head", 135, 4, 11, PartType::HEAD, "This is war head no. 1","/Images/Heads/head_antennae.png"));
 
 	addTorso(Torso("Destroyer Torso", 112, 2, 6, PartType::TORSO, "This is destroyer torso no. 1", 2));
 	addTorso(Torso("Servant Torso", 134, 23, 12, PartType::TORSO, "This is servant torso no. 1", 2));

@@ -384,3 +384,7 @@ using namespace std;
 		image_filename = "";
 		picture_box->hide();
 	}
+
+
+
+
