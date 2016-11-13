@@ -122,6 +122,7 @@ using namespace std;
 		}
 
 		image_filename = fl_file_chooser("Robot Part", "*.png", directory.c_str(), 1);
+	
 		if (part_image != NULL)
 		{
 			delete part_image;

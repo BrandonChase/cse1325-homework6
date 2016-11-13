@@ -47,7 +47,7 @@ public:
 	void executeLoadSaveMenuCommand(int command);
 
 	void createRobotModel();
-	void createOrder();
+	void createOrder();1
 	void createCustomer();
 	void createSalesAssociate();
 

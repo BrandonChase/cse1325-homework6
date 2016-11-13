@@ -6,7 +6,7 @@
 
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
-//#include <FL/Fl_Menu_Bar.H>
+#include <FL/Fl_Menu_Bar.H>
 #include <FL/Fl_Menu_Item.H>
 #include <FL/Fl_Box.H>
 #include <FL/fl_ask.H>
@@ -16,6 +16,7 @@
 #include <FL/Fl_Float_Input.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Choice.H>
+#include <FL/Fl_Group.H>
 
 #include "robot_parts.h"
 #include "robot_models.h"
@@ -55,8 +56,27 @@ private:
 	Fl_Float_Input* price_tb;
 	Fl_Button* create_btn;
 
-	Fl_Box* picture_box;
+	
 
+	std::vector<Head> heads_x = shop.getHeads();
+	std::vector<Locomotor> locomotors_x = shop.getLocomotors();
+	std::vector<Torso> torsos_x = shop.getTorsos();
+	std::vector<Battery> batteries_x = shop.getBatteries();
+	std::vector<Arm> arms_x = shop.getArms();
+
+	//image data
+	Fl_Box* head_picture_box;
+	Fl_Box* torso_picture_box;
+	Fl_Box* locomotor_picture_box;
+	Fl_Box* battery_picture_box;
+	Fl_Box* arm_picture_box;
+
+	Fl_PNG_Image* head_image;
+	Fl_PNG_Image* torso_image;
+	Fl_PNG_Image* locomotor_image;
+	Fl_PNG_Image* battery_image;
+	Fl_PNG_Image* arm_image;
+	
 
 	//Functions
 	void reset();
@@ -72,10 +92,14 @@ private:
 		((CreateModelSubWindow*)p)->part_type_widg_CB();
 	}
 
+	static void s_display_image_CB(Fl_Widget* w, void* p)
+	{
+		((CreateModelSubWindow*)p)->display_image_CB();
+	}
 
 
 	void create_btn_CB();
 	void part_type_widg_CB();
-
+	void display_image_CB();
 };
 #endif
