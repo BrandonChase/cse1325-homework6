@@ -34,7 +34,7 @@ public:
 	int modelNumber() const;
 	double price() const;
 	int batteryCompartments() const;
-
+	void update_dd();
 
 
 private:

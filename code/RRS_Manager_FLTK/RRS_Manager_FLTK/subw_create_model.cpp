@@ -27,7 +27,24 @@ CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIG
 	create_btn = new Fl_Button(210, 10 * (TB_HEIGHT + TB_SPACING), 100, 50, "Create Model");
 	picture_box = new Fl_Box(425, 100, 200, 200);
 
+	//gotta do something like this
+	//part_type_dd->callback(s_part_type_widg_CB, this);
+	create_btn->callback(s_create_btn_CB, this);
+}
 
+	//CALLBACKS
+void CreateModelSubWindow::part_type_widg_CB()
+{
+}
+
+
+void CreateModelSubWindow::create_btn_CB()
+{
+}
+
+void CreateModelSubWindow::update_dd()
+{
+	
 	const vector<Head>& heads_x = shop.getHeads();
 	const vector<Locomotor>& locomotors_x = shop.getLocomotors();
 	const vector<Torso>& torsos_x = shop.getTorsos();
@@ -35,11 +52,6 @@ CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIG
 	const vector<Arm>& arms_x = shop.getArms();
 	
 	//Testing the dd
-
-	
-	
-
-
 
 
 	for (Head h : heads_x)
@@ -69,19 +81,6 @@ CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIG
 	arm_choice_dd->value(0);
 
 
-	//gotta do something like this
-	//part_type_dd->callback(s_part_type_widg_CB, this);
-	create_btn->callback(s_create_btn_CB, this);
-}
-
-	//CALLBACKS
-void CreateModelSubWindow::part_type_widg_CB()
-{
-}
-
-
-void CreateModelSubWindow::create_btn_CB()
-{
 }
 
 	//GETTERS

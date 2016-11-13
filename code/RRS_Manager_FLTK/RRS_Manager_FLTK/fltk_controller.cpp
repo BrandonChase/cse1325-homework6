@@ -137,5 +137,6 @@ void FLTKController::s_displayCreateModelSubWindow_CB(Fl_Widget* w, void* p)
 void FLTKController::displayCreateModelSubWindow_CB()
 {
 	hideAllSubWindows();
+	create_model_sw->update_dd();
 	create_model_sw->show();
 }
