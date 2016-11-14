@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector> 
-
+#include <cstdlib>
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Menu_Bar.H>
@@ -36,17 +36,21 @@ public:
 	double price() const;
 	int batteryCompartments() const;
 	void update_dd();
+	int num_batteries() const; 
+	int num_arms() const; 
 
 
 private:
 	Shop &shop;
 
 	//Formatting
-	const int tb_offset = 130;
+	const int tb_offset = 170;
 
 	//Widgets
 	Fl_Input* name_tb;
 	Fl_Int_Input* model_number_tb;
+	Fl_Int_Input* num_batteries_tb;
+	Fl_Int_Input* num_arms_tb;
 	Fl_Choice* head_choice_dd;
 	Fl_Choice* torso_choice_dd;
 	Fl_Choice* locomotor_choice_dd;
@@ -56,7 +60,6 @@ private:
 	Fl_Float_Input* price_tb;
 	Fl_Button* create_btn;
 
-	
 
 	std::vector<Head> heads_x = shop.getHeads();
 	std::vector<Locomotor> locomotors_x = shop.getLocomotors();
@@ -87,11 +90,6 @@ private:
 		((CreateModelSubWindow*)p)->create_btn_CB();
 	}
 
-	static void s_part_type_widg_CB(Fl_Widget* w, void* p)
-	{
-		((CreateModelSubWindow*)p)->part_type_widg_CB();
-	}
-
 	static void s_display_image_CB(Fl_Widget* w, void* p)
 	{
 		((CreateModelSubWindow*)p)->display_image_CB();
@@ -101,5 +99,7 @@ private:
 	void create_btn_CB();
 	void part_type_widg_CB();
 	void display_image_CB();
+
+
 };
 #endif

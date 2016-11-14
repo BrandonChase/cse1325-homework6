@@ -20,21 +20,15 @@ CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIG
 	torso_choice_dd = new Fl_Choice(tb_offset, 3 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Torso: ");
 	locomotor_choice_dd = new Fl_Choice(tb_offset, 4 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Locomotor: ");
 	battery_choice_dd = new Fl_Choice(tb_offset, 5 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Battery: ");
-	//battery_compartments_tb = new Fl_Int_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Battery Compartments: ");
-	arm_choice_dd = new Fl_Choice(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Arm: ");		
-	price_tb = new Fl_Float_Input(tb_offset, 7 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Price [$]: ");
+	num_batteries_tb = new Fl_Int_Input(tb_offset, 6 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Number of batteries: ");
+	arm_choice_dd = new Fl_Choice(tb_offset, 7 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Arm: ");		
+	num_arms_tb = new Fl_Int_Input(tb_offset, 8 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Number of Arms: ");	
+	price_tb = new Fl_Float_Input(tb_offset, 9 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Price [$]: ");
 	
 	create_btn = new Fl_Button(210, 10 * (TB_HEIGHT + TB_SPACING), 100, 50, "Create Model");
 	
+	const int xoffset = 220+tb_offset, yoffset = 0, xsize = 200, ysize = 200;
 
-	
-	
-	
-	
-	const int xoffset = 350, yoffset = 0, xsize = 200, ysize = 200;
-	//gotta do something like this
-	//part_type_dd->callback(s_part_type_widg_CB, this);
-	create_btn->callback(s_create_btn_CB, this);
 	Fl_Tabs *tabs = new Fl_Tabs(xoffset,yoffset,xsize+50,ysize+150);
 	{
 
@@ -71,7 +65,7 @@ CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIG
 
 	}
 	tabs->end();
-
+	create_btn->callback(s_create_btn_CB, this);
 }
 
 	//CALLBACKS
@@ -118,10 +112,6 @@ void CreateModelSubWindow::display_image_CB()
 }
 
 
-void CreateModelSubWindow::create_btn_CB()
-{
-}
-
 void CreateModelSubWindow::update_dd()
 {
 
@@ -131,8 +121,6 @@ void CreateModelSubWindow::update_dd()
 	batteries_x = shop.getBatteries();
 	arms_x = shop.getArms();
 	
-	//Testing the dd
-
 
 	for (Head h : heads_x)
 	{
@@ -168,23 +156,100 @@ void CreateModelSubWindow::update_dd()
 
 }
 
+
+
+
+void CreateModelSubWindow::create_btn_CB()
+{
+	try
+	{
+		string name = this->name();
+		int model_number = modelNumber();
+		double price = this->price();
+
+
+		shop.addRobotModel(RobotModel(name, model_number, price, heads_x[head_choice_dd->value()], torsos_x[torso_choice_dd->value()], 
+			locomotors_x[locomotor_choice_dd->value()], batteries_x[battery_choice_dd->value()], arms_x[arm_choice_dd->value()], num_batteries(), num_arms()));
+
+		reset();
+		this->hide();
+	}
+	catch (const exception& e)
+	{
+		Fl::error(e.what());
+	}
+}
+
+
 	//GETTERS
 
 
 string CreateModelSubWindow::name() const
 {
-	return "";
-}
-
-int CreateModelSubWindow::modelNumber() const
-{
-	return 0;
+	string name = name_tb->value();
+	if (name == "")
+	{
+		throw runtime_error("Required field is blank!");
+	}
+	return name;
 }
 
 
 double CreateModelSubWindow::price() const
 {
-	return 0.0;
+	double price;
+	try
+	{
+		price = stod(price_tb->value());
+	}
+	catch (...)
+	{
+		throw runtime_error("Price is not valid number!");
+	}
+	double cost = heads_x[head_choice_dd->value()].getPrice() + locomotors_x[locomotor_choice_dd->value()].getPrice() + torsos_x[torso_choice_dd->value()].getPrice() 
+		+ batteries_x[battery_choice_dd->value()].getPrice()*num_batteries() + arms_x[arm_choice_dd->value()].getPrice()*num_arms();
+	if (price < cost)
+	{
+		throw runtime_error("Price must be greater than cost!");
+	}
+
+	return price;
+}
+
+int CreateModelSubWindow::num_batteries() const
+{
+	return 0;
+}
+
+int CreateModelSubWindow::num_arms() const
+{
+	return 0;
+}
+
+
+int CreateModelSubWindow::modelNumber() const
+{
+	int model_number;
+	try
+	{
+		model_number = stoi(model_number_tb->value());
+	}
+	catch (...)
+	{
+		throw runtime_error("Model number is not valid number!");
+	}
+
+	if (model_number < 0)
+	{
+		throw runtime_error("Model number must be positive!");
+	}
+
+	if (!shop.isModelNumberUnique(model_number))
+	{
+		throw runtime_error("Model number is already taken!");
+	}
+
+	return model_number;
 }
 
 
