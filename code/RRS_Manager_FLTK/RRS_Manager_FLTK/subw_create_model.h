@@ -38,7 +38,7 @@ public:
 	void update_dd();
 	int num_batteries() const; 
 	int num_arms() const; 
-
+	bool isNumBatOkay(int num_bat) const;
 
 private:
 	Shop &shop;

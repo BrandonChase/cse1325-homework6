@@ -35,7 +35,7 @@ int FLTKController::GUI()
 	shop.addHead(Head("War Head", 135, 4, 11, PartType::HEAD, "This is war head no. 1","Images/Heads/head_asymmetric_antenna.png"));
 	shop.addTorso(Torso("Destroyer Torso", 112, 2, 6, PartType::TORSO, "This is destroyer torso no. 1", 2,"Images/Torsos/torso_button.png"));
 	shop.addTorso(Torso("Servant Torso", 134, 23, 12, PartType::TORSO, "This is servant torso no. 1", 2,"Images/Torsos/torso_button.png"));
-	shop.addTorso(Torso("War Torso", 54, 24, 97, PartType::TORSO, "This is war torso no. 1", 2,"Images/Torsos/torso_button.png"));
+	shop.addTorso(Torso("War Torso", 54, 24, 97, PartType::TORSO, "This is war torso no. 1", 3,"Images/Torsos/torso_button.png"));
 	shop.addArm(Arm("Destroyer Arm", 113, 3, 7, PartType::ARM, "This is destroyer arm no. 1", 125,"Images/Arms/arm_left_orange.png"));
 	shop.addArm(Arm("Servant Arm", 153, 7, 98, PartType::ARM, "This is servant arm no. 1", 125,"Images/Arms/arm_left_orange.png"));
 	shop.addArm(Arm("War Arm", 131, 10, 43, PartType::ARM, "This is war arm no. 1", 125,"Images/Arms/arm_left_orange.png"));

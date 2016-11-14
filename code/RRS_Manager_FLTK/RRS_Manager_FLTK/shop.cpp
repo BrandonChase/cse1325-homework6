@@ -323,39 +323,39 @@ void Shop::loadfile(string infile)
 			{
 				switch (cur_tagtype)
 				{ //TODO: Account for now robot parts have image filenames
-				case 0:
+					case 0:
 					//addHead(Head(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4]));
 					break;
 
-				case 1:
+					case 1:
 					//addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::TORSO, spline[4], stoi(spline[5])));
 					break;
 
-				case 2:
+					case 2:
 					//addBattery(Battery(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::BATTERY, spline[4], stod(spline[5])));
 					break;
 
-				case 3:
+					case 3:
 					//addArm(Arm(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::ARM, spline[4], stod(spline[5])));
 					break;
 
-				case 4:
+					case 4:
 					//addLocomotor(Locomotor(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::LOCOMOTOR, spline[4], stod(spline[5]), stod(spline[6])));
 					break;
 
-				case 5:
+					case 5:
 					LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7]), stoi(spline[8]), stoi(spline[9])); // 3 to n-3 are IDs for parts
 					break;
 
-				case 6:
+					case 6:
 					addCustomer(Customer(spline[0], stoi(spline[1])));
 					break;
 
-				case 7:
+					case 7:
 					addSalesAssociate(SalesAssociate(spline[0], stoi(spline[1])));
 					break;
 
-				case 8:
+					case 8:
 					LoadOrder(line); //also adds to orders vector
 					break;
 				}
@@ -484,9 +484,6 @@ bool Shop::isOrderNumberUnique(int desired_order_number)
 
 	return true;
 }
-
-
-
 
 
 

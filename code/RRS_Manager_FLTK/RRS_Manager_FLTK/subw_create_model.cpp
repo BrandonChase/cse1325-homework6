@@ -15,7 +15,7 @@ CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIG
 {
 		//Initialize Widgets
 	name_tb = new Fl_Input(tb_offset, 0, TB_WIDTH, TB_HEIGHT, "Name: ");
-	model_number_tb = new Fl_Int_Input(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Part Number: ");
+	model_number_tb = new Fl_Int_Input(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Model Number: ");
 	head_choice_dd = new Fl_Choice(tb_offset, 2 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Head: ");
 	torso_choice_dd = new Fl_Choice(tb_offset, 3 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Torso: ");
 	locomotor_choice_dd = new Fl_Choice(tb_offset, 4 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Locomotor: ");
@@ -157,8 +157,6 @@ void CreateModelSubWindow::update_dd()
 }
 
 
-
-
 void CreateModelSubWindow::create_btn_CB()
 {
 	try
@@ -166,10 +164,11 @@ void CreateModelSubWindow::create_btn_CB()
 		string name = this->name();
 		int model_number = modelNumber();
 		double price = this->price();
-
+		int numb_batteries = this->num_batteries();
+		int numb_arms = this->num_arms();
 
 		shop.addRobotModel(RobotModel(name, model_number, price, heads_x[head_choice_dd->value()], torsos_x[torso_choice_dd->value()], 
-			locomotors_x[locomotor_choice_dd->value()], batteries_x[battery_choice_dd->value()], arms_x[arm_choice_dd->value()], num_batteries(), num_arms()));
+			locomotors_x[locomotor_choice_dd->value()], batteries_x[battery_choice_dd->value()], arms_x[arm_choice_dd->value()], numb_batteries, numb_arms));
 
 		reset();
 		this->hide();
@@ -182,7 +181,6 @@ void CreateModelSubWindow::create_btn_CB()
 
 
 	//GETTERS
-
 
 string CreateModelSubWindow::name() const
 {
@@ -207,7 +205,7 @@ double CreateModelSubWindow::price() const
 		throw runtime_error("Price is not valid number!");
 	}
 	double cost = heads_x[head_choice_dd->value()].getPrice() + locomotors_x[locomotor_choice_dd->value()].getPrice() + torsos_x[torso_choice_dd->value()].getPrice() 
-		+ batteries_x[battery_choice_dd->value()].getPrice()*num_batteries() + arms_x[arm_choice_dd->value()].getPrice()*num_arms();
+	+ batteries_x[battery_choice_dd->value()].getPrice()*num_batteries() + arms_x[arm_choice_dd->value()].getPrice()*num_arms();
 	if (price < cost)
 	{
 		throw runtime_error("Price must be greater than cost!");
@@ -216,15 +214,60 @@ double CreateModelSubWindow::price() const
 	return price;
 }
 
+
 int CreateModelSubWindow::num_batteries() const
 {
-	return 0;
+	int bat_input;
+	try
+	{
+		bat_input = stoi(num_batteries_tb->value());
+	}
+	catch (...)
+	{
+		throw runtime_error("Number of batteries is not valid number!");
+	}
+
+	if (bat_input < 0 || !isNumBatOkay(bat_input))
+	{
+		throw runtime_error("Battery selection out of range!");
+	}
+	return bat_input;
 }
 
 int CreateModelSubWindow::num_arms() const
 {
-	return 0;
+	int arm_input;
+	try
+	{
+		arm_input = stoi(num_arms_tb->value());
+	}
+	catch (...)
+	{
+		throw runtime_error("Number of arms is not valid number!");
+	}
+
+	if (arm_input < 0 || arm_input > 2)
+	{
+		throw runtime_error("Number of arms is out of range!");
+	}
+
+	return arm_input;
 }
+
+
+
+bool CreateModelSubWindow::isNumBatOkay(int num_bat) const
+{
+	if (num_bat > torsos_x[torso_choice_dd->value()].getNumBatteries()) 
+	{ 
+		return false; 
+	}
+	else
+	{
+		return true;
+	}
+}
+
 
 
 int CreateModelSubWindow::modelNumber() const
@@ -257,7 +300,11 @@ int CreateModelSubWindow::modelNumber() const
 //FUNCTIONS
 void CreateModelSubWindow::reset()
 {
-	//set all vals to NULL
+	name_tb->value(NULL);
+	model_number_tb->value(NULL);
+	price_tb->value(NULL);
+	num_batteries_tb->value(NULL);
+	num_arms_tb->value(NULL);
 }
 
 
