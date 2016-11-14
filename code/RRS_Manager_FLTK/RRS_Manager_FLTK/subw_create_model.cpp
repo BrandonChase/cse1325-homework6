@@ -26,46 +26,58 @@ CreateModelSubWindow::CreateModelSubWindow(Shop &p_shop) : Fl_Window(0, MENUHEIG
 	
 	create_btn = new Fl_Button(210, 10 * (TB_HEIGHT + TB_SPACING), 100, 50, "Create Model");
 	
-	head_picture_box = new Fl_Box(425, 100, 200, 0);
-	torso_picture_box = new Fl_Box(425, 100, 200, 100);
-	locomotor_picture_box = new Fl_Box(425, 100, 200, 200);
-	battery_picture_box = new Fl_Box(425, 100, 200, 300);
-	arm_picture_box = new Fl_Box(425, 100, 200, 400);
 
+	
+	
+	
+	
+	const int xoffset = 350, yoffset = 0, xsize = 200, ysize = 200;
 	//gotta do something like this
 	//part_type_dd->callback(s_part_type_widg_CB, this);
 	create_btn->callback(s_create_btn_CB, this);
+	Fl_Tabs *tabs = new Fl_Tabs(xoffset,yoffset,xsize+50,ysize+150);
+	{
+
+		Fl_Group *head_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Head");
+		{
+			head_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+		}
+		head_g->end();
+
+		Fl_Group *torso_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Torso");
+		{
+			torso_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+		}
+		torso_g->end();
+
+		Fl_Group *locomotor_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Loco");
+		{
+			locomotor_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+		}
+		locomotor_g->end();
+
+		Fl_Group *battery_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Batt");
+		{
+			battery_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+		}
+		battery_g->end();
+
+		Fl_Group *arm_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Arm ");
+		{
+			arm_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+		}
+		arm_g->end();
+
+
+	}
+	tabs->end();
+
 }
 
 	//CALLBACKS
 void CreateModelSubWindow::display_image_CB()
 {
 
-	Fl_Tabs *tabs = new Fl_Tabs(10,10,500-20,200-20);
-	{
-            // Aaa tab
-		Fl_Group *aaa = new Fl_Group(10,35,500-20,200-45,"Aaa");
-		{
-			Fl_Button *b1 = new Fl_Button(50, 60,90,25,"Button A1"); b1->color(88+1);
-			Fl_Button *b2 = new Fl_Button(50, 90,90,25,"Button A2"); b2->color(88+2);
-			Fl_Button *b3 = new Fl_Button(50,120,90,25,"Button A3"); b3->color(88+3);
-		}
-		aaa->end();
-
-            // Bbb tab
-		Fl_Group *bbb = new Fl_Group(10,35,500-10,200-35,"Bbb");
-		{
-			Fl_Button *b1 = new Fl_Button( 50,60,90,25,"Button B1"); b1->color(88+1);
-			Fl_Button *b2 = new Fl_Button(150,60,90,25,"Button B2"); b2->color(88+3);
-			Fl_Button *b3 = new Fl_Button(250,60,90,25,"Button B3"); b3->color(88+5);
-			Fl_Button *b4 = new Fl_Button( 50,90,90,25,"Button B4"); b4->color(88+2);
-			Fl_Button *b5 = new Fl_Button(150,90,90,25,"Button B5"); b5->color(88+4);
-			Fl_Button *b6 = new Fl_Button(250,90,90,25,"Button B6"); b6->color(88+6);
-		}
-		bbb->end();
-	}
-	tabs->end();
-	
 	if (heads_x.size() != 0)
 	{
 		head_image = new Fl_PNG_Image(heads_x[head_choice_dd->value()].getImageLocation().c_str());

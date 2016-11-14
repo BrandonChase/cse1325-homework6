@@ -17,7 +17,7 @@
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Group.H>
-
+#include <FL/Fl_Tabs.H>
 #include "robot_parts.h"
 #include "robot_models.h"
 #include "part_type.h"
@@ -42,7 +42,7 @@ private:
 	Shop &shop;
 
 	//Formatting
-	const int tb_offset = 170;
+	const int tb_offset = 130;
 
 	//Widgets
 	Fl_Input* name_tb;
