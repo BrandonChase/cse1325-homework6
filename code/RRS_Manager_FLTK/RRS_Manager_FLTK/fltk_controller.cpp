@@ -69,6 +69,7 @@ int FLTKController::GUI()
 		{"&Help", 0, 0, 0, FL_SUBMENU },
 			{"&Manual", 0, 0, 0},
 			{"&About", 0, 0, 0},
+			{"Populate Shop", 0, 0, 0},
 			{0},
 		{0}
 	};
@@ -77,6 +78,7 @@ int FLTKController::GUI()
 	menuitems[18].callback(s_displayCreatePartSubWindow_CB, this);
 	menuitems[16].callback(s_displayCreateCustomerSubWindow_CB, this);
 	menuitems[17].callback(s_displayCreateSASubWindow_CB, this);
+	menuitems[34].callback(s_populateShop_CB, this);
 
 	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.15"};
 	Fl_Menu_Bar *menubar;
@@ -139,4 +141,14 @@ void FLTKController::displayCreateSASubWindow_CB()
 {
 	hideAllSubWindows();
 	create_sa_sw->show();
+}
+
+void FLTKController::s_populateShop_CB(Fl_Widget*, void* p)
+{
+	((FLTKController*)p)->populateShop_CB();
+}
+
+void FLTKController::populateShop_CB()
+{
+	shop.populateShopForTesting();
 }

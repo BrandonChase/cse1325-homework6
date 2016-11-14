@@ -370,26 +370,25 @@ void Shop::loadfile(string infile)
 
 void Shop::populateShopForTesting()
 {
-	//TODO: Account for RP having filenames
-	/*addHead(Head("Destroyer Head", 111, 1, 5, PartType::HEAD, "This is destroyer head no. 1"));
-	addHead(Head("Servant Head", 123, 2, 10, PartType::HEAD, "This is servant head no. 1"));
-	addHead(Head("War Head", 135, 4, 11, PartType::HEAD, "This is war head no. 1"));
+	addHead(Head("Destroyer Head", 111, 1, 5, PartType::HEAD, "This is destroyer head no. 1", "Images/Heads/head_soldier.png"));
+	addHead(Head("Servant Head", 123, 2, 10, PartType::HEAD, "This is servant head no. 1", "Images/Heads/head_smart.png"));
+	addHead(Head("War Head", 135, 4, 11, PartType::HEAD, "This is war head no. 1", "Images/Heads/head_orange.png"));
 
-	addTorso(Torso("Destroyer Torso", 112, 2, 6, PartType::TORSO, "This is destroyer torso no. 1", 2));
-	addTorso(Torso("Servant Torso", 134, 23, 12, PartType::TORSO, "This is servant torso no. 1", 2));
-	addTorso(Torso("War Torso", 54, 24, 97, PartType::TORSO, "This is war torso no. 1", 2));
+	addTorso(Torso("Destroyer Torso", 112, 2, 6, PartType::TORSO, "This is destroyer torso no. 1", 2, "Images/Torsos/torso_soldier.png"));
+	addTorso(Torso("Servant Torso", 134, 23, 12, PartType::TORSO, "This is servant torso no. 1", 2, "Images/Torsos/torso_button.png"));
+	addTorso(Torso("War Torso", 54, 24, 97, PartType::TORSO, "This is war torso no. 1", 2, "Images/Torsos/torso_orange.png"));
 
-	addArm(Arm("Destroyer Arm", 113, 3, 7, PartType::ARM, "This is destroyer arm no. 1", 125));
-	addArm(Arm("Servant Arm", 153, 7, 98, PartType::ARM, "This is servant arm no. 1", 125));
-	addArm(Arm("War Arm", 131, 10, 43, PartType::ARM, "This is war arm no. 1", 125));
+	addArm(Arm("Destroyer Arm", 113, 3, 7, PartType::ARM, "This is destroyer arm no. 1", 125, "Images/Arms/arm_left_silver_disk.png"));
+	addArm(Arm("Servant Arm", 153, 7, 98, PartType::ARM, "This is servant arm no. 1", 125, "Images/Arms/arm_right_power.png"));
+	addArm(Arm("War Arm", 131, 10, 43, PartType::ARM, "This is war arm no. 1", 125, "Images/Arms/arm_left_orange.png"));
 
-	addBattery(Battery("Destroyer Battery", 114, 4, 8, PartType::BATTERY, "This is destroyer battery no. 1", 500));
-	addBattery(Battery("Servant Battery", 123, 8, 9, PartType::BATTERY, "This is servant battery no. 1", 500));
-	addBattery(Battery("War Battery", 321, 6, 18, PartType::BATTERY, "This is war battery no. 1", 500));
+	addBattery(Battery("Destroyer Battery", 114, 4, 8, PartType::BATTERY, "This is destroyer battery no. 1", 500, "Images/Batteries/battery_red.png"));
+	addBattery(Battery("Servant Battery", 123, 8, 9, PartType::BATTERY, "This is servant battery no. 1", 500, "Images/Batteries/battery_green.png"));
+	addBattery(Battery("War Battery", 321, 6, 18, PartType::BATTERY, "This is war battery no. 1", 500, "Images/Batteries/battery_blue.png"));
 
-	addLocomotor(Locomotor("Destroyer Locomotor", 423, 5, 9, PartType::LOCOMOTOR, "This is destroyer locomotor no. 1", 20, 750));
-	addLocomotor(Locomotor("Servant Locomotor", 543, 2, 19, PartType::LOCOMOTOR, "This is servant locomotor no. 1", 20, 750));
-	addLocomotor(Locomotor("War Locomotor", 234, 8, 91, PartType::LOCOMOTOR, "This is war locomotor no. 1", 20, 750));*/
+	addLocomotor(Locomotor("Destroyer Locomotor", 423, 5, 9, PartType::LOCOMOTOR, "This is destroyer locomotor no. 1", 20, 750, "Images/Locomotors/locomotor_fancy_legs.png"));
+	addLocomotor(Locomotor("Servant Locomotor", 543, 2, 19, PartType::LOCOMOTOR, "This is servant locomotor no. 1", 20, 750, "Images/Locomotors/locmotor_flatfoot.png"));
+	addLocomotor(Locomotor("War Locomotor", 234, 8, 91, PartType::LOCOMOTOR, "This is war locomotor no. 1", 20, 750, "Images/Locomotors/locomotor_orange.png"));
 
 	addRobotModel(RobotModel("Destroyer 9000", 111, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],2,1));
 	addRobotModel(RobotModel("Personal Servant", 223, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],1,1));

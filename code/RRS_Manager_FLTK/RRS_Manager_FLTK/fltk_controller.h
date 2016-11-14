@@ -55,6 +55,8 @@ private:
 	void displayCreateCustomerSubWindow_CB();
 	static void s_displayCreateSASubWindow_CB(Fl_Widget* w, void* p);
 	void displayCreateSASubWindow_CB();
+	static void s_populateShop_CB(Fl_Widget*, void* p);
+	void populateShop_CB();
 
 	//HELPER FUNCTIONS
 	void hideAllSubWindows();
