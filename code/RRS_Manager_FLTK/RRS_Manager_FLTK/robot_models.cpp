@@ -40,3 +40,8 @@ string RobotModel::saveData()
 	 + "," + to_string(s_locomotor.getPartNumber()) + "," + to_string(s_battery.getPartNumber()) + "," + to_string(s_arm.getPartNumber()) 
 	 + "," + to_string(battery_quantity) + "," + to_string(arm_quantity);
 }
+
+string RobotModel::getModelName()
+{
+	return name;
+}

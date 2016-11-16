@@ -58,6 +58,7 @@ public:
 	bool isSANumberUnique(int desired_sa_number);
 	bool isOrderNumberUnique(int desired_order_number);
 
+
 private:
 	std::vector<SalesAssociate> sales_associates;
 	std::vector<Customer> customers;

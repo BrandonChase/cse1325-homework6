@@ -5,6 +5,11 @@
 using namespace std;
 
 //STRING OUTPUT
+string RobotPart::getImageLocation() const
+{
+	return image_filename;
+}
+
 string RobotPart::outputBasics(string offset) const
 {
 	return (name + " ~ Part #: " + to_string(part_number) + "\n");

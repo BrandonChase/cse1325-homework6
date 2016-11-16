@@ -35,6 +35,7 @@ public:
 	double getPrice();
 	std::string saveData();
 	int getModelNumber() const;
+	std::string getModelName();
 
 private:
 	std::string name;

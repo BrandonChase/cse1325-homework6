@@ -165,6 +165,8 @@
     <ClCompile Include="subw_create_customer_sa.cpp" />
     <ClCompile Include="subw_create_part.cpp" />
     <ClCompile Include="subw_report_all_parts.cpp" />
+    <ClCompile Include="subwindows.cpp" />
+    <ClCompile Include="subw_create_model.cpp" />
     <ClCompile Include="tester.cpp" />
     <ClCompile Include="view.cpp" />
   </ItemGroup>
@@ -184,6 +186,8 @@
     <ClInclude Include="shop.h" />
     <ClInclude Include="subw_create_part.h" />
     <ClInclude Include="subw_report_all_parts.h" />
+    <ClInclude Include="subwindows.h" />
+    <ClInclude Include="subw_create_model.h" />
     <ClInclude Include="tester.h" />
     <ClInclude Include="view.h" />
     <ClInclude Include="window_properties.h" />
