@@ -11,7 +11,6 @@
 
 #include "shop.h"
 #include "view.h"
-#include "subwindows.h"
 #include "subw_create_model.h"
 #include "window_properties.h"
 #include "subw_create_part.h"
@@ -27,26 +26,18 @@ int FLTKController::GUI()
 	create_part_sw = new CreatePartSubWindow(shop);
 	subwindows.push_back(create_part_sw);
 	
-	//Create Model Subwindow
 	create_model_sw = new CreateModelSubWindow(shop);  // JC
 	subwindows.push_back(create_model_sw);
 
+	create_customer_sw = new CreateCustomerSubWindow(shop);
+	subwindows.push_back(create_customer_sw);
 
-	shop.addHead(Head("Destroyer Head", 111, 1, 5, PartType::HEAD, "This is destroyer head no. 1","Images/Heads/head_antennae.png"));
-	shop.addHead(Head("Servant Head", 123, 2, 10, PartType::HEAD, "This is servant head no. 1","Images/Heads/head_orange.png"));
-	shop.addHead(Head("War Head", 135, 4, 11, PartType::HEAD, "This is war head no. 1","Images/Heads/head_asymmetric_antenna.png"));
-	shop.addTorso(Torso("Destroyer Torso", 112, 2, 6, PartType::TORSO, "This is destroyer torso no. 1", 2,"Images/Torsos/torso_button.png"));
-	shop.addTorso(Torso("Servant Torso", 134, 23, 12, PartType::TORSO, "This is servant torso no. 1", 2,"Images/Torsos/torso_button.png"));
-	shop.addTorso(Torso("War Torso", 54, 24, 97, PartType::TORSO, "This is war torso no. 1", 3,"Images/Torsos/torso_button.png"));
-	shop.addArm(Arm("Destroyer Arm", 113, 3, 7, PartType::ARM, "This is destroyer arm no. 1", 125,"Images/Arms/arm_left_orange.png"));
-	shop.addArm(Arm("Servant Arm", 153, 7, 98, PartType::ARM, "This is servant arm no. 1", 125,"Images/Arms/arm_left_orange.png"));
-	shop.addArm(Arm("War Arm", 131, 10, 43, PartType::ARM, "This is war arm no. 1", 125,"Images/Arms/arm_left_orange.png"));
-	shop.addBattery(Battery("Destroyer Battery", 114, 4, 8, PartType::BATTERY, "This is destroyer battery no. 1", 500,"Images/Batteries/battery_blue.png"));
-	shop.addBattery(Battery("Servant Battery", 123, 8, 9, PartType::BATTERY, "This is servant battery no. 1", 500,"Images/Batteries/battery_blue.png"));
-	shop.addBattery(Battery("War Battery", 321, 6, 18, PartType::BATTERY, "This is war battery no. 1", 500,"Images/Batteries/battery_blue.png"));
-	shop.addLocomotor(Locomotor("Destroyer Locomotor", 423, 5, 9, PartType::LOCOMOTOR, "This is destroyer locomotor no. 1", 20, 750,"Images/Locomotors/locomotor_orange.png"));
-	shop.addLocomotor(Locomotor("Servant Locomotor", 543, 2, 19, PartType::LOCOMOTOR, "This is servant locomotor no. 1", 20, 750,"Images/Locomotors/locomotor_orange.png"));
-	shop.addLocomotor(Locomotor("War Locomotor", 234, 8, 91, PartType::LOCOMOTOR, "This is war locomotor no. 1", 20, 750,"Images/Locomotors/locomotor_orange.png"));
+	create_sa_sw = new CreateSASubWindow(shop);
+	subwindows.push_back(create_sa_sw);
+
+	report_parts_sw = new ReportPartsSubWindow(shop);
+	subwindows.push_back(report_parts_sw);
+
 	//
 	//MENU
 	//
@@ -188,7 +179,6 @@ void FLTKController::displayReportPartsSubWindow_CB()
 {
 	hideAllSubWindows();
 	report_parts_sw->show();
-}
 }
 
 //CREATE: MODEL
