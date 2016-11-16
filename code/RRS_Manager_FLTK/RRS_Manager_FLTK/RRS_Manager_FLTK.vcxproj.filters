@@ -63,6 +63,12 @@
     <ClCompile Include="subw_create_customer_sa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="subw_report_all_parts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_part_dropdown.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller.h">
@@ -111,6 +117,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="subw_create_customer_sa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subw_report_all_parts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_part_dropdown.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

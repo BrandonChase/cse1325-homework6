@@ -387,7 +387,7 @@ void Shop::populateShopForTesting()
 	addBattery(Battery("War Battery", 321, 6, 18, PartType::BATTERY, "This is war battery no. 1", 500, "Images/Batteries/battery_blue.png"));
 
 	addLocomotor(Locomotor("Destroyer Locomotor", 423, 5, 9, PartType::LOCOMOTOR, "This is destroyer locomotor no. 1", 20, 750, "Images/Locomotors/locomotor_fancy_legs.png"));
-	addLocomotor(Locomotor("Servant Locomotor", 543, 2, 19, PartType::LOCOMOTOR, "This is servant locomotor no. 1", 20, 750, "Images/Locomotors/locmotor_flatfoot.png"));
+	addLocomotor(Locomotor("Servant Locomotor", 543, 2, 19, PartType::LOCOMOTOR, "This is servant locomotor no. 1", 20, 750, "Images/Locomotors/locomotor_flatfoot.png"));
 	addLocomotor(Locomotor("War Locomotor", 234, 8, 91, PartType::LOCOMOTOR, "This is war locomotor no. 1", 20, 750, "Images/Locomotors/locomotor_orange.png"));
 
 	addRobotModel(RobotModel("Destroyer 9000", 111, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],2,1));

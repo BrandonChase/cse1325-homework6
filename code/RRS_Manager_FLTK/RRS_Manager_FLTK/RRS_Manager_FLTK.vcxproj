@@ -159,10 +159,12 @@
     <ClCompile Include="part_type.cpp" />
     <ClCompile Include="robot_models.cpp" />
     <ClCompile Include="robot_parts.cpp" />
+    <ClCompile Include="robot_part_dropdown.cpp" />
     <ClCompile Include="sales_associate.cpp" />
     <ClCompile Include="shop.cpp" />
     <ClCompile Include="subw_create_customer_sa.cpp" />
     <ClCompile Include="subw_create_part.cpp" />
+    <ClCompile Include="subw_report_all_parts.cpp" />
     <ClCompile Include="tester.cpp" />
     <ClCompile Include="view.cpp" />
   </ItemGroup>
@@ -172,6 +174,7 @@
     <ClInclude Include="date.h" />
     <ClInclude Include="easy_input.h" />
     <ClInclude Include="fltk_controller.h" />
+    <ClInclude Include="robot_part_dropdown.h" />
     <ClInclude Include="subw_create_customer_sa.h" />
     <ClInclude Include="order.h" />
     <ClInclude Include="part_type.h" />
@@ -180,6 +183,7 @@
     <ClInclude Include="sales_associate.h" />
     <ClInclude Include="shop.h" />
     <ClInclude Include="subw_create_part.h" />
+    <ClInclude Include="subw_report_all_parts.h" />
     <ClInclude Include="tester.h" />
     <ClInclude Include="view.h" />
     <ClInclude Include="window_properties.h" />

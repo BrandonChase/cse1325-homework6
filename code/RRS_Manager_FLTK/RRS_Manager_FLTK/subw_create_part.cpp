@@ -11,7 +11,7 @@ using namespace std;
 	CreatePartSubWindow::CreatePartSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIGHT + 1, WIDTH, HEIGHT - MENUHEIGHT), shop(p_shop)
 	{
 		//Initialize Widgets
-		part_type_dd = new Fl_Choice(tb_offset, 0, TB_WIDTH, TB_HEIGHT, "Part Type: ");
+		part_type_dd = new RobotPartDropDown(tb_offset, 0, TB_WIDTH, TB_HEIGHT);
 		name_tb = new Fl_Input(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Name: ");
 		part_number_tb = new Fl_Int_Input(tb_offset, 2 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Part Number: ");
 		weight_tb = new Fl_Float_Input(tb_offset, 3 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Weight [lb]: ");
@@ -26,12 +26,7 @@ using namespace std;
 		picture_box = new Fl_Box(425, 100, 200, 200);
 
 		//Initialize drop down box
-		part_type_dd->add("Head");
-		part_type_dd->add("Torso");
-		part_type_dd->add("Battery");
-		part_type_dd->add("Arm");
-		part_type_dd->add("Locomotor");
-		part_type_dd->value(0);
+		part_type_dd->setItems();
 
 		//Disable extra textboxes by deafult
 		battery_compartments_tb->hide();
@@ -183,12 +178,7 @@ using namespace std;
 	//GETTERS
 	PartType CreatePartSubWindow::partType() const
 	{
-		int part_type_index = part_type_dd->value();
-		if (part_type_index < 0 || part_type_index > PartType::NUM_OF_PART_TYPES - 1)
-		{
-			throw runtime_error("Uknown Part Type!");
-		}
-		return PartType(part_type_index);
+		return part_type_dd->getValue();
 	}
 
 	string CreatePartSubWindow::name() const
@@ -368,7 +358,7 @@ using namespace std;
 //FUNCTIONS
 	void CreatePartSubWindow::reset()
 	{
-		part_type_dd->value(0);
+		part_type_dd->value(-1); //Blank
 		name_tb->value(NULL);
 		part_number_tb->value(NULL);
 		weight_tb->value(NULL);

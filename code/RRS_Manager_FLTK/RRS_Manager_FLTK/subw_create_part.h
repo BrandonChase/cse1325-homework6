@@ -20,6 +20,7 @@
 #include "part_type.h"
 #include "shop.h"
 #include "window_properties.h"
+#include "robot_part_dropdown.h"
 
 class CreatePartSubWindow : public Fl_Window
 {
@@ -47,7 +48,7 @@ private:
 	const int tb_offset = 170;
 
 	//Widgets
-	Fl_Choice* part_type_dd;
+	RobotPartDropDown* part_type_dd;
 	Fl_Input* name_tb;
 	Fl_Int_Input* part_number_tb;
 	Fl_Float_Input* weight_tb;

@@ -28,6 +28,9 @@ public:
 
 	int getPartNumber() const;
 	double getPrice() const;
+	std::string getName() const;
+	std::string getFileName() const;
+
 	virtual std::string outputFormattedString(std::string offset, bool show_details) const = 0;
 	std::string saveData() const; 
 protected:

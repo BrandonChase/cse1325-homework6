@@ -9,6 +9,7 @@
 #include "view.h"
 #include "subw_create_part.h"
 #include "subw_create_customer_sa.h"
+#include "subw_report_all_parts.h"
 
 #include <iostream>
 #include <string>
@@ -44,6 +45,7 @@ private:
 	CreatePartSubWindow* create_part_sw;
 	CreateCustomerSubWindow* create_customer_sw;
 	CreateSASubWindow* create_sa_sw;
+	ReportPartsSubWindow* report_parts_sw;
 
 	//
 	//Callbacks
@@ -55,6 +57,8 @@ private:
 	void displayCreateCustomerSubWindow_CB();
 	static void s_displayCreateSASubWindow_CB(Fl_Widget* w, void* p);
 	void displayCreateSASubWindow_CB();
+	static void s_displayReportPartsSubWindow_CB(Fl_Widget* w, void* p);
+	void displayReportPartsSubWindow_CB();
 	static void s_populateShop_CB(Fl_Widget*, void* p);
 	void populateShop_CB();
 

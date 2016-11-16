@@ -30,6 +30,9 @@ int FLTKController::GUI()
 
 	create_sa_sw = new CreateSASubWindow(shop);
 	subwindows.push_back(create_sa_sw);
+
+	report_parts_sw = new ReportPartsSubWindow(shop);
+	subwindows.push_back(report_parts_sw);
 	
 	//
 	//MENU
@@ -64,7 +67,7 @@ int FLTKController::GUI()
 			{"All Customers", 0, 0, 0},
 			{"All Sales Associates", 0, 0, 0},
 			{"All Robot Models", 0, 0, 0},
-			{"All Robot Parts", 0, 0, 0},
+			{"Robot Parts", 0, 0, 0},
 			{0},
 		{"&Help", 0, 0, 0, FL_SUBMENU },
 			{"&Manual", 0, 0, 0},
@@ -79,6 +82,7 @@ int FLTKController::GUI()
 	menuitems[16].callback(s_displayCreateCustomerSubWindow_CB, this);
 	menuitems[17].callback(s_displayCreateSASubWindow_CB, this);
 	menuitems[34].callback(s_populateShop_CB, this);
+	menuitems[29].callback(s_displayReportPartsSubWindow_CB, this);
 
 	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.15"};
 	Fl_Menu_Bar *menubar;
@@ -151,4 +155,14 @@ void FLTKController::s_populateShop_CB(Fl_Widget*, void* p)
 void FLTKController::populateShop_CB()
 {
 	shop.populateShopForTesting();
+}
+
+void FLTKController::s_displayReportPartsSubWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayReportPartsSubWindow_CB();
+}
+void FLTKController::displayReportPartsSubWindow_CB()
+{
+	hideAllSubWindows();
+	report_parts_sw->show();
 }

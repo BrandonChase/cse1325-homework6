@@ -108,6 +108,16 @@ double RobotPart::getPrice() const
 	return price;
 }
 
+string RobotPart::getName() const
+{
+	return name;
+}
+
+string RobotPart::getFileName() const
+{
+	return image_filename;
+}
+
 int Torso::getNumBatteries() const 
 {
 	return battery_compartments;
