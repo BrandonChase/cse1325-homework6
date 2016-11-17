@@ -72,6 +72,9 @@
     <ClCompile Include="subw_create_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="subw_create_order.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller.h">
@@ -129,6 +132,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="subw_create_model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subw_create_order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -163,6 +163,7 @@
     <ClCompile Include="sales_associate.cpp" />
     <ClCompile Include="shop.cpp" />
     <ClCompile Include="subw_create_customer_sa.cpp" />
+    <ClCompile Include="subw_create_order.cpp" />
     <ClCompile Include="subw_create_part.cpp" />
     <ClCompile Include="subw_report_all_parts.cpp" />
     <ClCompile Include="subw_create_model.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="robot_parts.h" />
     <ClInclude Include="sales_associate.h" />
     <ClInclude Include="shop.h" />
+    <ClInclude Include="subw_create_order.h" />
     <ClInclude Include="subw_create_part.h" />
     <ClInclude Include="subw_report_all_parts.h" />
     <ClInclude Include="subw_create_model.h" />

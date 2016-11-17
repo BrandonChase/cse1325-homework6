@@ -23,46 +23,51 @@ int FLTKController::GUI()
 	fl_register_images();
 
 	//Initialize Subwindows
-	create_part_sw = new CreatePartSubWindow(shop);
-	subwindows.push_back(create_part_sw);
-	
-	create_model_sw = new CreateModelSubWindow(shop);  // JC
-	subwindows.push_back(create_model_sw);
+	{
+		create_part_sw = new CreatePartSubWindow(shop);
+		subwindows.push_back(create_part_sw);
 
-	create_customer_sw = new CreateCustomerSubWindow(shop);
-	subwindows.push_back(create_customer_sw);
+		create_model_sw = new CreateModelSubWindow(shop);  // JC
+		subwindows.push_back(create_model_sw);
 
-	create_sa_sw = new CreateSASubWindow(shop);
-	subwindows.push_back(create_sa_sw);
+		create_customer_sw = new CreateCustomerSubWindow(shop);
+		subwindows.push_back(create_customer_sw);
 
-	report_parts_sw = new ReportPartsSubWindow(shop);
-	subwindows.push_back(report_parts_sw);
+		create_sa_sw = new CreateSASubWindow(shop);
+		subwindows.push_back(create_sa_sw);
+
+		create_order_sw = new CreateOrderSubWindow(shop);
+		subwindows.push_back(create_order_sw);
+
+		report_parts_sw = new ReportPartsSubWindow(shop);
+		subwindows.push_back(report_parts_sw);
+	}
 
 	//
 	//MENU
 	//
 	Fl_Menu_Item menuitems[] = {
 		{"&File", 0, 0, 0, FL_SUBMENU },
-		{"&New", FL_ALT + 'n', 0},
-		{"&Open", FL_ALT + 'o', 0},
-		{"&Save", FL_ALT + 's', 0},
-		{"Save As", FL_ALT + FL_SHIFT + 's', 0},
-		{"Save Default", FL_ALT + FL_SHIFT + 'd', 0},
-		{"&Quit", FL_ALT + 'q', 0},
-		{0},
+			{"&New", FL_ALT + 'n', 0},
+			{"&Open", FL_ALT + 'o', 0},
+			{"&Save", FL_ALT + 's', 0},
+			{"Save As", FL_ALT + FL_SHIFT + 's', 0},
+			{"Save Default", FL_ALT + FL_SHIFT + 'd', 0},
+			{"&Quit", FL_ALT + 'q', 0},
+			{0},
 		{"&Edit", 0, 0, 0, FL_SUBMENU },
-		{"&Undo", 0, 0},
-		{"Cu&t", 0, 0},
-		{"&Copy", 0, 0},
-		{"&Paste", 0, 0},
-		{0},
+			{"&Undo", 0, 0},
+			{"Cu&t", 0, 0},
+			{"&Copy", 0, 0},
+			{"&Paste", 0, 0},
+			{0},
 		{"&Create", 0, 0, 0, FL_SUBMENU },
-		{"Order", 0, 0, 0},
-		{"Customer", 0, 0, 0},
-		{"Sales Associate", 0, 0, 0},
-		{"Robot Part", 0, 0, 0},
-		{"Robot Model", 0, 0, 0},
-		{0},
+			{"Order", 0, 0, 0},
+			{"Customer", 0, 0, 0},
+			{"Sales Associate", 0, 0, 0},
+			{"Robot Part", 0, 0, 0},
+			{"Robot Model", 0, 0, 0},
+			{0},
 		{"&Report", 0, 0, 0, FL_SUBMENU },
 			{"Invoice", 0, 0, 0},
 			{"All Orders", 0, 0, 0},
@@ -82,14 +87,15 @@ int FLTKController::GUI()
 	};
 
 	//Manual Menu Callbacks
-
-
-	menuitems[18].callback(s_displayCreatePartSubWindow_CB, this);
-	menuitems[16].callback(s_displayCreateCustomerSubWindow_CB, this);
-	menuitems[17].callback(s_displayCreateSASubWindow_CB, this);
-	menuitems[34].callback(s_populateShop_CB, this);
-	menuitems[29].callback(s_displayReportPartsSubWindow_CB, this);
-	menuitems[19].callback(s_displayCreateModelSubWindow_CB, this);
+	{
+		menuitems[15].callback(s_displayCreateOrderSubWindow_CB, this); //Create Part
+		menuitems[16].callback(s_displayCreateCustomerSubWindow_CB, this); //Create Customer
+		menuitems[17].callback(s_displayCreateSASubWindow_CB, this); //Create Sales Assoc
+		menuitems[18].callback(s_displayCreatePartSubWindow_CB, this); //Create Part
+		menuitems[19].callback(s_displayCreateModelSubWindow_CB, this); //Create Model
+		menuitems[29].callback(s_displayReportPartsSubWindow_CB, this); //Report Parts
+		menuitems[34].callback(s_populateShop_CB, this); //Populate Shop
+	}
 
 
 	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.16"};
@@ -122,9 +128,6 @@ void FLTKController::hideAllSubWindows()
 }
 
 //Menu Callbacks
-
-
-
 //CREATE SUB MENU CALLBACKS:
 
 //CREATE: PART
@@ -186,10 +189,20 @@ void FLTKController::s_displayCreateModelSubWindow_CB(Fl_Widget* w, void* p)
 {
 	((FLTKController*)p)->displayCreateModelSubWindow_CB();
 }
-
 void FLTKController::displayCreateModelSubWindow_CB()
 {
 	hideAllSubWindows();
 	create_model_sw->update_dd();
 	create_model_sw->show();
+}
+
+void FLTKController::s_displayCreateOrderSubWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayCreateOrderSubWindow_CB();
+
+}
+void FLTKController::displayCreateOrderSubWindow_CB()
+{
+	hideAllSubWindows();
+	create_order_sw->show();
 }
