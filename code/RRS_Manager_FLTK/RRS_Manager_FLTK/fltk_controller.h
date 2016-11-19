@@ -27,6 +27,7 @@
 #include <FL/fl_ask.H>
 #include <FL/Fl_Shared_Image.H>
 #include <FL/Fl_PNG_Image.H>
+#include <FL/Fl_File_Chooser.H>
 
 class FLTKController
 {
@@ -38,7 +39,7 @@ public:
 private:
 	Shop& shop;
 	View view;
-
+	std::string savedfile = "";
 	//
 	//WIDGETS
 	//
@@ -65,7 +66,18 @@ private:
 	void displayReportPartsSubWindow_CB();
 	static void s_populateShop_CB(Fl_Widget*, void* p);
 	void populateShop_CB();
+	
+	static void s_displayFileSaveAsWindow_CB(Fl_Widget*, void* p);	
+	void displayFileSaveAsWindow_CB();
 
+	static void s_displayFileSaveWindow_CB(Fl_Widget*, void* p);	
+	void displayFileSaveWindow_CB();
+
+	static void s_displayFileOpenWindow_CB(Fl_Widget*, void* p);	
+	void displayFileOpenWindow_CB();
+
+	static void s_resetShop_CB(Fl_Widget*, void* p);
+	void resetShop_CB();
 
 	static void s_displayCreateModelSubWindow_CB(Fl_Widget* w, void* p);
 	void displayCreateModelSubWindow_CB();	

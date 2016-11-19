@@ -48,6 +48,7 @@ public:
 	void LoadOrder(std::string line);
 	std::vector<std::string> splitter(const std::string &s, char delim);
 
+	void resetShop();
 	void populateShopForTesting();
 	void savefile(std::string outfile);
 	void loadfile(std::string infile);

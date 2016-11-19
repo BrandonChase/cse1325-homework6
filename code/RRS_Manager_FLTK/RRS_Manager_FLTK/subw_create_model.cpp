@@ -305,6 +305,19 @@ void CreateModelSubWindow::reset()
 	price_tb->value(NULL);
 	num_batteries_tb->value(NULL);
 	num_arms_tb->value(NULL);
+
+	head_choice_dd->clear();
+	torso_choice_dd->clear();
+	locomotor_choice_dd->clear();
+	battery_choice_dd->clear();
+	arm_choice_dd->clear();
+
+
+	head_picture_box->hide();
+	torso_picture_box->hide();
+	locomotor_picture_box->hide();
+	battery_picture_box->hide();
+	arm_picture_box->hide();
 }
 
 

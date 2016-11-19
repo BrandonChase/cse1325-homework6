@@ -47,7 +47,6 @@ int FLTKController::GUI()
 		{"&Open", FL_ALT + 'o', 0},
 		{"&Save", FL_ALT + 's', 0},
 		{"Save As", FL_ALT + FL_SHIFT + 's', 0},
-		{"Save Default", FL_ALT + FL_SHIFT + 'd', 0},
 		{"&Quit", FL_ALT + 'q', 0},
 		{0},
 		{"&Edit", 0, 0, 0, FL_SUBMENU },
@@ -64,35 +63,37 @@ int FLTKController::GUI()
 		{"Robot Model", 0, 0, 0},
 		{0},
 		{"&Report", 0, 0, 0, FL_SUBMENU },
-			{"Invoice", 0, 0, 0},
-			{"All Orders", 0, 0, 0},
-			{"Orders by Customer", 0, 0, 0},
-			{"Orders by Sales Associate", 0, 0, 0},
-			{"All Customers", 0, 0, 0},
-			{"All Sales Associates", 0, 0, 0},
-			{"All Robot Models", 0, 0, 0},
-			{"Robot Parts", 0, 0, 0},
-			{0},
+		{"Invoice", 0, 0, 0},
+		{"All Orders", 0, 0, 0},
+		{"Orders by Customer", 0, 0, 0},
+		{"Orders by Sales Associate", 0, 0, 0},
+		{"All Customers", 0, 0, 0},
+		{"All Sales Associates", 0, 0, 0},
+		{"All Robot Models", 0, 0, 0},
+		{"Robot Parts", 0, 0, 0},
+		{0},
 		{"&Help", 0, 0, 0, FL_SUBMENU },
-			{"&Manual", 0, 0, 0},
-			{"&About", 0, 0, 0},
-			{"Populate Shop", 0, 0, 0},
-			{0},
+		{"&Manual", 0, 0, 0},
+		{"&About", 0, 0, 0},
+		{"Populate Shop", 0, 0, 0},
+		{0},
 		{0}
 	};
 
 	//Manual Menu Callbacks
 
+	menuitems[01].callback(s_resetShop_CB, this);
+	menuitems[02].callback(s_displayFileOpenWindow_CB, this);
+	menuitems[03].callback(s_displayFileSaveWindow_CB, this);
+	menuitems[04].callback(s_displayFileSaveAsWindow_CB, this);
+	menuitems[15].callback(s_displayCreateCustomerSubWindow_CB, this);
+	menuitems[16].callback(s_displayCreateSASubWindow_CB, this);
+	menuitems[17].callback(s_displayCreatePartSubWindow_CB, this);
+	menuitems[18].callback(s_displayCreateModelSubWindow_CB, this);
+	menuitems[28].callback(s_displayReportPartsSubWindow_CB, this);
+	menuitems[33].callback(s_populateShop_CB, this);
 
-	menuitems[18].callback(s_displayCreatePartSubWindow_CB, this);
-	menuitems[16].callback(s_displayCreateCustomerSubWindow_CB, this);
-	menuitems[17].callback(s_displayCreateSASubWindow_CB, this);
-	menuitems[34].callback(s_populateShop_CB, this);
-	menuitems[29].callback(s_displayReportPartsSubWindow_CB, this);
-	menuitems[19].callback(s_displayCreateModelSubWindow_CB, this);
-
-
-	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.16"};
+	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.18"};
 	Fl_Menu_Bar *menubar;
 
 	menubar = new Fl_Menu_Bar(0,0,WIDTH+3*BORDER, MENUHEIGHT);
@@ -138,6 +139,7 @@ void FLTKController::displayCreatePartSubWindow_CB()
 	hideAllSubWindows();
 	create_part_sw->show();
 }
+
 
 void FLTKController::s_displayCreateCustomerSubWindow_CB(Fl_Widget* w, void* p)
 {
@@ -192,4 +194,81 @@ void FLTKController::displayCreateModelSubWindow_CB()
 	hideAllSubWindows();
 	create_model_sw->update_dd();
 	create_model_sw->show();
+}
+
+void FLTKController::s_resetShop_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->resetShop_CB();
+}
+
+void FLTKController::resetShop_CB()
+{
+	hideAllSubWindows();
+	shop.resetShop();
+	create_model_sw->reset();
+	create_model_sw->update_dd();
+}
+
+//saving loading functionality
+
+void FLTKController::s_displayFileSaveWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayFileSaveWindow_CB();
+}
+
+void FLTKController::displayFileSaveWindow_CB() 
+{
+	string directory = "./Saves";
+	string extension = ".shop";
+	if (savedfile == "")
+	{
+		savedfile = fl_file_chooser("Save File As?", "*", directory.c_str());
+	}
+
+	if (savedfile != "") 
+	{
+		shop.savefile(savedfile + extension);
+	}
+}
+
+
+
+void FLTKController::s_displayFileSaveAsWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayFileSaveAsWindow_CB();
+}
+
+void FLTKController::displayFileSaveAsWindow_CB() // potential bugs - needs more testing
+{
+	char *newfile;
+	string directory = "./Saves";
+	string extension = ".shop";
+	newfile = fl_file_chooser("Save File As?", "*", directory.c_str());
+	savedfile = newfile;
+	cerr << savedfile;
+	if (newfile != NULL) 
+	{
+		shop.savefile(newfile + extension);
+	}
+}
+
+
+
+
+void FLTKController::s_displayFileOpenWindow_CB(Fl_Widget* w, void* p) //seg faults - still testing
+{
+	((FLTKController*)p)->displayFileOpenWindow_CB();
+}
+
+void FLTKController::displayFileOpenWindow_CB() 
+{
+	char *newfile;
+	string directory = "./Saves";
+	newfile = fl_file_chooser("Load File?", "*.shop", directory.c_str());
+	savedfile = newfile;
+
+	if (newfile != NULL) 
+	{
+		shop.loadfile(newfile);
+	}
 }
