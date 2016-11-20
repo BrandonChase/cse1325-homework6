@@ -75,6 +75,18 @@
     <ClCompile Include="subw_create_order.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="subw_report_sa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subw_report_customer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subw_report_models.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subw_report_orders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller.h">
@@ -135,6 +147,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="subw_create_order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subw_report_sa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subw_report_customer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subw_report_models.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subw_report_orders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

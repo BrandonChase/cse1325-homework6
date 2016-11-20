@@ -12,6 +12,10 @@
 #include "subw_report_all_parts.h"
 #include "subw_create_model.h"
 #include "subw_create_order.h"
+#include "subw_report_sa.h"
+#include "subw_report_customer.h"
+#include "subw_report_models.h"
+#include "subw_report_orders.h"
 
 #include <iostream>
 #include <string>
@@ -50,6 +54,10 @@ private:
 	CreateModelSubWindow* create_model_sw;
 	CreateOrderSubWindow* create_order_sw;
 	ReportPartsSubWindow* report_parts_sw;
+	ReportSASubWindow* report_sa_sw;
+	ReportCustomerSubWindow* report_customer_sw;
+	ReportModelSubWindow* report_model_sw;
+	ReportOrderSubWindow* report_order_sw;
 
 	//
 	//Callbacks
@@ -72,6 +80,18 @@ private:
 
 	static void s_displayReportPartsSubWindow_CB(Fl_Widget* w, void* p);
 	void displayReportPartsSubWindow_CB();
+
+	static void s_displayReportSASubWindow_CB(Fl_Widget* w, void* p);
+	void displayReportSASubWindow_CB();
+
+	static void s_displayReportCustomerSubWindow_CB(Fl_Widget* w, void* p);
+	void displayReportCustomerSubWindow_CB();
+
+	static void s_displayReportModelsSubWindow_CB(Fl_Widget* w, void* p);
+	void displayReportModelsSubWindow_CB();
+
+	static void s_displayReportOrderSubWindow_CB(Fl_Widget* w, void* p);
+	void displayReportOrderSubWindow_CB();
 
 	static void s_populateShop_CB(Fl_Widget*, void* p);
 	void populateShop_CB();

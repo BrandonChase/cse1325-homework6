@@ -167,6 +167,10 @@
     <ClCompile Include="subw_create_part.cpp" />
     <ClCompile Include="subw_report_all_parts.cpp" />
     <ClCompile Include="subw_create_model.cpp" />
+    <ClCompile Include="subw_report_customer.cpp" />
+    <ClCompile Include="subw_report_models.cpp" />
+    <ClCompile Include="subw_report_orders.cpp" />
+    <ClCompile Include="subw_report_sa.cpp" />
     <ClCompile Include="tester.cpp" />
     <ClCompile Include="view.cpp" />
   </ItemGroup>
@@ -188,6 +192,10 @@
     <ClInclude Include="subw_create_part.h" />
     <ClInclude Include="subw_report_all_parts.h" />
     <ClInclude Include="subw_create_model.h" />
+    <ClInclude Include="subw_report_customer.h" />
+    <ClInclude Include="subw_report_models.h" />
+    <ClInclude Include="subw_report_orders.h" />
+    <ClInclude Include="subw_report_sa.h" />
     <ClInclude Include="tester.h" />
     <ClInclude Include="view.h" />
     <ClInclude Include="window_properties.h" />

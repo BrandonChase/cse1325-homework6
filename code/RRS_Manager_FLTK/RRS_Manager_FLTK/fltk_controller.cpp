@@ -41,6 +41,18 @@ int FLTKController::GUI()
 
 		report_parts_sw = new ReportPartsSubWindow(shop);
 		subwindows.push_back(report_parts_sw);
+
+		report_sa_sw = new ReportSASubWindow(shop);
+		subwindows.push_back(report_sa_sw);
+
+		report_customer_sw = new ReportCustomerSubWindow(shop);
+		subwindows.push_back(report_customer_sw);
+
+		report_model_sw = new ReportModelSubWindow(shop);
+		subwindows.push_back(report_model_sw);
+
+		report_order_sw = new ReportOrderSubWindow(shop);
+		subwindows.push_back(report_order_sw);
 	}
 
 	//
@@ -69,13 +81,10 @@ int FLTKController::GUI()
 			{"Robot Model", 0, 0, 0},
 			{0},
 		{"&Report", 0, 0, 0, FL_SUBMENU },
-			{"Invoice", 0, 0, 0},
-			{"All Orders", 0, 0, 0},
-			{"Orders by Customer", 0, 0, 0},
-			{"Orders by Sales Associate", 0, 0, 0},
-			{"All Customers", 0, 0, 0},
-			{"All Sales Associates", 0, 0, 0},
-			{"All Robot Models", 0, 0, 0},
+			{"Orders", 0, 0, 0},
+			{"Customers", 0, 0, 0},
+			{"Sales Associates", 0, 0, 0},
+			{"Robot Models", 0, 0, 0},
 			{"Robot Parts", 0, 0, 0},
 			{0},
 		{"&Help", 0, 0, 0, FL_SUBMENU },
@@ -93,8 +102,12 @@ int FLTKController::GUI()
 		menuitems[17].callback(s_displayCreateSASubWindow_CB, this); //Create Sales Assoc
 		menuitems[18].callback(s_displayCreatePartSubWindow_CB, this); //Create Part
 		menuitems[19].callback(s_displayCreateModelSubWindow_CB, this); //Create Model
-		menuitems[29].callback(s_displayReportPartsSubWindow_CB, this); //Report Parts
-		menuitems[34].callback(s_populateShop_CB, this); //Populate Shop
+		menuitems[22].callback(s_displayReportOrderSubWindow_CB, this); //Report Order
+		menuitems[23].callback(s_displayReportCustomerSubWindow_CB, this); //Report Customer
+		menuitems[24].callback(s_displayReportSASubWindow_CB, this); //Report SA
+		menuitems[25].callback(s_displayReportModelsSubWindow_CB, this); //Report Models
+		menuitems[26].callback(s_displayReportPartsSubWindow_CB, this); //Report Parts
+		menuitems[31].callback(s_populateShop_CB, this); //Populate Shop
 	}
 
 
@@ -206,4 +219,52 @@ void FLTKController::displayCreateOrderSubWindow_CB()
 	hideAllSubWindows();
 	create_order_sw->initializeDropDowns();
 	create_order_sw->show();
+}
+
+void FLTKController::s_displayReportSASubWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayReportSASubWindow_CB();
+}
+
+void FLTKController::displayReportSASubWindow_CB()
+{
+	hideAllSubWindows();
+	report_sa_sw->initiliazeSADropDrown();
+	report_sa_sw->show();
+}
+
+void FLTKController::s_displayReportCustomerSubWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayReportCustomerSubWindow_CB();
+}
+
+void FLTKController::displayReportCustomerSubWindow_CB()
+{
+	hideAllSubWindows();
+	report_customer_sw->initiliazeCustomerDropDrown();
+	report_customer_sw->show();
+}
+
+void FLTKController::s_displayReportModelsSubWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayReportModelsSubWindow_CB();
+}
+
+void FLTKController::displayReportModelsSubWindow_CB()
+{
+	hideAllSubWindows();
+	report_model_sw->initiliazeModelDropDrown();
+	report_model_sw->show();
+}
+
+void FLTKController::s_displayReportOrderSubWindow_CB(Fl_Widget* w, void* p)
+{
+	((FLTKController*)p)->displayReportOrderSubWindow_CB();
+}
+
+void FLTKController::displayReportOrderSubWindow_CB()
+{
+	hideAllSubWindows();
+	report_order_sw->initiliazeOrderDropDrown();
+	report_order_sw->show();
 }
