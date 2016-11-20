@@ -204,5 +204,6 @@ void FLTKController::s_displayCreateOrderSubWindow_CB(Fl_Widget* w, void* p)
 void FLTKController::displayCreateOrderSubWindow_CB()
 {
 	hideAllSubWindows();
+	create_order_sw->initializeDropDowns();
 	create_order_sw->show();
 }

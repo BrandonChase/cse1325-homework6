@@ -9,6 +9,8 @@
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Int_Input.H>
+#include <FL/Fl_Text_Display.H>
+#include <FL/Fl_Text_Buffer.H>
 
 #include "customer.h"
 #include "sales_associate.h"
@@ -30,6 +32,8 @@ public:
 	int getDateDay();
 	int getDateYear();
 
+	void initializeDropDowns();
+
 private:
 	Shop& shop;
 	std::vector<RobotModel> chosen_models;
@@ -44,14 +48,14 @@ private:
 	Fl_Choice* sales_assoc_dd;
 	Fl_Choice* customer_dd;
 	Fl_Choice* available_models_dd;
-	Fl_Choice* chosen_models_dd;
+	Fl_Text_Display* chosen_models_tb;
+	Fl_Text_Buffer* buffer;
 	Fl_Button* create_btn;
 	Fl_Button* add_model_btn;
 	Fl_Button* close_btn;
 
 	//Functions
 	void reset();
-	void initializeDropDowns();
 
 	//Widget Callbacks
 	static void s_create_btn_CB(Fl_Widget* w, void* p)
