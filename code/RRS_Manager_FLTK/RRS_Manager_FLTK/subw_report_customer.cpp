@@ -82,22 +82,28 @@ RobotModel ReportCustomerSubWindow::getModel()
 void ReportCustomerSubWindow::customer_dd_CB()
 {
 	order_dd->clear();
+	order_dd->value(-1);
+	model_dd->clear();
+	model_dd->value(-1);
 	vector<Order> orders = getCustomer().getOrders();
 	for (const Order o : orders)
 	{
 		order_dd->add(o.outputFormattedString("", false).c_str());
 	}
+	redraw();
 }
 
 void ReportCustomerSubWindow::order_dd_CB()
 {
 	model_dd->clear();
+	model_dd->value(-1);
 	Order o = getOrder();
 	vector<RobotModel> models = o.getRobotModels();
 	for (const RobotModel m : models)
 	{
 		model_dd->add(m.outputFormattedString("", false).c_str());
 	}
+	redraw();
 }
 
 void ReportCustomerSubWindow::model_dd_CB()
