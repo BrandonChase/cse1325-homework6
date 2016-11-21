@@ -287,6 +287,7 @@ void FLTKController::displayFileOpenWindow_CB()
 		if (newfile != NULL) 
 		{
 			savedfile = newfile;
+			resetShop_CB();
 			shop.loadfile(newfile);
 		}
 	}
