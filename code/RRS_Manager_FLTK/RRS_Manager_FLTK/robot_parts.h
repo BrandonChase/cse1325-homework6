@@ -24,7 +24,8 @@ public:
 	price(p_price),
 	type(p_type),
 	description(p_description),
-	image_filename(p_image_filename){}
+	image_filename(p_image_filename),
+	isHidden(false){}
 
 	int getPartNumber() const;
 	double getPrice() const;
@@ -40,6 +41,8 @@ protected:
 	double weight; //lbs
 	double price; //$
 	PartType type;
+	bool isHidden;
+
 	std::string description;
 	std::string image_filename;
 	std::string outputBasics(std::string offset) const;
