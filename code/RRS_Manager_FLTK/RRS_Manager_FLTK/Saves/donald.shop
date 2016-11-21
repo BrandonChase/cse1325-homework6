@@ -6,7 +6,6 @@ War Head,135,4.000000,11.000000,This is war head no. 1,Images/Heads/head_orange.
 Destroyer Torso,112,2.000000,6.000000,This is destroyer torso no. 1,Images/Torsos/torso_soldier.png,2
 Servant Torso,134,23.000000,12.000000,This is servant torso no. 1,Images/Torsos/torso_button.png,2
 War Torso,54,24.000000,97.000000,This is war torso no. 1,Images/Torsos/torso_orange.png,2
-766,5673,345346.000000,34536.000000,234234,Images/Torsos/torso_soldier.png,2
 /Battery/
 Destroyer Battery,114,4.000000,8.000000,This is destroyer battery no. 1,Images/Batteries/battery_red.png,500.000000
 Servant Battery,123,8.000000,9.000000,This is servant battery no. 1,Images/Batteries/battery_green.png,500.000000

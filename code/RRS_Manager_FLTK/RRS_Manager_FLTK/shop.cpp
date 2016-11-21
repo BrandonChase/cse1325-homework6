@@ -307,7 +307,8 @@ void Shop::loadfile(string infile)
 
 	ifstream loadfile(infile);
 	if (!loadfile) throw runtime_error("Unable to load specified file " + infile);
-	if (loadfile.good())
+
+	if (loadfile.good() && !loadfile.eof())
 	{
 		bool is_changing = false;
 		int cur_tagtype = 0;

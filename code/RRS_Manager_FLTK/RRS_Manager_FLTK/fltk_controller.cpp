@@ -206,7 +206,7 @@ void FLTKController::resetShop_CB()
 	hideAllSubWindows();
 	shop.resetShop();
 	create_model_sw->reset();
-	create_model_sw->update_dd();
+	//create_model_sw->update_dd();
 }
 
 //saving loading functionality
@@ -218,19 +218,17 @@ void FLTKController::s_displayFileSaveWindow_CB(Fl_Widget* w, void* p)
 
 void FLTKController::displayFileSaveWindow_CB() 
 {
-	string directory = "./Saves";
+	string directory = "./Saves/";
 	string extension = ".shop";
 	try
 	{
 		if (savedfile == "")
 		{
-			savedfile = fl_file_chooser("Save File As?", "*", directory.c_str());
+			//savedfile = fl_file_chooser("Save File As?", "*", directory.c_str());
+			savedfile = fl_input("Enter filename to save to: ");
+			savedfile = directory + savedfile + extension;
 		}
-
-		if (savedfile != "") 
-		{
-			shop.savefile(savedfile);
-		}
+		shop.savefile(savedfile);
 	}
 	catch (...)
 	{
@@ -247,18 +245,19 @@ void FLTKController::s_displayFileSaveAsWindow_CB(Fl_Widget* w, void* p)
 
 void FLTKController::displayFileSaveAsWindow_CB() // potential bugs - needs more testing
 {
-	char *newfile;
-	string directory = "./Saves";
+	string newfile;
+	string directory = "./Saves/";
 	string extension = ".shop";
 	try 
 	{
-		newfile = fl_file_chooser("Save File As?", "*", directory.c_str());
-		savedfile = newfile;
+		newfile = fl_input("Enter filename to save to: ");
+		//newfile = fl_file_chooser("Save File As?", "*", directory.c_str());
+		savedfile = directory + newfile + extension;
 		cerr << savedfile;
-		if (newfile != NULL) 
+		if (newfile.c_str() != NULL) 
 		{
 			if (savedfile.find(".")) { extension = "";}
-			shop.savefile(newfile + extension);
+			shop.savefile(savedfile);
 		}
 	}
 	catch (...)
