@@ -220,14 +220,21 @@ void FLTKController::displayFileSaveWindow_CB()
 {
 	string directory = "./Saves";
 	string extension = ".shop";
-	if (savedfile == "")
+	try
 	{
-		savedfile = fl_file_chooser("Save File As?", "*", directory.c_str());
-	}
+		if (savedfile == "")
+		{
+			savedfile = fl_file_chooser("Save File As?", "*", directory.c_str());
+		}
 
-	if (savedfile != "") 
+		if (savedfile != "") 
+		{
+			shop.savefile(savedfile);
+		}
+	}
+	catch (...)
 	{
-		shop.savefile(savedfile + extension);
+		cerr << "Save was unsuccessful\n";
 	}
 }
 
@@ -243,13 +250,22 @@ void FLTKController::displayFileSaveAsWindow_CB() // potential bugs - needs more
 	char *newfile;
 	string directory = "./Saves";
 	string extension = ".shop";
-	newfile = fl_file_chooser("Save File As?", "*", directory.c_str());
-	savedfile = newfile;
-	cerr << savedfile;
-	if (newfile != NULL) 
+	try 
 	{
-		shop.savefile(newfile + extension);
+		newfile = fl_file_chooser("Save File As?", "*", directory.c_str());
+		savedfile = newfile;
+		cerr << savedfile;
+		if (newfile != NULL) 
+		{
+			if (savedfile.find(".")) { extension = "";}
+			shop.savefile(newfile + extension);
+		}
 	}
+	catch (...)
+	{
+		cerr << "Save as was unsuccessful\n";
+	}
+
 }
 
 
@@ -262,13 +278,21 @@ void FLTKController::s_displayFileOpenWindow_CB(Fl_Widget* w, void* p) //seg fau
 
 void FLTKController::displayFileOpenWindow_CB() 
 {
-	char *newfile;
-	string directory = "./Saves";
-	newfile = fl_file_chooser("Load File?", "*.shop", directory.c_str());
-	savedfile = newfile;
-
-	if (newfile != NULL) 
+	try
 	{
-		shop.loadfile(newfile);
+		char *newfile;
+		string directory = "./Saves";
+		newfile = fl_file_chooser("Load File?", "*.shop", directory.c_str());
+
+
+		if (newfile != NULL) 
+		{
+			savedfile = newfile;
+			shop.loadfile(newfile);
+		}
+	}
+	catch(...)
+	{
+		cerr << "Load was unsuccessful\n";
 	}
 }
