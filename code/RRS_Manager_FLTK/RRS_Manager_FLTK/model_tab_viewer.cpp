@@ -9,41 +9,47 @@ using namespace std;
 
 ModelTabViewer::ModelTabViewer()
 {
-	tabs = new Fl_Tabs(xoffset,yoffset,xsize+50,ysize+150);
+	tabs = new Fl_Tabs(xoffset+25,yoffset,xsize+50,ysize+150);
 	{
 		Fl_Group *head_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Head");
 		{
-			head_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+			head_picture_box = new Fl_Box(100+xoffset, 50+yoffset, 100, 100);
 		}
 		head_g->end();
 
 		Fl_Group *torso_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Torso");
 		{
-			torso_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+			torso_picture_box = new Fl_Box(100+xoffset, 50+yoffset, 100, 100);
 		}
 		torso_g->end();
 
 		Fl_Group *locomotor_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Loco");
 		{
-			locomotor_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+			locomotor_picture_box = new Fl_Box(100+xoffset, 50+yoffset, 100, 100);
 		}
 		locomotor_g->end();
 
 		Fl_Group *battery_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Batt");
 		{
-			battery_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+			battery_picture_box = new Fl_Box(100+xoffset, 50+yoffset, 100, 100);
 		}
 		battery_g->end();
 
 		Fl_Group *arm_g = new Fl_Group(xoffset,yoffset,xsize,ysize+50,"Arm ");
 		{
-			arm_picture_box = new Fl_Box(75+xoffset, 50+yoffset, 100, 100);
+			arm_picture_box = new Fl_Box(100+xoffset, 50+yoffset, 100, 100);
 		}
 		arm_g->end();
 	}
 	tabs->end();
 
 	tabs->redraw();
+
+	model_tb = new Fl_Text_Display(10, yoffset+175,400, 300);
+	buffer = new Fl_Text_Buffer();
+
+	model_tb->buffer(buffer);
+	reset();
 }
 
 void ModelTabViewer::display_image(RobotModel modelin)
@@ -71,4 +77,34 @@ void ModelTabViewer::display_image(RobotModel modelin)
 	arm_picture_box->show();
 
 	tabs->redraw();
+}
+
+void ModelTabViewer::update_tb(RobotModel m)
+{
+	buffer->text(m.outputFormattedString("", 1).c_str());
+	model_tb->buffer(buffer);
+}
+
+void ModelTabViewer::show()
+{
+	tabs->show();
+	model_tb->show();
+}
+
+void ModelTabViewer::hide()
+{
+	tabs->hide();
+	model_tb->hide();
+}
+
+void ModelTabViewer::reset()
+{
+	hide();
+	buffer->text("");
+	model_tb->buffer(buffer);
+	head_picture_box->hide();
+	torso_picture_box->hide();
+	locomotor_picture_box->hide();
+	battery_picture_box->hide();
+	arm_picture_box->hide();
 }

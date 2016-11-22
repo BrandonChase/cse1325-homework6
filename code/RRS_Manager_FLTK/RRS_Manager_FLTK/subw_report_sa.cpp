@@ -31,6 +31,7 @@ void ReportSASubWindow::reset()
 	sa_dd->clear();
 	order_dd->clear();
 	model_dd->clear();
+	mtv.reset();
 }
 
 void ReportSASubWindow::initiliazeSADropDrown()
@@ -108,8 +109,9 @@ void ReportSASubWindow::order_dd_CB()
 
 void ReportSASubWindow::model_dd_CB()
 {
+	mtv.show();
 	mtv.display_image(getModel());
-
+	mtv.update_tb(getModel());
 }
 
 void ReportSASubWindow::close_btn_CB()
