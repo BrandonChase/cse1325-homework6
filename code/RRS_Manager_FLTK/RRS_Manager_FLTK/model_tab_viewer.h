@@ -24,6 +24,8 @@
 #include "shop.h"
 #include "view.h"
 #include "window_properties.h"
+#include <FL/Fl_Text_Display.H>
+#include <FL/Fl_Text_Buffer.H>
 
 class ModelTabViewer
 {
@@ -38,11 +40,8 @@ private:
 
 	Fl_Tabs *tabs;
 
-	Head* head_x;
-	Locomotor* locomotor_x;
-	Torso* torso_x;
-	Battery* battery_x;
-	Arm* arm_x;
+	Fl_Text_Display* model_tb;
+	Fl_Text_Buffer* buffer;
 
 	Fl_Box* head_picture_box;
 	Fl_Box* torso_picture_box;
