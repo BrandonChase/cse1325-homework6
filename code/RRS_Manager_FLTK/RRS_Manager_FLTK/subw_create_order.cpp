@@ -12,14 +12,15 @@ CreateOrderSubWindow::CreateOrderSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIG
 	date_month = new Fl_Int_Input(tb_offset + 0 * (TB_WIDTH+10), 0, 25, TB_HEIGHT, "Date: ");
 	date_day = new Fl_Int_Input(tb_offset + 1 * (25 + 20), 0, 25, TB_HEIGHT, "/ ");
 	date_year = new Fl_Int_Input(tb_offset + 2 * (25 + 20), 0, 50, TB_HEIGHT, "/ ");
-	sales_assoc_dd = new Fl_Choice(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Sales Assoc: ");
-	customer_dd = new Fl_Choice(tb_offset, 2 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Customer: ");
-	available_models_dd = new Fl_Choice(tb_offset, 3 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Model to Add: ");
-	add_model_btn = new Fl_Button(175, 4 * (TB_HEIGHT + TB_SPACING), 100, 50, "Add Model");
-	chosen_models_tb = new Fl_Text_Display(75, 5 * (TB_HEIGHT + TB_SPACING) + 30, 300, 100, "Order Report: ");
+	order_number = new Fl_Int_Input(tb_offset, 1 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Order #: ");
+	sales_assoc_dd = new Fl_Choice(tb_offset, 2 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Sales Assoc: ");
+	customer_dd = new Fl_Choice(tb_offset, 3 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Customer: ");
+	available_models_dd = new Fl_Choice(tb_offset, 4 * (TB_HEIGHT + TB_SPACING), TB_WIDTH, TB_HEIGHT, "Model to Add: ");
+	add_model_btn = new Fl_Button(175, 5 * (TB_HEIGHT + TB_SPACING), 100, 50, "Add Model");
+	chosen_models_tb = new Fl_Text_Display(75, 6 * (TB_HEIGHT + TB_SPACING) + 30, 300, 100, "Order Report: ");
 	buffer = new Fl_Text_Buffer();
-	create_btn = new Fl_Button(110, 6 * (TB_HEIGHT + TB_SPACING) + 100, 100, 50, "Create Order");
-	close_btn = new Fl_Button(235, 6 * (TB_HEIGHT + TB_SPACING) + 100, 100, 50, "Finish Later");
+	create_btn = new Fl_Button(110, 7 * (TB_HEIGHT + TB_SPACING) + 100, 100, 50, "Create Order");
+	close_btn = new Fl_Button(235, 7 * (TB_HEIGHT + TB_SPACING) + 100, 100, 50, "Finish Later");
 
 	chosen_models_tb->buffer(buffer);
 
@@ -125,6 +126,30 @@ int CreateOrderSubWindow::getDateYear()
 	return year;
 }
 
+int CreateOrderSubWindow::getOrderNumber()
+{
+	int order_num;
+	try
+	{
+		order_num = stoi(order_number->value());
+		if (order_num < 0)
+		{
+			throw runtime_error("Order number must be positive!");
+		}
+	}
+
+	catch (const exception& e)
+	{
+		throw runtime_error("Order number is not numeric!");
+	}
+
+	if (!shop.isOrderNumberUnique(order_num))
+	{
+		throw runtime_error("Order number isn't unique!");
+	}
+	return order_num;
+}
+
 //FUNCTIONS
 void CreateOrderSubWindow::reset()
 {
@@ -175,7 +200,13 @@ void CreateOrderSubWindow::create_btn_CB()
 {
 	try
 	{
-		shop.addOrder(Order(0, getCustomer().getCustomerNumber(), getSalesAssoc().getSalesAssociateNumber(), chosen_models, 0,
+		double price = 0;
+		for (RobotModel m : chosen_models)
+		{
+			price += m.getPrice();
+		}
+
+		shop.addOrder(Order(getOrderNumber(), getCustomer().getCustomerNumber(), getSalesAssoc().getSalesAssociateNumber(), chosen_models, price,
 			Date(getDateMonth(), getDateDay(), getDateYear())), getCustomer().getCustomerNumber(), getSalesAssoc().getSalesAssociateNumber());
 		reset();
 		hide();

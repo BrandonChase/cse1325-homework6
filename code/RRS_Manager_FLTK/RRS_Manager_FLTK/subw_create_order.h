@@ -31,6 +31,7 @@ public:
 	int getDateMonth();
 	int getDateDay();
 	int getDateYear();
+	int getOrderNumber();
 
 	void initializeDropDowns();
 	void reset();
@@ -46,6 +47,7 @@ private:
 	Fl_Int_Input* date_month;
 	Fl_Int_Input* date_day;
 	Fl_Int_Input* date_year;
+	Fl_Int_Input* order_number;
 	Fl_Choice* sales_assoc_dd;
 	Fl_Choice* customer_dd;
 	Fl_Choice* available_models_dd;
