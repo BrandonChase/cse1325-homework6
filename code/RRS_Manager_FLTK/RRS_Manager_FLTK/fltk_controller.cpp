@@ -81,7 +81,6 @@ int FLTKController::GUI()
 			{"Robot Parts", 0, 0, 0},
 			{0},
 		{"&Help", 0, 0, 0, FL_SUBMENU },
-			{"&Manual", 0, 0, 0},
 			{"Populate Shop", 0, 0, 0},
 			{0},
 		{0}
@@ -104,7 +103,7 @@ int FLTKController::GUI()
 		menuitems[17].callback(s_displayReportSASubWindow_CB, this); //Report SA
 		menuitems[18].callback(s_displayReportModelsSubWindow_CB, this); //Report Models
 		menuitems[19].callback(s_displayReportPartsSubWindow_CB, this); //Report Parts
-		menuitems[23].callback(s_populateShop_CB, this); //Populate Shop
+		menuitems[22].callback(s_populateShop_CB, this); //Populate Shop
 	}
 
 	win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.69"};
