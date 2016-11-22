@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void ModelTabViewer::display_tabs()
+ModelTabViewer::ModelTabViewer()
 {
 	tabs = new Fl_Tabs(xoffset,yoffset,xsize+50,ysize+150);
 	{
@@ -46,29 +46,31 @@ void ModelTabViewer::display_tabs()
 
 void ModelTabViewer::display_image(RobotModel modelin)
 {
-	head_x = modelin.gethead();
-	locomotor_x = modelin.getlocomotor();
-	torso_x = modelin.gettorso();
-	arm_x = modelin.getarm();
-	battery_x = modelin.getbattery();
+	head_x = &(modelin.gethead());
+	locomotor_x = &(modelin.getlocomotor());
+	torso_x = &(modelin.gettorso());
+	arm_x = &(modelin.getarm());
+	battery_x = &(modelin.getbattery());
 
-	head_image = new Fl_PNG_Image(head_x.getImageLocation().c_str());
+	string imagefilename = (*head_x).getImageLocation();
+	cout << imagefilename;
+	head_image = new Fl_PNG_Image(imagefilename.c_str());
 	head_picture_box->image(head_image);
 	head_picture_box->show();
 
-	torso_image = new Fl_PNG_Image(torso_x.getImageLocation().c_str());
+	torso_image = new Fl_PNG_Image(torso_x->getImageLocation().c_str());
 	torso_picture_box->image(torso_image);
 	torso_picture_box->show();
 
-	locomotor_image = new Fl_PNG_Image(locomotor_x.getImageLocation().c_str());
+	locomotor_image = new Fl_PNG_Image(locomotor_x->getImageLocation().c_str());
 	locomotor_picture_box->image(locomotor_image);
 	locomotor_picture_box->show();
 
-	battery_image = new Fl_PNG_Image(battery_x.getImageLocation().c_str());
+	battery_image = new Fl_PNG_Image(battery_x->getImageLocation().c_str());
 	battery_picture_box->image(battery_image);
 	battery_picture_box->show();
 
-	arm_image = new Fl_PNG_Image(arm_x.getImageLocation().c_str());
+	arm_image = new Fl_PNG_Image(arm_x->getImageLocation().c_str());
 	arm_picture_box->image(arm_image);
 	arm_picture_box->show();
 

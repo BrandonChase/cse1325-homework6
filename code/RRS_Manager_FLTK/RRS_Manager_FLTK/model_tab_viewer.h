@@ -28,7 +28,7 @@
 class ModelTabViewer
 {
 public:
-	void display_tabs();
+	ModelTabViewer();
 	void display_image(RobotModel modelin);
 
 private:
@@ -38,11 +38,11 @@ private:
 
 	Fl_Tabs *tabs;
 
-	Head head_x;
-	Locomotor locomotor_x;
-	Torso torso_x;
-	Battery battery_x;
-	Arm arm_x;
+	Head* head_x;
+	Locomotor* locomotor_x;
+	Torso* torso_x;
+	Battery* battery_x;
+	Arm* arm_x;
 
 	Fl_Box* head_picture_box;
 	Fl_Box* torso_picture_box;

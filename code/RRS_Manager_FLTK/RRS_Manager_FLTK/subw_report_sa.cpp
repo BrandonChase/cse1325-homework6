@@ -74,8 +74,8 @@ RobotModel ReportSASubWindow::getModel()
 		throw runtime_error("Model is blank!");
 	}
 
-	const RobotModel* m = &(getOrder().getRobotModels()[model_index]);
-	return *m;
+	vector<RobotModel> models= getOrder().getRobotModels();
+	return models[model_index];
 }
 
 //CALLBACKS
@@ -108,9 +108,7 @@ void ReportSASubWindow::order_dd_CB()
 
 void ReportSASubWindow::model_dd_CB()
 {
-	mtv.display_tabs();
 	mtv.display_image(getModel());
-
 }
 
 void ReportSASubWindow::close_btn_CB()

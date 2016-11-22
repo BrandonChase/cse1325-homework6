@@ -87,6 +87,9 @@
     <ClCompile Include="subw_report_orders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="model_tab_viewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller.h">
@@ -159,6 +162,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="subw_report_orders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model_tab_viewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
