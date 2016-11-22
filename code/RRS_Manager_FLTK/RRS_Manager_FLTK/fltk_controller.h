@@ -47,7 +47,7 @@ private:
 	//
 	//WIDGETS
 	//
-
+	Fl_Window* win;
 	std::vector<Fl_Window*> subwindows;
 	CreatePartSubWindow* create_part_sw;
 	CreateCustomerSubWindow* create_customer_sw;
@@ -108,6 +108,9 @@ private:
 
 	static void s_resetShop_CB(Fl_Widget*, void* p);
 	void resetShop_CB();
+
+	static void s_quit_CB(Fl_Widget*, void* p);
+	void quit_CB();
 	//HELPER FUNCTIONS
 	void hideAllSubWindows();
 };

@@ -100,6 +100,7 @@ int FLTKController::GUI()
 		menuitems[02].callback(s_displayFileOpenWindow_CB, this);
 		menuitems[03].callback(s_displayFileSaveWindow_CB, this);
 		menuitems[04].callback(s_displayFileSaveAsWindow_CB, this);
+		menuitems[05].callback(s_quit_CB, this);
 		menuitems[14].callback(s_displayCreateOrderSubWindow_CB, this); //Create Part
 		menuitems[15].callback(s_displayCreateCustomerSubWindow_CB, this); //Create Customer
 		menuitems[16].callback(s_displayCreateSASubWindow_CB, this); //Create Sales Assoc
@@ -113,7 +114,7 @@ int FLTKController::GUI()
 		menuitems[30].callback(s_populateShop_CB, this); //Populate Shop
 	}
 
-	Fl_Window* win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.18"};
+	win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.18"};
 	Fl_Menu_Bar *menubar;
 
 	menubar = new Fl_Menu_Bar(0,0,WIDTH+3*BORDER, MENUHEIGHT);
@@ -231,7 +232,7 @@ void FLTKController::resetShop_CB()
 	report_model_sw->reset();
 	report_order_sw->reset();
 	report_sa_sw->reset();
-
+	shop.isDirty = false;
 	//create_model_sw->update_dd();
 }
 
@@ -315,6 +316,7 @@ void FLTKController::displayFileOpenWindow_CB()
 			savedfile = newfile;
 			resetShop_CB();
 			shop.loadfile(newfile);
+			shop.isDirty = false;
 		}
 	}
 	catch(...)
@@ -381,4 +383,27 @@ void FLTKController::displayReportOrderSubWindow_CB()
 	hideAllSubWindows();
 	report_order_sw->initiliazeOrderDropDrown();
 	report_order_sw->show();
+}
+
+void FLTKController::s_quit_CB(Fl_Widget*, void* p)
+{
+	((FLTKController*)p)->quit_CB();
+}
+
+void FLTKController::quit_CB()
+{
+	if (shop.isDirty)
+	{
+		if (fl_ask("There is unsaved data. Are you sure you want to quit?"))
+		{
+			hideAllSubWindows();
+			win->hide();
+		}
+	}
+
+	else
+	{
+		hideAllSubWindows();
+		win->hide();
+	}
 }

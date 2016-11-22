@@ -20,6 +20,7 @@
 class Shop
 {
 public:
+	bool isDirty = false;
 	void addHead(Head p_head);
 	void addLocomotor(Locomotor p_locomotor);
 	void addTorso(Torso p_torso);

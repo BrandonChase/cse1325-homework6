@@ -7,11 +7,14 @@ using namespace std;
 void Shop::addCustomer(Customer p_customer)
 {
 	customers.push_back(p_customer);
+	isDirty = true;
 }
 
 void Shop::addSalesAssociate(SalesAssociate p_sa)
 {
 	sales_associates.push_back(p_sa);
+	isDirty = true;
+
 }
 
 void Shop::addOrder(Order p_order, int sales_associate_id, int customer_id)  
@@ -32,36 +35,50 @@ void Shop::addOrder(Order p_order, int sales_associate_id, int customer_id)
 		}
 	}
 	orders.push_back(p_order);
+	isDirty = true;
+
 }
 
 void Shop::addHead(Head p_head)
 {
 	heads.push_back(p_head);
+	isDirty = true;
+
 }
 
 void Shop::addLocomotor(Locomotor p_locomotor)
 {
 	locomotors.push_back(p_locomotor);
+	isDirty = true;
+
 }
 
 void Shop::addTorso(Torso p_torso)
 {
 	torsos.push_back(p_torso);
+	isDirty = true;
+
 }
 
 void Shop::addBattery(Battery p_battery)
 {
 	batteries.push_back(p_battery);
+	isDirty = true;
+
 }
 
 void Shop::addArm(Arm p_arm)
 {
 	arms.push_back(p_arm);
+	isDirty = true;
+
 }
 
 void Shop::addRobotModel(RobotModel p_model)
 {
 	models.push_back(p_model);
+	isDirty = true;
+
 }
 
 //GETTERS
@@ -298,6 +315,7 @@ void Shop::savefile(string outfile)
 
 
 	ofs.close();
+	isDirty = false;
 }
 
 void Shop::loadfile(string infile)
