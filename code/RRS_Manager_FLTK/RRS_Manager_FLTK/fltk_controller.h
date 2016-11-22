@@ -108,10 +108,6 @@ private:
 
 	static void s_resetShop_CB(Fl_Widget*, void* p);
 	void resetShop_CB();
-
-	static void s_displayCreateModelSubWindow_CB(Fl_Widget* w, void* p);
-	void displayCreateModelSubWindow_CB();	
-	static void createModel_CB(Fl_Widget* w, void* p);
 	//HELPER FUNCTIONS
 	void hideAllSubWindows();
 };
