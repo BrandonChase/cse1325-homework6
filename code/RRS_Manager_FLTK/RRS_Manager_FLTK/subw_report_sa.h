@@ -21,6 +21,8 @@ class ReportSASubWindow : public Fl_Window
 public:
 	ReportSASubWindow(Shop& p_shop);
 	void initiliazeSADropDrown();
+	void reset();
+
 
 protected:
 	Shop& shop;
@@ -40,7 +42,6 @@ protected:
 	RobotModel getModel();
 
 	//Functions
-	void reset();
 
 	//Widget Callbacks
 	static void s_sa_dd_CB(Fl_Widget* w, void* p)

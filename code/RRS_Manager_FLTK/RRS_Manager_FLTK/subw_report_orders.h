@@ -19,6 +19,8 @@ class ReportOrderSubWindow : public Fl_Window
 public:
 	ReportOrderSubWindow(Shop& p_shop);
 	void initiliazeOrderDropDrown();
+	void reset();
+
 
 protected:
 	Shop& shop;
@@ -36,7 +38,6 @@ protected:
 	RobotModel getModel();
 
 	//Functions
-	void reset();
 
 	//Widget Callbacks
 	static void s_order_dd_CB(Fl_Widget* w, void* p)

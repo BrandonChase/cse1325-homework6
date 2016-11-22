@@ -33,6 +33,7 @@ public:
 	int getDateYear();
 
 	void initializeDropDowns();
+	void reset();
 
 private:
 	Shop& shop;
@@ -55,7 +56,6 @@ private:
 	Fl_Button* close_btn;
 
 	//Functions
-	void reset();
 
 	//Widget Callbacks
 	static void s_create_btn_CB(Fl_Widget* w, void* p)

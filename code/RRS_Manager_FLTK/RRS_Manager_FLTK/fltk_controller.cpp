@@ -226,6 +226,12 @@ void FLTKController::resetShop_CB()
 	report_parts_sw->reset();
 	create_customer_sw->reset();
 	create_sa_sw->reset();
+	create_order_sw->reset();
+	report_customer_sw->reset();
+	report_model_sw->reset();
+	report_order_sw->reset();
+	report_sa_sw->reset();
+
 	//create_model_sw->update_dd();
 }
 

@@ -21,6 +21,8 @@ class ReportCustomerSubWindow : public Fl_Window
 public:
 	ReportCustomerSubWindow(Shop& p_shop);
 	void initiliazeCustomerDropDrown();
+	void reset();
+
 
 protected:
 	Shop& shop;
@@ -40,7 +42,6 @@ protected:
 	RobotModel getModel();
 
 	//Functions
-	void reset();
 
 	//Widget Callbacks
 	static void s_customer_dd_CB(Fl_Widget* w, void* p)
