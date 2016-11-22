@@ -149,7 +149,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="controller.cpp" />
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="date.cpp" />
     <ClCompile Include="easy_input.cpp" />
@@ -176,7 +175,6 @@
     <ClCompile Include="view.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="controller.h" />
     <ClInclude Include="customer.h" />
     <ClInclude Include="date.h" />
     <ClInclude Include="easy_input.h" />
