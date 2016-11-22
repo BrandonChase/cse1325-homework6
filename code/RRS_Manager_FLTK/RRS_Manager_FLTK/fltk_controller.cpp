@@ -107,7 +107,7 @@ int FLTKController::GUI()
 		menuitems[23].callback(s_populateShop_CB, this); //Populate Shop
 	}
 
-	win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.18"};
+	win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.69"};
 	Fl_Menu_Bar *menubar;
 
 	menubar = new Fl_Menu_Bar(0,0,WIDTH+3*BORDER, MENUHEIGHT);
