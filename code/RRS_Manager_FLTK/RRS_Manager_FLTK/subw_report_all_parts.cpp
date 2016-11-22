@@ -83,6 +83,7 @@ const RobotPart* ReportPartsSubWindow::getRobotPart()
 void ReportPartsSubWindow::part_type_dd_CB()
 {
 	part_dd->clear();
+	redraw();
 	PartType part_type = getPartType();
 
 	if (part_type == PartType::HEAD)

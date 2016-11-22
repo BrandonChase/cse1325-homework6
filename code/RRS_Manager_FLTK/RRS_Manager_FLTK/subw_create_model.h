@@ -39,7 +39,7 @@ public:
 	int num_batteries() const; 
 	int num_arms() const; 
 	bool isNumBatOkay(int num_bat) const;
-
+	void reset();
 private:
 	Shop &shop;
 
@@ -82,7 +82,7 @@ private:
 	
 
 	//Functions
-	void reset();
+
 
 	//Widget Callbacks
 	static void s_create_btn_CB(Fl_Widget* w, void* p)

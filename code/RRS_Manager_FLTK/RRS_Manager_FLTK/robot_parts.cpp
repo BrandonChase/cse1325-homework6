@@ -132,7 +132,7 @@ int Torso::getNumBatteries() const
 
 string RobotPart::saveData() const 
 {
-	return name + "," + to_string(part_number) + "," + to_string(weight) + "," + to_string(price) + "," + description;
+	return name + "," + to_string(part_number) + "," + to_string(weight) + "," + to_string(price) + "," + description + "," + image_filename;
 }
 
 string Locomotor::saveData() const 
@@ -147,7 +147,7 @@ string Torso::saveData() const
 
 string Battery::saveData() const 
 {
-	return RobotPart::saveData() + "," + to_string(contained_energy) + ",";
+	return RobotPart::saveData() + "," + to_string(contained_energy);
 }
 
 string Arm::saveData() const 

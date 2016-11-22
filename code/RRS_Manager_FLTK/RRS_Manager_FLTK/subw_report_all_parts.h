@@ -26,12 +26,12 @@ public:
 	//Getters
 	PartType getPartType();
 	const RobotPart* getRobotPart();
+	void reset();
 
 private:
 	Shop& shop;
 
 	//Misc. Functions
-	void reset();
 
 	//Formatting
 	const int tb_offset = 170;

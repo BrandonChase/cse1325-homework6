@@ -223,42 +223,48 @@ void Shop::savefile(string outfile)
 	int i=1;
 	for (int i = 0; i < PartType::NUM_OF_PART_TYPES; i++)
 	{
-		ofs << "/" << PartType(i) << "/\n";
+		try{
+			ofs << "/" << PartType(i) << "/\n";
 
-		if (i == PartType::HEAD)
-		{
-			for (Head head : heads)
+			if (i == PartType::HEAD)
 			{
-				ofs <<  head.saveData() << "\n";
+				for (Head head : heads)
+				{
+					ofs <<  head.saveData() << "\n";
+				}
+			}
+			if (i == PartType::TORSO)
+			{
+				for (Torso torso : torsos)
+				{
+					ofs <<  torso.saveData() << "\n";
+				}
+			}
+			if (i == PartType::BATTERY)
+			{
+				for (Battery battery : batteries)
+				{
+					ofs <<  battery.saveData() << "\n";
+				}
+			}
+			if (i == PartType::ARM)
+			{
+				for (Arm arm : arms)
+				{
+					ofs <<  arm.saveData() << "\n";
+				}
+			}
+			if (i == PartType::LOCOMOTOR)
+			{
+				for (Locomotor locomotor : locomotors)
+				{
+					ofs <<  locomotor.saveData() << "\n";
+				}
 			}
 		}
-		if (i == PartType::TORSO)
+		catch (...)
 		{
-			for (Torso torso : torsos)
-			{
-				ofs <<  torso.saveData() << "\n";
-			}
-		}
-		if (i == PartType::BATTERY)
-		{
-			for (Battery battery : batteries)
-			{
-				ofs <<  battery.saveData() << "\n";
-			}
-		}
-		if (i == PartType::ARM)
-		{
-			for (Arm arm : arms)
-			{
-				ofs <<  arm.saveData() << "\n";
-			}
-		}
-		if (i == PartType::LOCOMOTOR)
-		{
-			for (Locomotor locomotor : locomotors)
-			{
-				ofs <<  locomotor.saveData() << "\n";
-			}
+			cerr << "Saving file was unsuccessful\n";
 		}		
 	}
 
@@ -301,7 +307,8 @@ void Shop::loadfile(string infile)
 
 	ifstream loadfile(infile);
 	if (!loadfile) throw runtime_error("Unable to load specified file " + infile);
-	if (loadfile.good())
+
+	if (loadfile.good() && !loadfile.eof())
 	{
 		bool is_changing = false;
 		int cur_tagtype = 0;
@@ -321,43 +328,59 @@ void Shop::loadfile(string infile)
 			}
 			if (!is_changing)
 			{
-				switch (cur_tagtype)
-				{ //TODO: Account for now robot parts have image filenames
-					case 0:
-					//addHead(Head(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4]));
-					break;
+				try{
 
-					case 1:
-					//addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::TORSO, spline[4], stoi(spline[5])));
-					break;
+					switch (cur_tagtype)
+					{ //TODO: Account for now robot parts have image filenames
+						case 0:
+						addHead(Head(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4], spline[5]));
+						cerr << "added head\n";
+						break;
 
-					case 2:
-					//addBattery(Battery(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::BATTERY, spline[4], stod(spline[5])));
-					break;
+						case 1:
+						addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::TORSO, spline[4], stoi(spline[6]), spline[5]));
+						cerr << "added torso\n";
+						break;
 
-					case 3:
-					//addArm(Arm(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::ARM, spline[4], stod(spline[5])));
-					break;
+						case 2:
+						addBattery(Battery(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::BATTERY, spline[4], stod(spline[6]), spline[5]));
+						cerr << "added battery\n";
+						break;
 
-					case 4:
-					//addLocomotor(Locomotor(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::LOCOMOTOR, spline[4], stod(spline[5]), stod(spline[6])));
-					break;
+						case 3:
+						addArm(Arm(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::ARM, spline[4], stod(spline[6]), spline[5]));
+						cerr << "added arm\n";
+						break;
 
-					case 5:
-					LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7]), stoi(spline[8]), stoi(spline[9])); // 3 to n-3 are IDs for parts
-					break;
+						case 4:
+						addLocomotor(Locomotor(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::LOCOMOTOR, spline[4], stod(spline[6]), stod(spline[7]), spline[5]));
+						cerr << "added locomotor\n";
+						break;
 
-					case 6:
-					addCustomer(Customer(spline[0], stoi(spline[1])));
-					break;
+						case 5:
+						LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7]), stoi(spline[8]), stoi(spline[9])); // 3 to n-3 are IDs for parts
+						cerr << "added model\n";
+						break;
 
-					case 7:
-					addSalesAssociate(SalesAssociate(spline[0], stoi(spline[1])));
-					break;
+						case 6:
+						addCustomer(Customer(spline[0], stoi(spline[1])));
+						cerr << "added customer\n";
+						break;
 
-					case 8:
-					LoadOrder(line); //also adds to orders vector
-					break;
+						case 7:
+						addSalesAssociate(SalesAssociate(spline[0], stoi(spline[1])));
+						cerr << "added sales as\n";
+						break;
+
+						case 8:
+						LoadOrder(line); //also adds to orders vector
+						cerr << "loaded order\n";
+						break;
+					}
+				}
+				catch (...)
+				{
+					cerr << "Loading objects from file was unsuccessful\n";
 				}
 			}
 
@@ -407,6 +430,21 @@ void Shop::populateShopForTesting()
 	addOrder(Order(1, 12345, 1, models_pop, 600.0, odate), 1, 12345);
 	addOrder(Order(2, 666, 1, models_pop, 600.0, odate), 2, 666);
 	addOrder(Order(3, 12345, 1, models_pop, 500.0, odate), 3, 12345);
+}
+
+
+void Shop::resetShop()
+{
+	sales_associates.clear();
+	customers.clear();
+	orders.clear();
+	models.clear();
+	heads.clear();
+	locomotors.clear();
+	torsos.clear();
+	batteries.clear();
+	arms.clear();
+
 }
 
 
