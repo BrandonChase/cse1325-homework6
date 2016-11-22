@@ -434,8 +434,8 @@ void Shop::populateShopForTesting()
 	addLocomotor(Locomotor("War Locomotor", 234, 8, 91, PartType::LOCOMOTOR, "This is war locomotor no. 1", 20, 750, "Images/Locomotors/locomotor_orange.png"));
 
 	addRobotModel(RobotModel("Destroyer 9000", 111, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],2,1));
-	addRobotModel(RobotModel("Personal Servant", 223, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],1,1));
-	addRobotModel(RobotModel("War Bot", 3345, 500, heads[0], torsos[0], locomotors[0], batteries[0], arms[0],2,2));
+	addRobotModel(RobotModel("Personal Servant", 223, 500, heads[1], torsos[1], locomotors[1], batteries[1], arms[1],1,1));
+	addRobotModel(RobotModel("War Bot", 3345, 500, heads[2], torsos[2], locomotors[2], batteries[2], arms[2],2,2));
 
 	addCustomer(Customer("John Smith", 12345));
 	addCustomer(Customer("Joe Cloud", 42069));

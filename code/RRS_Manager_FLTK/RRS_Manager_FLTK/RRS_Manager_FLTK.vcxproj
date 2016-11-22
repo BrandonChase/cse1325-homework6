@@ -155,6 +155,7 @@
     <ClCompile Include="easy_input.cpp" />
     <ClCompile Include="fltk_controller.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="model_tab_viewer.cpp" />
     <ClCompile Include="order.cpp" />
     <ClCompile Include="part_type.cpp" />
     <ClCompile Include="robot_models.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="date.h" />
     <ClInclude Include="easy_input.h" />
     <ClInclude Include="fltk_controller.h" />
+    <ClInclude Include="model_tab_viewer.h" />
     <ClInclude Include="robot_part_dropdown.h" />
     <ClInclude Include="subw_create_customer_sa.h" />
     <ClInclude Include="order.h" />

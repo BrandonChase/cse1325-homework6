@@ -25,6 +25,7 @@ ReportModelSubWindow::ReportModelSubWindow(Shop& p_shop) : Fl_Window(0, MENUHEIG
 void ReportModelSubWindow::reset()
 {
 	model_dd->clear();
+	mtv.reset();
 }
 
 void ReportModelSubWindow::initiliazeModelDropDrown()
@@ -51,7 +52,9 @@ RobotModel ReportModelSubWindow::getModel()
 //CALLBACKS
 void ReportModelSubWindow::model_dd_CB()
 {
-	//TODO: UPDATE MODEL VIEWER
+	mtv.show();
+	mtv.display_image(getModel());
+	mtv.update_tb(getModel());
 }
 
 void ReportModelSubWindow::close_btn_CB()
