@@ -36,6 +36,11 @@ public:
 	std::string saveData();
 	int getModelNumber() const;
 	std::string getModelName();
+	Head gethead();
+	Torso gettorso();
+	Locomotor getlocomotor();
+	Arm getarm();
+	Battery getbattery();
 
 private:
 	std::string name;

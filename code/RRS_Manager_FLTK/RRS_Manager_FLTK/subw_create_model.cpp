@@ -152,8 +152,6 @@ void CreateModelSubWindow::update_dd()
 	}
 	arm_choice_dd->value(0);
 	arm_choice_dd->callback(s_display_image_CB, this);
-
-
 }
 
 

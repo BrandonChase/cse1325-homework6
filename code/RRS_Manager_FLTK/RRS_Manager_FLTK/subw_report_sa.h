@@ -15,6 +15,7 @@
 #include "order.h"
 #include "shop.h"
 #include "window_properties.h"
+#include "model_tab_viewer.h"
 
 class ReportSASubWindow : public Fl_Window
 {
@@ -33,7 +34,7 @@ protected:
 	Fl_Choice* order_dd;
 	Fl_Choice* model_dd;
 	Fl_Button* close_btn;
-
+	ModelTabViewer mtv;
 	//GETTERS
 	SalesAssociate getSA();
 	Order getOrder();

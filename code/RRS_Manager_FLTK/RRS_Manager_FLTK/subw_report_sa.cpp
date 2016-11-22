@@ -108,7 +108,9 @@ void ReportSASubWindow::order_dd_CB()
 
 void ReportSASubWindow::model_dd_CB()
 {
-	//TODO: UPDATE MODEL VIEWER
+	mtv.display_tabs();
+	mtv.display_image(getModel());
+
 }
 
 void ReportSASubWindow::close_btn_CB()

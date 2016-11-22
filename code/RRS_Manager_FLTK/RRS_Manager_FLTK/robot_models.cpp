@@ -37,11 +37,33 @@ std::string RobotModel::outputFormattedString(std::string offset, bool show_deta
 string RobotModel::saveData()
 {
 	return name + "," + to_string(model_number) + "," + to_string(price) + "," + to_string(s_head.getPartNumber()) + "," + to_string(s_torso.getPartNumber())
-	 + "," + to_string(s_locomotor.getPartNumber()) + "," + to_string(s_battery.getPartNumber()) + "," + to_string(s_arm.getPartNumber()) 
-	 + "," + to_string(battery_quantity) + "," + to_string(arm_quantity);
+	+ "," + to_string(s_locomotor.getPartNumber()) + "," + to_string(s_battery.getPartNumber()) + "," + to_string(s_arm.getPartNumber()) 
+	+ "," + to_string(battery_quantity) + "," + to_string(arm_quantity);
 }
 
 string RobotModel::getModelName()
 {
 	return name;
+}
+
+
+Head RobotModel::gethead()
+{
+	return s_head;
+}
+Torso RobotModel::gettorso()
+{
+	return s_torso;
+}
+Locomotor RobotModel::getlocomotor()
+{
+	return s_locomotor;
+}
+Arm RobotModel::getarm()
+{
+	return s_arm;
+}
+Battery RobotModel::getbattery()
+{
+	return s_battery;
 }
