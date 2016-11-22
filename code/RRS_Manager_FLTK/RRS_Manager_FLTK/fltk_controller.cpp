@@ -310,6 +310,7 @@ void FLTKController::displayFileOpenWindow_CB()
 			resetShop_CB();
 			shop.loadfile(newfile);
 			shop.isDirty = false;
+			//testing
 		}
 	}
 	catch(...)
