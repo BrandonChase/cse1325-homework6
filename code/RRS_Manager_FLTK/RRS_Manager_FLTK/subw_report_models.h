@@ -15,6 +15,7 @@
 #include "order.h"
 #include "shop.h"
 #include "window_properties.h"
+#include "model_tab_viewer.h"
 
 class ReportModelSubWindow : public Fl_Window
 {
@@ -31,6 +32,7 @@ protected:
 	//Widgets
 	Fl_Choice* model_dd;
 	Fl_Button* close_btn;
+	ModelTabViewer mtv;
 
 	//GETTERS
 	RobotModel getModel();

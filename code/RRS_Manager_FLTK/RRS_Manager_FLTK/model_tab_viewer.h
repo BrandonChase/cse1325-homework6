@@ -24,25 +24,29 @@
 #include "shop.h"
 #include "view.h"
 #include "window_properties.h"
+#include <FL/Fl_Text_Display.H>
+#include <FL/Fl_Text_Buffer.H>
 
 class ModelTabViewer
 {
 public:
 	ModelTabViewer();
 	void display_image(RobotModel modelin);
+	void update_tb(RobotModel modelin);
+	void show();
+	void hide();
+	void reset();
+
+
 
 private:
+	Fl_Tabs *tabs;
+	Fl_Text_Display* model_tb;
 	//Formatting
 	const int tb_offset = 170;
 	const int xoffset = 220+tb_offset, yoffset = 0, xsize = 200, ysize = 200;
 
-	Fl_Tabs *tabs;
-
-	Head* head_x;
-	Locomotor* locomotor_x;
-	Torso* torso_x;
-	Battery* battery_x;
-	Arm* arm_x;
+	Fl_Text_Buffer* buffer;
 
 	Fl_Box* head_picture_box;
 	Fl_Box* torso_picture_box;

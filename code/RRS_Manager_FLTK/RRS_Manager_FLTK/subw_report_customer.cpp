@@ -31,6 +31,7 @@ void ReportCustomerSubWindow::reset()
 	customer_dd->clear();
 	order_dd->clear();
 	model_dd->clear();
+	mtv.reset();
 }
 
 void ReportCustomerSubWindow::initiliazeCustomerDropDrown()
@@ -74,8 +75,8 @@ RobotModel ReportCustomerSubWindow::getModel()
 		throw runtime_error("Model is blank!");
 	}
 
-	const RobotModel* m = &(getOrder().getRobotModels()[model_index]);
-	return *m;
+	vector<RobotModel> models = getOrder().getRobotModels();
+	return models[model_index];
 }
 
 //CALLBACKS
@@ -108,7 +109,9 @@ void ReportCustomerSubWindow::order_dd_CB()
 
 void ReportCustomerSubWindow::model_dd_CB()
 {
-	//TODO: UPDATE MODEL VIEWER
+	mtv.show();
+	mtv.display_image(getModel());
+	mtv.update_tb(getModel());
 }
 
 void ReportCustomerSubWindow::close_btn_CB()
