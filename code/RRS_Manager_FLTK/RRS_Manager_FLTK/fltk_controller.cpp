@@ -66,12 +66,6 @@ int FLTKController::GUI()
 		{"Save As", FL_ALT + FL_SHIFT + 's', 0},
 		{"&Quit", FL_ALT + 'q', 0},
 		{0},
-		{"&Edit", 0, 0, 0, FL_SUBMENU },
-			{"&Undo", 0, 0},
-			{"Cu&t", 0, 0},
-			{"&Copy", 0, 0},
-			{"&Paste", 0, 0},
-			{0},
 		{"&Create", 0, 0, 0, FL_SUBMENU },
 			{"Order", 0, 0, 0},
 			{"Customer", 0, 0, 0},
@@ -101,17 +95,17 @@ int FLTKController::GUI()
 		menuitems[03].callback(s_displayFileSaveWindow_CB, this);
 		menuitems[04].callback(s_displayFileSaveAsWindow_CB, this);
 		menuitems[05].callback(s_quit_CB, this);
-		menuitems[14].callback(s_displayCreateOrderSubWindow_CB, this); //Create Part
-		menuitems[15].callback(s_displayCreateCustomerSubWindow_CB, this); //Create Customer
-		menuitems[16].callback(s_displayCreateSASubWindow_CB, this); //Create Sales Assoc
-		menuitems[17].callback(s_displayCreatePartSubWindow_CB, this); //Create Part
-		menuitems[18].callback(s_displayCreateModelSubWindow_CB, this); //Create Model
-		menuitems[21].callback(s_displayReportOrderSubWindow_CB, this); //Report Order
-		menuitems[22].callback(s_displayReportCustomerSubWindow_CB, this); //Report Customer
-		menuitems[23].callback(s_displayReportSASubWindow_CB, this); //Report SA
-		menuitems[24].callback(s_displayReportModelsSubWindow_CB, this); //Report Models
-		menuitems[25].callback(s_displayReportPartsSubWindow_CB, this); //Report Parts
-		menuitems[30].callback(s_populateShop_CB, this); //Populate Shop
+		menuitems[8].callback(s_displayCreateOrderSubWindow_CB, this); //Create Part
+		menuitems[9].callback(s_displayCreateCustomerSubWindow_CB, this); //Create Customer
+		menuitems[10].callback(s_displayCreateSASubWindow_CB, this); //Create Sales Assoc
+		menuitems[11].callback(s_displayCreatePartSubWindow_CB, this); //Create Part
+		menuitems[12].callback(s_displayCreateModelSubWindow_CB, this); //Create Model
+		menuitems[15].callback(s_displayReportOrderSubWindow_CB, this); //Report Order
+		menuitems[16].callback(s_displayReportCustomerSubWindow_CB, this); //Report Customer
+		menuitems[17].callback(s_displayReportSASubWindow_CB, this); //Report SA
+		menuitems[18].callback(s_displayReportModelsSubWindow_CB, this); //Report Models
+		menuitems[19].callback(s_displayReportPartsSubWindow_CB, this); //Report Parts
+		menuitems[24].callback(s_populateShop_CB, this); //Populate Shop
 	}
 
 	win = new Fl_Window{WIDTH+3*BORDER, HEIGHT+3*BORDER, "Robbie Robot Shop v0.18"};
