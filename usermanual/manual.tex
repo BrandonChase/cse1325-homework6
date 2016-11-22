@@ -1,5 +1,5 @@
-% User Manual for  Robbie Robot Shop v0.13  
-% by Joe Cloud, Brandon Chase. Manual rev 1.0
+% User Manual for  Robbie Robot Shop v0.69 
+% by Joe Cloud, Brandon Chase. Manual rev 1.1
 
 \documentclass{article}
 
@@ -27,29 +27,32 @@
 The Robbie Robot Shop program is designed to make managing a store easier. It allows a store to make keeping track of all their parts and models, their orders created by their sales associates for their beloved customers. 
 
 \section{Functionality}
-From the main menu we are greeted with a multitude of options- specifics of the capabilities for each option is listed below:
+From the menu bar we are able to select from a multitude of options, whether it be creating new shops, loading/saving. Or adding new parts/models/customers to the shop. The GUI allows a shop to manage their inventory and resources fully.
 \subsection{Menu bar}
-Our menu bar features an array of options 
-subsection{Main Menu: Create}
-By entering 1 as the Command, all possible create options are listed. Here, shop employees are able to create new instances of anything from creating parts, to adding a new customer to the system.
-\subsubsection{Create: Order}
-Allows a Sales Associate to create an order, will not work unless a Sales Associate, Customer, and Models have previously been added.
-Prompts for date of order (must follow syntax as shown). Multiple robot models can be selected for the order as well.
+From the top of the menu, we have File, Create, Report, Help.
+Each of these have separate menu options that model the principle of least astonishment in order to make the program intuitive for the shop employees.
+
+\subsubsection{Create: Part}
+Typically the first function to be invoked would be the create part option, this displays a subwindow (as will any other option - with the exceptions of the saving/loading menu).
+\subsubsection{Create: Model}
+Creating a model allows a user to combine their previously made parts into one packaged models, with images grouped from their respective parts. This provides a true representation of the final product.
 \subsubsection{Create: Customer}
 Allow a Sales Associate to add a new customer to the system.
 Can be added at any time, not dependent on other aspects of the system.
 \subsubsection{Create: Sales Associate}
 Creates a Sales Associate and associated ID number.
-\subsubsection{Create: Robot Model}
-If all the necessary parts are available, steps you through the process of choosing parts to combine together into a robot.
-\subsubsection{Create: Robot Part}
-Runs through wizard for creating a Robot part, can choose from head, torso, arm, battery, locomotor.
-Can be added at any time, not dependent on other aspects of the system.
+\subsubsection{Create: Order}
+Creating an order goes through the process of adding an order based on previously added sales associates,customers, and models (of which multiple can be added).
+
 \subsection{Main Menu: Report}
 The Report submenu contains the same menu options as Create except instead of creating, when an option is selected under the Report menu- any stored data will be returned to the employee (or beloved customer by proxy of employee). Each report option has varying levels of control so more information can be viewed instead of the titles at a glance. Note the use of -1 as the return to menu key.
 \subsection{Main Menu: Load/Save}
 Under this menu item, the shop data can be saved to a file (with variable file name) and then also loaded up when the system is restarted to keep the data saved. 
+\subsection{Main Menu: New}
+New will clear out the shop, erase regardless of whether or not the files have been saved. It is useful for completely purging the shop without having to restart the program.
 
+\subsection{Populate Shop}
+This is a 'secret function' that fills the shop with objects for demo purposes.
 
 
 
