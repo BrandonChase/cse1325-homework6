@@ -206,6 +206,10 @@ void FLTKController::resetShop_CB()
 	hideAllSubWindows();
 	shop.resetShop();
 	create_model_sw->reset();
+	create_part_sw->reset();
+	report_parts_sw->reset();
+	create_customer_sw->reset();
+	create_sa_sw->reset();
 	//create_model_sw->update_dd();
 }
 

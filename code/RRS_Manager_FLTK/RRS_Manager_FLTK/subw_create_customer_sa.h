@@ -20,6 +20,7 @@ public:
 	CreatePersonSubWindow(Shop& p_shop);
 	std::string getName() const;
 	virtual int getNumber() const = 0;
+	void reset();
 
 protected:
 	Shop& shop;
@@ -33,7 +34,7 @@ protected:
 	Fl_Button* create_btn;
 
 	//Functions
-	void reset();
+
 
 	//Widget Callbacks
 	static void s_create_btn_CB(Fl_Widget* w, void* p)

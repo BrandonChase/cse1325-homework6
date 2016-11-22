@@ -40,6 +40,9 @@ public:
 	double containedEnergy() const;
 	std::string imageFileName() const;
 
+	void reset();
+
+
 
 private:
 	Shop& shop;
@@ -65,7 +68,6 @@ private:
 	Fl_PNG_Image* part_image;
 
 	//Functions
-	void reset();
 
 	//Widget Callbacks
 	static void s_create_btn_CB(Fl_Widget* w, void* p)
