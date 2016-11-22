@@ -354,47 +354,38 @@ void Shop::loadfile(string infile)
 					{ //TODO: Account for now robot parts have image filenames
 						case 0:
 						addHead(Head(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::HEAD, spline[4], spline[5]));
-						cerr << "added head\n";
 						break;
 
 						case 1:
 						addTorso(Torso(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::TORSO, spline[4], stoi(spline[6]), spline[5]));
-						cerr << "added torso\n";
 						break;
 
 						case 2:
 						addBattery(Battery(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::BATTERY, spline[4], stod(spline[6]), spline[5]));
-						cerr << "added battery\n";
 						break;
 
 						case 3:
 						addArm(Arm(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::ARM, spline[4], stod(spline[6]), spline[5]));
-						cerr << "added arm\n";
 						break;
 
 						case 4:
 						addLocomotor(Locomotor(spline[0], stoi(spline[1]), stod(spline[2]), stod(spline[3]), PartType::LOCOMOTOR, spline[4], stod(spline[6]), stod(spline[7]), spline[5]));
-						cerr << "added locomotor\n";
 						break;
 
 						case 5:
 						LoadRobotModel(spline[0], stoi(spline[1]), stod(spline[2]), stoi(spline[3]), stoi(spline[4]), stoi(spline[5]), stoi(spline[6]), stoi(spline[7]), stoi(spline[8]), stoi(spline[9])); // 3 to n-3 are IDs for parts
-						cerr << "added model\n";
 						break;
 
 						case 6:
 						addCustomer(Customer(spline[0], stoi(spline[1])));
-						cerr << "added customer\n";
 						break;
 
 						case 7:
 						addSalesAssociate(SalesAssociate(spline[0], stoi(spline[1])));
-						cerr << "added sales as\n";
 						break;
 
 						case 8:
 						LoadOrder(line); //also adds to orders vector
-						cerr << "loaded order\n";
 						break;
 					}
 				}
