@@ -206,8 +206,10 @@ void CreateOrderSubWindow::create_btn_CB()
 			price += m.getPrice();
 		}
 
-		shop.addOrder(Order(getOrderNumber(), getCustomer().getCustomerNumber(), getSalesAssoc().getSalesAssociateNumber(), chosen_models, price,
-			Date(getDateMonth(), getDateDay(), getDateYear())), getCustomer().getCustomerNumber(), getSalesAssoc().getSalesAssociateNumber());
+		Order o = Order(getOrderNumber(), getCustomer().getCustomerNumber(), getSalesAssoc().getSalesAssociateNumber(), chosen_models, price,
+			Date(getDateMonth(), getDateDay(), getDateYear()));
+		
+		shop.addOrder(o, getSalesAssoc().getSalesAssociateNumber(), getCustomer().getCustomerNumber());
 		reset();
 		hide();
 	}

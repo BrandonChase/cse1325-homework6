@@ -10,7 +10,6 @@
 #include <iostream>
 
 #include "shop.h"
-#include "view.h"
 #include "subw_create_model.h"
 #include "window_properties.h"
 #include "subw_create_part.h"

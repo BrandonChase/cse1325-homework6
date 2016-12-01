@@ -22,7 +22,6 @@
 #include "robot_models.h"
 #include "part_type.h"
 #include "shop.h"
-#include "view.h"
 #include "window_properties.h"
 
 class CreateModelSubWindow : public Fl_Window

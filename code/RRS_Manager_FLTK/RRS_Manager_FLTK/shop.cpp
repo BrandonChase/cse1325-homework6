@@ -215,7 +215,7 @@ void Shop::LoadOrder(string line)
 	vector<string> spdate = splitter( spline[spline.size()-1], '/');
 	Date dresult(stoi(spdate[0]), stoi(spdate[1]), stoi(spdate[2]));
 
-	addOrder(Order(stoi(spline[0]), stoi(spline[1]), stoi(spline[2]), ordermodels,stod(spline[spline.size()-2]), dresult), stoi(spline[1]), stoi(spline[2])); 
+	addOrder(Order(stoi(spline[0]), stoi(spline[1]), stoi(spline[2]), ordermodels,stod(spline[spline.size()-2]), dresult), stoi(spline[2]), stoi(spline[1])); 
 }
 
 vector<string> Shop::splitter(const string &s, char delim) 
@@ -439,8 +439,8 @@ void Shop::populateShopForTesting()
 	vector<RobotModel> models_pop = {models[0], models[1]};
 	Date odate(5,6,1996);
 	addOrder(Order(1, 12345, 1, models_pop, 600.0, odate), 1, 12345);
-	addOrder(Order(2, 666, 1, models_pop, 600.0, odate), 2, 666);
-	addOrder(Order(3, 12345, 1, models_pop, 500.0, odate), 3, 12345);
+	addOrder(Order(2, 666, 2, models_pop, 600.0, odate), 2, 666);
+	addOrder(Order(3, 12345, 3, models_pop, 500.0, odate), 3, 12345);
 }
 
 

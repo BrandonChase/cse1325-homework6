@@ -6,12 +6,10 @@ using namespace std;
 
 void Tester::testOutputingRobotParts()
 {
-	view.listRobotParts(PartType::ALL, "");
 }
 
 void Tester::testOutputingRobotModels()
 {
-	view.listRobotModels(shop.getModels(), "");
 }
 
 void Tester::testFileSavingLoading()

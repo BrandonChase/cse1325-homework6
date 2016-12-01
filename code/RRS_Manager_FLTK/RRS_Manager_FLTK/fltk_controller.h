@@ -6,7 +6,6 @@
 #endif
 
 #include "shop.h"
-#include "view.h"
 #include "subw_create_part.h"
 #include "subw_create_customer_sa.h"
 #include "subw_report_all_parts.h"
@@ -36,13 +35,12 @@
 class FLTKController
 {
 public:
-	FLTKController(Shop& p_shop) : shop(p_shop), view(View(p_shop)) {};
+	FLTKController(Shop& p_shop) : shop(p_shop) {};
 
 	int GUI();
 
 private:
 	Shop& shop;
-	View view;
 	std::string savedfile = "";
 	//
 	//WIDGETS

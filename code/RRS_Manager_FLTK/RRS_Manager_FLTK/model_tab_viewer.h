@@ -22,7 +22,6 @@
 #include "robot_models.h"
 #include "part_type.h"
 #include "shop.h"
-#include "view.h"
 #include "window_properties.h"
 #include <FL/Fl_Text_Display.H>
 #include <FL/Fl_Text_Buffer.H>
