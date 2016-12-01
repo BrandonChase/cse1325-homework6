@@ -145,7 +145,7 @@ void ReportPartsSubWindow::part_dd_CB()
 	string image_filename = getRobotPart()->getFileName();
 	if (part_image != NULL)
 	{
-		delete part_image;
+		//delete part_image;
 	}
 	part_image = new Fl_PNG_Image(image_filename.c_str());
 	picture_box->image(part_image);
