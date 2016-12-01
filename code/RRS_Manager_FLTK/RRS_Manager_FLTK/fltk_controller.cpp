@@ -240,13 +240,13 @@ void FLTKController::displayFileSaveWindow_CB()
 	string extension = ".shop";
 	try
 	{
-		if (savedfile == "")
+		if (savedfile.empty())
 		{
-			//savedfile = fl_file_chooser("Save File As?", "*", directory.c_str());
 			savedfile = fl_input("Enter filename to save to: ");
 			savedfile = directory + savedfile + extension;
 		}
 		shop.savefile(savedfile);
+		cerr << savedfile;
 	}
 	catch (...)
 	{
